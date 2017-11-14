@@ -1,0 +1,27 @@
+{
+  "blocks": [{
+    "theme":"desert",
+    "sprite":"block_desert_100001_100001_1",
+    "input":"100001",
+    "output":"100001",
+    "height": 625
+  },{
+    "theme":"desert",
+    "sprite":"block_desert_110011_110011_1",
+    "input":"110011",
+    "output":"110011",
+    "height": 625
+  },{
+    "theme":"desert",
+    "sprite":"changer_desert_100001_110011_1",
+    "input":"100001",
+    "output":"110011",
+    "height": 62.5
+  },{
+    "theme":"desert",
+    "sprite":"changer_desert_110011_100001_1",
+    "input":"110011",
+    "output":"100001",
+    "height": 62.5
+  }]
+}
