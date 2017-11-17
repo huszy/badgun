@@ -49,8 +49,8 @@ export default class extends Phaser.State {
     }
     this.userInput = this.game.device.desktop ? this.game.input.mousePointer : this.game.input.pointer1
 
-    this.gameWorld.scale.set(1.25)
-    this.setWorldPosition(1.25)
+    // this.gameWorld.scale.set(1.25)
+    // this.setWorldPosition(1.25)
   }
 
   setupPlayer () {
@@ -73,6 +73,8 @@ export default class extends Phaser.State {
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.maxAngular = 100
     this.player.body.angularDrag = 150
+    this.player.body.collideWorldBounds = true
+    this.player.body.bounce.set(0)
 
     this.gameWorld.add(this.player)
   }
@@ -145,23 +147,24 @@ export default class extends Phaser.State {
   }
 
   update () {
-    this.handleUserInput()
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-    {
+    let userMoveDirection = 0
+    if (this.userInput.isDown) {
+      userMoveDirection = (this.userInput.x < this.game.width / 2) ? -1 : 1
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || userMoveDirection === -1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation - 0.02, -0.2, 0)
       if(this.player.body.velocity.x > 0) {
         this.player.body.velocity.x = 0
       }
-      this.player.body.velocity.x -= PLAYER_TURN_VELOCITY
+      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x - PLAYER_TURN_VELOCITY, -1 * PLAYER_TURN_VELOCITY * 20, 0)
     }
-    else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
-    {
+    else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || userMoveDirection === 1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation + 0.02, 0, 0.2)
-      //this.player.rotation += 0.05
       if(this.player.body.velocity.x < 0) {
         this.player.body.velocity.x = 0
       }
-      this.player.body.velocity.x += PLAYER_TURN_VELOCITY
+      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + PLAYER_TURN_VELOCITY, 0, PLAYER_TURN_VELOCITY * 20)
+      //this.player.body.velocity.x += PLAYER_TURN_VELOCITY
     } else {
       if(this.player.body.velocity.x > 0) {
         this.player.body.velocity.x -= PLAYER_TURN_VELOCITY * 1.75
