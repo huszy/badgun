@@ -1,27 +1,354 @@
 {
-  "blocks": [{
-    "theme":"desert",
-    "sprite":"block_desert_100001_100001_1",
-    "input":"100001",
-    "output":"100001",
-    "height": 625
-  },{
-    "theme":"desert",
-    "sprite":"block_desert_110011_110011_1",
-    "input":"110011",
-    "output":"110011",
-    "height": 625
-  },{
-    "theme":"desert",
-    "sprite":"changer_desert_100001_110011_1",
-    "input":"100001",
-    "output":"110011",
-    "height": 62.5
-  },{
-    "theme":"desert",
-    "sprite":"changer_desert_110011_100001_1",
-    "input":"110011",
-    "output":"100001",
-    "height": 62.5
-  }]
+  "blocks": [
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000000_1.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000000_2.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000000_3.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000001_1.png",
+      "input": "000000",
+      "output": "000001",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000010_1.png",
+      "input": "000000",
+      "output": "000010",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000011_1.png",
+      "input": "000000",
+      "output": "000011",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_000100_1.png",
+      "input": "000000",
+      "output": "000100",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_001000_1.png",
+      "input": "000000",
+      "output": "001000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_001100_1.png",
+      "input": "000000",
+      "output": "001100",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_010000_1.png",
+      "input": "000000",
+      "output": "010000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_100000_1.png",
+      "input": "000000",
+      "output": "100000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_100001_1.png",
+      "input": "000000",
+      "output": "100001",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000000_110000_1.png",
+      "input": "000000",
+      "output": "110000",
+      "height": 594
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000001_000000_1.png",
+      "input": "000001",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000001_000001_1.png",
+      "input": "000001",
+      "output": "000001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000001_001100_1.png",
+      "input": "000001",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000010_000000_1.png",
+      "input": "000010",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000010_000010_1.png",
+      "input": "000010",
+      "output": "000010",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000011_000000_1.png",
+      "input": "000011",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000011_000011_1.png",
+      "input": "000011",
+      "output": "000011",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000011_110000_1.png",
+      "input": "000011",
+      "output": "110000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000100_000000_1.png",
+      "input": "000100",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_000100_000100_1.png",
+      "input": "000100",
+      "output": "000100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001000_000000_1.png",
+      "input": "001000",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001000_001000_1.png",
+      "input": "001000",
+      "output": "001000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_000000_1.png",
+      "input": "001100",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_000001_1.png",
+      "input": "001100",
+      "output": "000001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_001100_1.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_001100_2.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_100000_1.png",
+      "input": "001100",
+      "output": "100000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_100001_1.png",
+      "input": "001100",
+      "output": "100001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_001100_110011_1.png",
+      "input": "001100",
+      "output": "110011",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_010000_000000_1.png",
+      "input": "010000",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_010000_010000_1.png",
+      "input": "010000",
+      "output": "010000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100000_000000_1.png",
+      "input": "100000",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100000_001100_1.png",
+      "input": "100000",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100000_100000_1.png",
+      "input": "100000",
+      "output": "100000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100001_000000_1.png",
+      "input": "100001",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100001_001100_1.png",
+      "input": "100001",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100001_100001_1.png",
+      "input": "100001",
+      "output": "100001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100011_100011_1.png",
+      "input": "100011",
+      "output": "100011",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_100011_110001_1.png",
+      "input": "100011",
+      "output": "110001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110000_000000_1.png",
+      "input": "110000",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110000_000011_1.png",
+      "input": "110000",
+      "output": "000011",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110000_110000_1.png",
+      "input": "110000",
+      "output": "110000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110001_100011_1.png",
+      "input": "110001",
+      "output": "100011",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110011_000000_1.png",
+      "input": "110011",
+      "output": "000000",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110011_001100_1.png",
+      "input": "110011",
+      "output": "001100",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110011_110001_1.png",
+      "input": "110011",
+      "output": "110001",
+      "height": 625
+    },
+    {
+      "theme": "desert",
+      "sprite": "desert_110011_110011_1.png",
+      "input": "110011",
+      "output": "110011",
+      "height": 625
+    }
+  ]
 }

@@ -7,6 +7,9 @@ import MapGenerator from './MapGenerator'
 
 const array = require('lodash/array')
 
+const VELOCITY = 800
+const PLAYER_TURN_VELOCITY = 30
+
 export default class extends Phaser.State {
 
   constructor () {
@@ -39,28 +42,58 @@ export default class extends Phaser.State {
       this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     }
 
-    this.playerDef = new Player({
-      game: this.game,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'car'
-    })
-    this.playerDef.inputEnabled = true
-    this.playerDef.input.enableDrag()
-    this.playerDef.anchor.set(0.5)
+    this.setupPlayer()
     // Setup user input
-    if(!this.game.device.desktop) {
+    if (!this.game.device.desktop) {
       this.game.input.addPointer()
     }
     this.userInput = this.game.device.desktop ? this.game.input.mousePointer : this.game.input.pointer1
 
     this.gameWorld.scale.set(1.25)
     this.setWorldPosition(1.25)
-    
+  }
+
+  setupPlayer () {
+    this.playerDef = new Player({
+      game: this.game,
+      x: this.world.centerX,
+      y: this.world.height - 300,
+      asset: 'car'
+    })
+    this.playerDef.inputEnabled = true
+    this.playerDef.input.enableDrag()
+    this.playerDef.input.allowVerticalDrag = false
+    this.playerDef.anchor.set(0.5)
+
+    let screenBounds = new Phaser.Rectangle(0, 0, this.game.width, this.game.height)
+
     this.player = this.game.add.existing(this.playerDef)
+    this.player.input.boundsRect = screenBounds
+    this.player.events.onDragUpdate.add(this.onPlayerDragMove, this)
+    this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
+    this.player.body.maxAngular = 100
+    this.player.body.angularDrag = 150
 
     this.gameWorld.add(this.player)
+  }
 
+  onPlayerDragMove (player, origPointer, newX, newY, snapPoint, isFirst) {
+    if (isFirst) {
+      this.playerDragOrigin = { x: origPointer.x, y: origPointer.y }
+      console.dir(origPointer)
+    }
+    let treshold = Math.abs(this.playerDragOrigin.x - newX)
+    console.log(treshold)
+    if (treshold >= 10) {
+      this.playerDragOrigin.x = newX
+      this.playerDragOrigin.y = newY
+    }
+    if (newX < this.playerDragOrigin.x) {
+      this.game.add.tween(player).to( { angle: -5 }, 200, Phaser.Easing.Linear.None, true)
+    }
+    if (newX > this.playerDragOrigin.x) {
+      this.game.add.tween(player).to( { angle: 5 }, 200, Phaser.Easing.Linear.None, true)
+    }
   }
 
   fillVisibleBlocksAndGenerateMoreIfNeeded (shouldCleanup = true) {
@@ -76,13 +109,13 @@ export default class extends Phaser.State {
         let newBlock = new Block({
           game: this.game,
           x: 0,
-          y: array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : 0,
+          y: array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.height,
           definition: this.mapGenerator.maps[this.currentBlockIndex]
         })
         const block = this.game.add.existing(newBlock)
         block.position.y -= block.height
         this.game.physics.enable(block, Phaser.Physics.ARCADE)
-        block.body.velocity.y = 300
+        block.body.velocity.y = VELOCITY
         this.gameWorld.add(block)
         this.visibleBlocks.push(block)
         if(this.player) {
@@ -99,26 +132,60 @@ export default class extends Phaser.State {
       let visibleItemIndex = this.visibleBlocks.findIndex((block) => {
         return block.inWorld === true
       })
-      this.visibleBlocks.splice(0, visibleItemIndex)
+      let removed = this.visibleBlocks.splice(0, visibleItemIndex)
+      if(removed.length > 0) {
+        console.log(removed.length, "sprite destroyed")
+        removed.forEach((sprite) => { sprite.destroy() })
+      }
     }
   }
 
   render () {
     this.fillVisibleBlocksAndGenerateMoreIfNeeded()
+  }
+
+  update () {
     this.handleUserInput()
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+    {
+      this.player.rotation = Phaser.Math.clamp(this.player.rotation - 0.02, -0.2, 0)
+      if(this.player.body.velocity.x > 0) {
+        this.player.body.velocity.x = 0
+      }
+      this.player.body.velocity.x -= PLAYER_TURN_VELOCITY
+    }
+    else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+    {
+      this.player.rotation = Phaser.Math.clamp(this.player.rotation + 0.02, 0, 0.2)
+      //this.player.rotation += 0.05
+      if(this.player.body.velocity.x < 0) {
+        this.player.body.velocity.x = 0
+      }
+      this.player.body.velocity.x += PLAYER_TURN_VELOCITY
+    } else {
+      if(this.player.body.velocity.x > 0) {
+        this.player.body.velocity.x -= PLAYER_TURN_VELOCITY * 1.75
+      } else if(this.player.body.velocity.x < 0) {
+        this.player.body.velocity.x += PLAYER_TURN_VELOCITY * 1.75
+      }
+      this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, "Linear", true)
+    }
   }
 
   handleUserInput () {
     if (this.userInput.isDown) {
+      // console.dir(this.userInput)
       // Zoom out
       if (this.worldScale > 1) {
         this.worldScale -= this.increment
+        // this.gameWorld.scale.x = this.worldScale
         this.gameWorld.scale.set(this.worldScale)
         this.setWorldPosition(this.worldScale)
       }
     } else {
       if (this.worldScale < 1.25) {
         this.worldScale += this.increment
+        //this.gameWorld.scale.x = this.worldScale
         this.gameWorld.scale.set(this.worldScale)
         this.setWorldPosition(this.worldScale)
       }

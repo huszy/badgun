@@ -19,7 +19,7 @@ export default class extends Phaser.State {
     this.load.image('stage', 'assets/images/stage.png')
 
     blockDefs.blocks.forEach((block) => {
-      this.load.image(block.sprite, 'assets/stages/' + block.sprite + '.png')
+      this.load.image(block.sprite, 'assets/stages/' + block.sprite)
     })
   }
 
