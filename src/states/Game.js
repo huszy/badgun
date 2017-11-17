@@ -51,6 +51,15 @@ export default class extends Phaser.State {
 
     // this.gameWorld.scale.set(1.25)
     // this.setWorldPosition(1.25)
+
+    // POLY TEST
+    this.poly = new Phaser.Polygon([ new Phaser.Point(200, 100), new Phaser.Point(350, 100), new Phaser.Point(375, 200), new Phaser.Point(150, 200) ])
+    
+        this.graphics = this.game.add.graphics(0, 0);
+    
+        this.graphics.beginFill(0xFF33ff);
+        this.graphics.drawPolygon(this.poly.points);
+        this.graphics.endFill();
   }
 
   setupPlayer () {
@@ -172,6 +181,23 @@ export default class extends Phaser.State {
       }
       this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, "Linear", true)
     }
+
+    // POLY TEST
+    this.poly._points.forEach((point) => {
+      point.y += 10
+    })
+    let playerCoords = this.player.x
+    //this.graphics.clear();
+    
+        if (this.poly.contains(this.player.x, this.player.y) ||
+            this.poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
+            this.poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2))
+        {
+            console.log("GOT HIT!!!!")
+        }
+    
+        //this.graphics.drawPolygon(this.poly.points);
+        //this.graphics.endFill();
   }
 
   handleUserInput () {
