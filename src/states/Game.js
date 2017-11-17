@@ -7,7 +7,7 @@ import MapGenerator from './MapGenerator'
 
 const array = require('lodash/array')
 
-const VELOCITY = 800
+const WORLD_VELOCITY = 800
 const PLAYER_TURN_VELOCITY = 30
 
 export default class extends Phaser.State {
@@ -60,16 +60,16 @@ export default class extends Phaser.State {
       y: this.world.height - 300,
       asset: 'car'
     })
-    this.playerDef.inputEnabled = true
-    this.playerDef.input.enableDrag()
-    this.playerDef.input.allowVerticalDrag = false
+    //this.playerDef.inputEnabled = true
+    //this.playerDef.input.enableDrag()
+    //this.playerDef.input.allowVerticalDrag = false
     this.playerDef.anchor.set(0.5)
 
     let screenBounds = new Phaser.Rectangle(0, 0, this.game.width, this.game.height)
 
     this.player = this.game.add.existing(this.playerDef)
-    this.player.input.boundsRect = screenBounds
-    this.player.events.onDragUpdate.add(this.onPlayerDragMove, this)
+    // this.player.input.boundsRect = screenBounds
+    // this.player.events.onDragUpdate.add(this.onPlayerDragMove, this)
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.maxAngular = 100
     this.player.body.angularDrag = 150
@@ -117,7 +117,7 @@ export default class extends Phaser.State {
         const block = this.game.add.existing(newBlock)
         block.position.y -= block.height
         this.game.physics.enable(block, Phaser.Physics.ARCADE)
-        block.body.velocity.y = VELOCITY
+        block.body.velocity.y = WORLD_VELOCITY
         this.gameWorld.add(block)
         this.visibleBlocks.push(block)
         if(this.player) {
@@ -153,23 +153,22 @@ export default class extends Phaser.State {
     }
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || userMoveDirection === -1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation - 0.02, -0.2, 0)
-      if(this.player.body.velocity.x > 0) {
+      if (this.player.body.velocity.x > 0) {
         this.player.body.velocity.x = 0
       }
       this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x - PLAYER_TURN_VELOCITY, -1 * PLAYER_TURN_VELOCITY * 20, 0)
     }
     else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || userMoveDirection === 1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation + 0.02, 0, 0.2)
-      if(this.player.body.velocity.x < 0) {
+      if (this.player.body.velocity.x < 0) {
         this.player.body.velocity.x = 0
       }
       this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + PLAYER_TURN_VELOCITY, 0, PLAYER_TURN_VELOCITY * 20)
-      //this.player.body.velocity.x += PLAYER_TURN_VELOCITY
     } else {
-      if(this.player.body.velocity.x > 0) {
-        this.player.body.velocity.x -= PLAYER_TURN_VELOCITY * 1.75
-      } else if(this.player.body.velocity.x < 0) {
-        this.player.body.velocity.x += PLAYER_TURN_VELOCITY * 1.75
+      if (this.player.body.velocity.x > 0) {
+        this.player.body.velocity.x = Math.min(this.player.body.velocity.x - PLAYER_TURN_VELOCITY * 1.75, 0)
+      } else if (this.player.body.velocity.x < 0) {
+        this.player.body.velocity.x = Math.max(this.player.body.velocity.x + PLAYER_TURN_VELOCITY * 1.75, 0)
       }
       this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, "Linear", true)
     }
