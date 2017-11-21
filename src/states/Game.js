@@ -7,7 +7,7 @@ import MapGenerator from './MapGenerator'
 
 const array = require('lodash/array')
 
-const WORLD_VELOCITY = 800
+const WORLD_VELOCITY = 900
 const PLAYER_TURN_VELOCITY = 30
 
 export default class extends Phaser.State {
@@ -35,13 +35,6 @@ export default class extends Phaser.State {
 
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
 
-    console.dir(this.mapGenerator.maps)
-
-    if (window.devicePixelRatio === 2) {
-      this.game.scale.setUserScale(0.5, 0.5)
-      this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-    }
-
     this.setupPlayer()
     // Setup user input
     if (!this.game.device.desktop) {
@@ -52,14 +45,6 @@ export default class extends Phaser.State {
     // this.gameWorld.scale.set(1.25)
     // this.setWorldPosition(1.25)
 
-    // POLY TEST
-    this.poly = new Phaser.Polygon([ new Phaser.Point(200, 100), new Phaser.Point(350, 100), new Phaser.Point(375, 200), new Phaser.Point(150, 200) ])
-    
-        this.graphics = this.game.add.graphics(0, 0);
-    
-        this.graphics.beginFill(0xFF33ff);
-        this.graphics.drawPolygon(this.poly.points);
-        this.graphics.endFill();
   }
 
   setupPlayer () {
@@ -86,8 +71,16 @@ export default class extends Phaser.State {
     this.player.body.bounce.set(0)
 
     this.gameWorld.add(this.player)
+
+    this.graphics = this.game.add.graphics(0, 0)
+
+    var style = { font: "24px Arial", fill: "#000000", align: "left" };
+    
+    this.text = this.game.add.text(0, 20, "dummy", style);
+    
   }
 
+  /*
   onPlayerDragMove (player, origPointer, newX, newY, snapPoint, isFirst) {
     if (isFirst) {
       this.playerDragOrigin = { x: origPointer.x, y: origPointer.y }
@@ -105,7 +98,7 @@ export default class extends Phaser.State {
     if (newX > this.playerDragOrigin.x) {
       this.game.add.tween(player).to( { angle: 5 }, 200, Phaser.Easing.Linear.None, true)
     }
-  }
+  } */
 
   fillVisibleBlocksAndGenerateMoreIfNeeded (shouldCleanup = true) {
     let hasEnough = false
@@ -116,7 +109,7 @@ export default class extends Phaser.State {
       let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : 0
       if (lastBlockY >= -100) {
-        console.log("newY: ", this.game.height - totalHeight)
+        console.log('newY: ', this.game.height - totalHeight)
         let newBlock = new Block({
           game: this.game,
           x: 0,
@@ -145,7 +138,7 @@ export default class extends Phaser.State {
       })
       let removed = this.visibleBlocks.splice(0, visibleItemIndex)
       if(removed.length > 0) {
-        console.log(removed.length, "sprite destroyed")
+        console.log(removed.length, 'sprite destroyed')
         removed.forEach((sprite) => { sprite.destroy() })
       }
     }
@@ -155,10 +148,13 @@ export default class extends Phaser.State {
     this.fillVisibleBlocksAndGenerateMoreIfNeeded()
   }
 
-  update () {
+  update (...args) {
     let userMoveDirection = 0
     if (this.userInput.isDown) {
       userMoveDirection = (this.userInput.x < this.game.width / 2) ? -1 : 1
+    }
+    if (this.game.input.keyboard.isDown(32)) {
+      this.game.paused = !this.game.paused
     }
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || userMoveDirection === -1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation - 0.02, -0.2, 0)
@@ -166,13 +162,12 @@ export default class extends Phaser.State {
         this.player.body.velocity.x = 0
       }
       this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x - PLAYER_TURN_VELOCITY, -1 * PLAYER_TURN_VELOCITY * 20, 0)
-    }
-    else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || userMoveDirection === 1) {
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || userMoveDirection === 1) {
       this.player.rotation = Phaser.Math.clamp(this.player.rotation + 0.02, 0, 0.2)
       if (this.player.body.velocity.x < 0) {
         this.player.body.velocity.x = 0
       }
-      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + PLAYER_TURN_VELOCITY, 0, PLAYER_TURN_VELOCITY * 20)
+      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + PLAYER_TURN_VELOCITY, 0, PLAYER_TURN_VELOCITY * 20)  
     } else {
       if (this.player.body.velocity.x > 0) {
         this.player.body.velocity.x = Math.min(this.player.body.velocity.x - PLAYER_TURN_VELOCITY * 1.75, 0)
@@ -182,10 +177,42 @@ export default class extends Phaser.State {
       this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, "Linear", true)
     }
 
-    // POLY TEST
-    this.poly._points.forEach((point) => {
-      point.y += 10
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+      this.player.y -= 10
+    }
+
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+      this.player.y += 10
+    }
+
+    this.graphics.clear()
+
+    let visiblePolygons = []
+    this.visibleBlocks.forEach((block) => {
+      block.offRoadPolygons.forEach((offRoadPoly) => {
+        let points = offRoadPoly._points.map((point, index) => {
+          return [point.x, point.y + block.y]
+        })
+        visiblePolygons.push(new Phaser.Polygon(points))
+      })
     })
+
+    // console.log(array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite)
+    // this.text.text = array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite
+
+    visiblePolygons.forEach((poly) => {
+      this.graphics.beginFill(0xFF33ff)
+      this.graphics.drawPolygon(poly.points)
+      this.graphics.endFill()
+    })
+    /*
+    // POLY TEST
+    let newPoly = this.poly
+    this.poly._points.forEach((point,index) => {
+      newPoly._points[index].y = point.y + this.visibleBlocks[0].y
+    })
+
+    //console.dir(this.visibleBlocks[0].y)
     let playerCoords = this.player.x
     //this.graphics.clear();
     
@@ -196,8 +223,10 @@ export default class extends Phaser.State {
             console.log("GOT HIT!!!!")
         }
     
-        //this.graphics.drawPolygon(this.poly.points);
+        //this.graphics.beginFill(0xff0000);
+        //this.graphics.drawPolygon(newPoly.points);
         //this.graphics.endFill();
+        */
   }
 
   handleUserInput () {
