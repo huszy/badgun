@@ -1,11 +1,15 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
 import Player from '../sprites/Player'
 import Block from '../sprites/Block'
+import EnemySprite from '../sprites/Enemy'
 import MapGenerator from './MapGenerator'
 
+import Enemy from '../classes/Enemy'
+
 const array = require('lodash/array')
+const math = require('lodash/math')
+const collection = require('lodash/collection')
 
 const WORLD_VELOCITY = 900
 const PLAYER_TURN_VELOCITY = 30
@@ -15,12 +19,15 @@ export default class extends Phaser.State {
   constructor () {
     super()
     this.visibleBlocks = []
+    this.blockMatrix = {data: []}
     this.currentBlockIndex = 0
     this.mapGenerator = new MapGenerator()
 
     for (var i = 0; i <= 100; i++) {
       this.mapGenerator.generateNext()
     }
+
+    this.enemies = []
   }
   
   init () {}
@@ -102,14 +109,16 @@ export default class extends Phaser.State {
 
   fillVisibleBlocksAndGenerateMoreIfNeeded (shouldCleanup = true) {
     let hasEnough = false
+    let updateBlockMatrix = false
     while (hasEnough === false) {
       while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
         this.mapGenerator.generateNext()
       }
       let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : 0
-      if (lastBlockY >= -100) {
+      if (lastBlockY > -250) {
         console.log('newY: ', this.game.height - totalHeight)
+        updateBlockMatrix = true
         let newBlock = new Block({
           game: this.game,
           x: 0,
@@ -122,7 +131,7 @@ export default class extends Phaser.State {
         block.body.velocity.y = WORLD_VELOCITY
         this.gameWorld.add(block)
         this.visibleBlocks.push(block)
-        if(this.player) {
+        if (this.player) {
           this.gameWorld.bringToTop(this.player)
         }
         this.currentBlockIndex++
@@ -137,10 +146,15 @@ export default class extends Phaser.State {
         return block.inWorld === true
       })
       let removed = this.visibleBlocks.splice(0, visibleItemIndex)
-      if(removed.length > 0) {
-        console.log(removed.length, 'sprite destroyed')
+      if (removed.length > 0) {
+        updateBlockMatrix = true
+        // console.log(removed.length, 'sprite destroyed')
         removed.forEach((sprite) => { sprite.destroy() })
       }
+    }
+
+    if (updateBlockMatrix) {
+      this.blockMatrix.data = collection.sortBy(this.visibleBlocks, 'y').map(x => x._freeSpaceMap).reduce((a, b) => a.concat(b), [])
     }
   }
 
@@ -210,11 +224,14 @@ export default class extends Phaser.State {
         hasCollision = true
       }
 
+      /*
       this.graphics.beginFill(0xFF33ff)
       this.graphics.drawPolygon(poly.points)
-      this.graphics.endFill()
+      this.graphics.endFill() */
     })
 
+    // DRAW FREE SPACES
+    /*
     this.visibleBlocks.forEach((block) => {
       // Draw areas
       for (var i=0; i< block._freeSpaceMap.length; i++) {
@@ -226,7 +243,7 @@ export default class extends Phaser.State {
           this.graphics.endFill()
         }
       }
-    })
+    }) */
 
     // console.log("HasCollision: " + hasCollision)
     /*
@@ -251,6 +268,35 @@ export default class extends Phaser.State {
         //this.graphics.drawPolygon(newPoly.points);
         //this.graphics.endFill();
         */
+
+    // LOG CURRENT VISIBLE FREESPACEMAP
+    let lastY = math.minBy(this.visibleBlocks, function (o) { return o.y }).y
+    let visibleYStart = Math.floor(Math.abs(lastY) / 125)
+    let startIdx = visibleYStart * 6
+    let text = "" + this.blockMatrix.data.slice(startIdx, startIdx + 66).join(' ')
+    this.text.text = text.replace(/(.{12})/g, "$1\n")
+
+    // Add an enemy
+    if (this.enemies.length < 2) {
+      let enemyDef = new EnemySprite({
+        game: this.game,
+        x: 250 + (125 / 2),
+        y: -125,
+        asset: 'enemy'
+      })
+      let enemy = new Enemy(enemyDef, this.game, { velocity: 200 + (Math.random() * 200) })
+      this.enemies.push(enemy)
+    }
+
+    // Update enemies
+    let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
+    this.enemies.forEach(x => { x.update(this.blockMatrix, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
+  }
+
+  removeEnemy (enemy) {
+    this.enemies.splice(this.enemies.indexOf(enemy), 1)
+    enemy.sprite.destroy()
+    enemy = null
   }
 
   handleUserInput () {

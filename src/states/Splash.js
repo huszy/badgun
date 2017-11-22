@@ -16,6 +16,7 @@ export default class extends Phaser.State {
     // load your assets
     //
     this.load.image('car', 'assets/images/car.png')
+    this.load.image('enemy', 'assets/images/enemy_mini.png')
     this.load.image('stage', 'assets/images/stage.png')
 
     blockDefs.blocks.forEach((block) => {
