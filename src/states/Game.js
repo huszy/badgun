@@ -200,11 +200,35 @@ export default class extends Phaser.State {
     // console.log(array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite)
     // this.text.text = array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite
 
+    let hasCollision = false
+
     visiblePolygons.forEach((poly) => {
+      if (poly.contains(this.player.x, this.player.y) ||
+          poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
+          poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2))
+      {
+        hasCollision = true
+      }
+
       this.graphics.beginFill(0xFF33ff)
       this.graphics.drawPolygon(poly.points)
       this.graphics.endFill()
     })
+
+    this.visibleBlocks.forEach((block) => {
+      // Draw areas
+      for (var i=0; i< block._freeSpaceMap.length; i++) {
+        let y = Math.floor(i / 6)
+        let x = i - (y * 6)
+        if (block._freeSpaceMap[i] === 1) {
+          this.graphics.beginFill(0xFF0000)
+          this.graphics.drawRect((x*125) + 10, (y*125) + 10 + block.y, 105, 105)
+          this.graphics.endFill()
+        }
+      }
+    })
+
+    // console.log("HasCollision: " + hasCollision)
     /*
     // POLY TEST
     let newPoly = this.poly
