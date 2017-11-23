@@ -23,7 +23,7 @@ export default class Enemy {
     return { x: x, y: y, idx: idx }
   }
 
-  update (blockMatrix, yOffset) {
+  updateEnemy (blockMatrix, yOffset) {
     if (this.sprite.body.velocity.x > 0) {
       this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x - 10 * 1.75, 0)
     } else if (this.sprite.body.velocity.x < 0) {

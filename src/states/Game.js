@@ -33,16 +33,15 @@ export default class extends Phaser.State {
   }
   
   init () {
-    EnemyManager.game = this.game
+    this.gameWorld = this.game.add.group()
+    this.gameWorld.position.setTo(0, 0)
+    EnemyManager.initialize(this.game)
   }
   preload () {}
 
   create () {
     this.increment = 0.01
     this.worldScale = 1.25
-
-    this.gameWorld = this.game.add.group()
-    this.gameWorld.position.setTo(0, 0)
 
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
 
@@ -81,6 +80,7 @@ export default class extends Phaser.State {
     this.player.body.angularDrag = 150
     this.player.body.collideWorldBounds = true
     this.player.body.bounce.set(0)
+    this.player.body.immovable = true
 
     this.gameWorld.add(this.player)
 
@@ -165,6 +165,9 @@ export default class extends Phaser.State {
 
   render () {
     this.fillVisibleBlocksAndGenerateMoreIfNeeded()
+    if(EnemyManager.enemies.length > 0) {
+      this.game.debug.bodyInfo(EnemyManager.enemies[0].sprite, 0, 20)
+    }
   }
 
   update (...args) {
@@ -304,8 +307,8 @@ export default class extends Phaser.State {
       let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: this.worldVelocity, worldMaxVelocity: WORLD_VELOCITY, velocity: 300 + (Math.random() * 400) })
       this.enemies.push(enemy)
     } */
-    if (EnemyManager.enemies.length < 3) {
-      EnemyManager.addRandomEnemy()
+    if (EnemyManager.enemies.length < 1) {
+      EnemyManager.addRandomEnemy(this.worldVelocity, WORLD_VELOCITY)
     }
 
     // Update enemies
@@ -321,6 +324,7 @@ export default class extends Phaser.State {
     let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
     let enemyCollision = EnemyManager.updateEnemies(this.blockMatrix, firstBlockY, this.player)
     if (enemyCollision) {
+      console.log("Collided")
       this.playerCollided = true
       this.playerSlowdownVelocity = 75
     }

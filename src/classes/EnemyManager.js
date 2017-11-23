@@ -1,5 +1,6 @@
 import EnemySprite from '../sprites/Enemy'
 import Enemy from '../classes/Enemy'
+import Phaser from 'phaser'
 
 const enemyDefs = require('../enemyConfig.json')
 const collection = require('lodash/collection')
@@ -7,6 +8,13 @@ const collection = require('lodash/collection')
 export default class EnemyManager {
   static enemies = []
   static game = null
+  static enemyGroup = null
+
+  static initialize (game) {
+    this.game = game
+    this.enemyGroup = new Phaser.Group(game, undefined, 'enemies', false, true)
+    game.world.bringToTop(this.enemyGroup)
+  }
 
   static getDefinitionByName (name) {
     return enemyDefs.enemies.find((x) => x.name === name)
@@ -25,16 +33,17 @@ export default class EnemyManager {
     })
     let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: worldCurrentVelocity, worldMaxVelocity: worldMaxVelocity, velocity: 300 + (Math.random() * 400) })
     this.enemies.push(enemy)
+    this.enemyGroup.add(enemy.sprite)
   }
 
   static setWorldVelocity (velocity) {
-    this.enemies.forEach(x => { x.worldCurrentVelocity = velocity })
+    EnemyManager.enemies.forEach(x => { x.worldCurrentVelocity = velocity })
   }
 
   static updateEnemies (blockMatrix, firstBlockY, player) {
     let bm = JSON.parse(JSON.stringify(blockMatrix))
     this.enemies.forEach(x => { bm.data[x.getPositionData(firstBlockY).idx] = 2 })
-    this.enemies.forEach(x => { x.update(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
+    this.enemies.forEach(x => { x.updateEnemy(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
 
     let playerCollided = false
     this.enemies.forEach(x => {
