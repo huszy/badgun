@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import { centerGameObjects } from '../utils'
 
 const blockDefs = require('../blockConfig.json')
+const enemyDefs = require('../enemyConfig.json')
 
 export default class extends Phaser.State {
   init () {}
@@ -21,6 +22,10 @@ export default class extends Phaser.State {
 
     blockDefs.blocks.forEach((block) => {
       this.load.image(block.sprite, 'assets/stages/' + block.sprite)
+    })
+
+    enemyDefs.enemies.forEach((enemy) => {
+      this.load.image('enemy_' + enemy.name, 'assets/images/' + enemy.sprite + '.png')
     })
   }
 

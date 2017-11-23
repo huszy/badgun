@@ -6,6 +6,7 @@ import EnemySprite from '../sprites/Enemy'
 import MapGenerator from './MapGenerator'
 
 import Enemy from '../classes/Enemy'
+import EnemyManager from '../classes/EnemyManager'
 
 const array = require('lodash/array')
 const math = require('lodash/math')
@@ -31,7 +32,9 @@ export default class extends Phaser.State {
     this.enemies = []
   }
   
-  init () {}
+  init () {
+    EnemyManager.game = this.game
+  }
   preload () {}
 
   create () {
@@ -290,6 +293,7 @@ export default class extends Phaser.State {
     this.text.text = text.replace(/(.{12})/g, "$1\n")
 
     // Add an enemy
+    /*
     if (this.enemies.length < 3) {
       let enemyDef = new EnemySprite({
         game: this.game,
@@ -299,32 +303,42 @@ export default class extends Phaser.State {
       })
       let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: this.worldVelocity, worldMaxVelocity: WORLD_VELOCITY, velocity: 300 + (Math.random() * 400) })
       this.enemies.push(enemy)
+    } */
+    if (EnemyManager.enemies.length < 3) {
+      EnemyManager.addRandomEnemy()
     }
 
     // Update enemies
+    /*
     let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
     let bm = JSON.parse(JSON.stringify(this.blockMatrix))
     this.enemies.forEach(x => { bm.data[x.getPositionData(firstBlockY).idx] = 2 })
     this.enemies.forEach(x => { x.update(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
 
     this.enemies.forEach(x => this.game.physics.arcade.collide(this.player, x.sprite, this.playerCollisionCallback.bind(this)))
+    */
 
-    this.enemies.forEach(enemy => {
-      
-    })
+    let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
+    let enemyCollision = EnemyManager.updateEnemies(this.blockMatrix, firstBlockY, this.player)
+    if (enemyCollision) {
+      this.playerCollided = true
+      this.playerSlowdownVelocity = 75
+    }
 
     // Speedup world or slowDown
     if (this.playerCollided) {
       this.game.camera.shake(0.005, 100)
       this.worldVelocity = Math.max(this.worldVelocity - this.playerSlowdownVelocity, 200)
       this.visibleBlocks.forEach(x => { x.body.velocity.y = this.worldVelocity })
-      this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
-      //console.log("World velocity: "+this.worldVelocity)
+      EnemyManager.setWorldVelocity(this.worldVelocity)
+      // this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
+      // console.log("World velocity: "+this.worldVelocity)
     } else {
       this.worldVelocity = Math.min(this.worldVelocity + 25, WORLD_VELOCITY)
       this.visibleBlocks.forEach(x => { x.body.velocity.y = this.worldVelocity })
-      this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
-      //console.log("World velocity: "+this.worldVelocity)
+      EnemyManager.setWorldVelocity(this.worldVelocity)
+      // this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
+      // console.log("World velocity: "+this.worldVelocity)
     }
 
     this.game.debug.text( "World velocity: "+this.worldVelocity, 400, 10 );

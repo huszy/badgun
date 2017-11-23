@@ -1,0 +1,16 @@
+{
+  "enemies":[
+    {
+      "name":"beetle",
+      "sprite":"enemy_beetle",
+      "minVelocity": 200,
+      "maxVelocity": 400
+    },
+    {
+      "name":"buggy",
+      "sprite":"enemy_buggy",
+      "minVelocity": 200,
+      "maxVelocity": 400
+    }
+  ]
+}
