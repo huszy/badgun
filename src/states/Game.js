@@ -40,9 +40,6 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    this.increment = 0.01
-    this.worldScale = 1.25
-
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
 
     this.setupPlayer()
@@ -53,9 +50,6 @@ export default class extends Phaser.State {
     this.userInput = this.game.device.desktop ? this.game.input.mousePointer : this.game.input.pointer1
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
-    // this.gameWorld.scale.set(1.25)
-    // this.setWorldPosition(1.25)
-
   }
 
   setupPlayer () {
@@ -65,9 +59,6 @@ export default class extends Phaser.State {
       y: this.world.height - 300,
       asset: 'car'
     })
-    //this.playerDef.inputEnabled = true
-    //this.playerDef.input.enableDrag()
-    //this.playerDef.input.allowVerticalDrag = false
     this.playerDef.anchor.set(0.5)
 
     let screenBounds = new Phaser.Rectangle(0, 0, this.game.width, this.game.height)
@@ -83,13 +74,6 @@ export default class extends Phaser.State {
     this.player.body.immovable = true
 
     this.gameWorld.add(this.player)
-
-    this.graphics = this.game.add.graphics(0, 0)
-
-    var style = { font: "24px Arial", fill: "#000000", align: "left" };
-    
-    this.text = this.game.add.text(0, 20, "dummy", style);
-    
   }
 
   /*
@@ -165,7 +149,7 @@ export default class extends Phaser.State {
 
   render () {
     this.fillVisibleBlocksAndGenerateMoreIfNeeded()
-    if(EnemyManager.enemies.length > 0) {
+    if (EnemyManager.enemies.length > 0) {
       this.game.debug.bodyInfo(EnemyManager.enemies[0].sprite, 0, 20)
     }
   }
@@ -217,7 +201,7 @@ export default class extends Phaser.State {
       this.player.body.velocity.y = Math.min(this.player.body.velocity.y - 10 * 1.75, 0)
     }
 
-    this.graphics.clear()
+    // this.graphics.clear()
 
     let visiblePolygons = []
     this.visibleBlocks.forEach((block) => {
@@ -293,7 +277,7 @@ export default class extends Phaser.State {
     let visibleYStart = Math.floor(Math.abs(lastY) / 125)
     let startIdx = visibleYStart * 6
     let text = "" + this.blockMatrix.data.slice(startIdx, startIdx + 66).join(' ')
-    this.text.text = text.replace(/(.{12})/g, "$1\n")
+    // this.text.text = text.replace(/(.{12})/g, "$1\n")
 
     // Add an enemy
     /*
@@ -324,7 +308,6 @@ export default class extends Phaser.State {
     let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
     let enemyCollision = EnemyManager.updateEnemies(this.blockMatrix, firstBlockY, this.player)
     if (enemyCollision) {
-      console.log("Collided")
       this.playerCollided = true
       this.playerSlowdownVelocity = 75
     }
@@ -345,7 +328,7 @@ export default class extends Phaser.State {
       // console.log("World velocity: "+this.worldVelocity)
     }
 
-    this.game.debug.text( "World velocity: "+this.worldVelocity, 400, 10 );
+    // this.game.debug.text( "World velocity: "+this.worldVelocity, 400, 10 );
   }
 
   playerCollisionCallback () {
@@ -357,26 +340,6 @@ export default class extends Phaser.State {
     this.enemies.splice(this.enemies.indexOf(enemy), 1)
     enemy.sprite.destroy()
     enemy = null
-  }
-
-  handleUserInput () {
-    if (this.userInput.isDown) {
-      // console.dir(this.userInput)
-      // Zoom out
-      if (this.worldScale > 1) {
-        this.worldScale -= this.increment
-        // this.gameWorld.scale.x = this.worldScale
-        this.gameWorld.scale.set(this.worldScale)
-        this.setWorldPosition(this.worldScale)
-      }
-    } else {
-      if (this.worldScale < 1.25) {
-        this.worldScale += this.increment
-        //this.gameWorld.scale.x = this.worldScale
-        this.gameWorld.scale.set(this.worldScale)
-        this.setWorldPosition(this.worldScale)
-      }
-    }
   }
 
   setWorldPosition (scale) {
