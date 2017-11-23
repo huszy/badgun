@@ -18,6 +18,7 @@ export default class extends Phaser.State {
 
   constructor () {
     super()
+    this.worldVelocity = WORLD_VELOCITY
     this.visibleBlocks = []
     this.blockMatrix = {data: []}
     this.currentBlockIndex = 0
@@ -49,6 +50,7 @@ export default class extends Phaser.State {
     }
     this.userInput = this.game.device.desktop ? this.game.input.mousePointer : this.game.input.pointer1
 
+    this.game.physics.startSystem(Phaser.Physics.ARCADE)
     // this.gameWorld.scale.set(1.25)
     // this.setWorldPosition(1.25)
 
@@ -128,7 +130,7 @@ export default class extends Phaser.State {
         const block = this.game.add.existing(newBlock)
         block.position.y -= block.height
         this.game.physics.enable(block, Phaser.Physics.ARCADE)
-        block.body.velocity.y = WORLD_VELOCITY
+        block.body.velocity.y = this.worldVelocity
         this.gameWorld.add(block)
         this.visibleBlocks.push(block)
         if (this.player) {
@@ -191,12 +193,22 @@ export default class extends Phaser.State {
       this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, "Linear", true)
     }
 
+    let isAccelerating = false
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      this.player.y -= 10
+      this.player.body.velocity.y -= 10
+      isAccelerating = true
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      this.player.y += 10
+      this.player.body.velocity.y += 10
+      isAccelerating = true
+    }
+
+    if (!isAccelerating && this.player.body.velocity.y < 0) {
+      this.player.body.velocity.y = Math.max(this.player.body.velocity.y + 10 * 1.75, 0)
+    }
+    if (!isAccelerating && this.player.body.velocity.y > 0) {
+      this.player.body.velocity.y = Math.min(this.player.body.velocity.y - 10 * 1.75, 0)
     }
 
     this.graphics.clear()
@@ -214,14 +226,15 @@ export default class extends Phaser.State {
     // console.log(array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite)
     // this.text.text = array.last(this.visibleBlocks.filter((x) => x.position.y > 0)).definition.sprite
 
-    let hasCollision = false
+    this.playerCollided = false
 
     visiblePolygons.forEach((poly) => {
       if (poly.contains(this.player.x, this.player.y) ||
           poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
           poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2))
       {
-        hasCollision = true
+        this.playerCollided = true
+        this.playerSlowdownVelocity = 5
       }
 
       /*
@@ -243,7 +256,7 @@ export default class extends Phaser.State {
           this.graphics.endFill()
         }
       }
-    }) */
+    }) */ 
 
     // console.log("HasCollision: " + hasCollision)
     /*
@@ -277,20 +290,49 @@ export default class extends Phaser.State {
     this.text.text = text.replace(/(.{12})/g, "$1\n")
 
     // Add an enemy
-    if (this.enemies.length < 2) {
+    if (this.enemies.length < 3) {
       let enemyDef = new EnemySprite({
         game: this.game,
         x: 250 + (125 / 2),
         y: -125,
         asset: 'enemy'
       })
-      let enemy = new Enemy(enemyDef, this.game, { velocity: 200 + (Math.random() * 200) })
+      let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: this.worldVelocity, worldMaxVelocity: WORLD_VELOCITY, velocity: 300 + (Math.random() * 400) })
       this.enemies.push(enemy)
     }
 
     // Update enemies
     let firstBlockY = math.minBy(this.visibleBlocks, 'y').y
-    this.enemies.forEach(x => { x.update(this.blockMatrix, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
+    let bm = JSON.parse(JSON.stringify(this.blockMatrix))
+    this.enemies.forEach(x => { bm.data[x.getPositionData(firstBlockY).idx] = 2 })
+    this.enemies.forEach(x => { x.update(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
+
+    this.enemies.forEach(x => this.game.physics.arcade.collide(this.player, x.sprite, this.playerCollisionCallback.bind(this)))
+
+    this.enemies.forEach(enemy => {
+      
+    })
+
+    // Speedup world or slowDown
+    if (this.playerCollided) {
+      this.game.camera.shake(0.005, 100)
+      this.worldVelocity = Math.max(this.worldVelocity - this.playerSlowdownVelocity, 200)
+      this.visibleBlocks.forEach(x => { x.body.velocity.y = this.worldVelocity })
+      this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
+      //console.log("World velocity: "+this.worldVelocity)
+    } else {
+      this.worldVelocity = Math.min(this.worldVelocity + 25, WORLD_VELOCITY)
+      this.visibleBlocks.forEach(x => { x.body.velocity.y = this.worldVelocity })
+      this.enemies.forEach(x => { x.worldCurrentVelocity = this.worldVelocity })
+      //console.log("World velocity: "+this.worldVelocity)
+    }
+
+    this.game.debug.text( "World velocity: "+this.worldVelocity, 400, 10 );
+  }
+
+  playerCollisionCallback () {
+    this.playerCollided = true
+    this.playerSlowdownVelocity = 75
   }
 
   removeEnemy (enemy) {
