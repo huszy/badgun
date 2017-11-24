@@ -1,0 +1,24 @@
+{
+  "elements": {
+    "desert_airplane_crash": {
+      "sprite": "desert/airplane-crash.png",
+      "hitArea": ""
+    },
+    "desert_rock1": {
+      "sprite": "desert/rock.png",
+      "hitArea": ""
+    },
+    "desert_skull": {
+      "sprite": "desert/skull.png",
+      "hitArea": ""
+    },
+    "desert_trexbig": {
+      "sprite": "desert/t-rex-big.png",
+      "hitArea": ""
+    },
+    "desert_cactus": {
+      "sprite": "desert/cactus.png",
+      "hitArea": ""
+    }
+  }
+}

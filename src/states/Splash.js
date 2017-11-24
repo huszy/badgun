@@ -3,6 +3,7 @@ import { centerGameObjects } from '../utils'
 
 const blockDefs = require('../blockConfig.json')
 const enemyDefs = require('../enemyConfig.json')
+const stageElementsConfig = require('../stageElementsConfig.json')
 
 export default class extends Phaser.State {
   init () {}
@@ -27,6 +28,12 @@ export default class extends Phaser.State {
     enemyDefs.enemies.forEach((enemy) => {
       this.load.image('enemy_' + enemy.name, 'assets/images/' + enemy.sprite + '.png')
     })
+
+    for (var prop in stageElementsConfig.elements) {
+      if (stageElementsConfig.elements.hasOwnProperty(prop)) {
+        this.load.image('se_' + prop, 'assets/stage_elements/'+stageElementsConfig.elements[prop].sprite)
+      }
+    }
   }
 
   create () {

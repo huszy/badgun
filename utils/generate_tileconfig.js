@@ -4,6 +4,10 @@ const sizeOfImage = require('image-size')
 const stagesFolder = '../assets/stages/'
 const output = '../src/blockConfig.json'
 const offRoadDefinition = require('./blockPolygons.json').poly
+const stageElemDef = require('./stageElements.json')
+const elemOutput = '../src/stageElementsConfig.json'
+
+const array = require('lodash/array')
 
 function d2h (d) { return (+d).toString(16) }
 
@@ -49,6 +53,7 @@ function parseTile (data) {
 let blockConfig = {blocks: []}
 
 readDirPromise(stagesFolder).then((filePaths) => {
+  let usedDecorationElements = []
   filePaths.forEach(fileName => {
     let fileNameWithoutExt = fileName.split('.')[0]
     let [ theme, input, output, variation ] = fileNameWithoutExt.split('_')
@@ -74,7 +79,15 @@ readDirPromise(stagesFolder).then((filePaths) => {
       })
     }
 
-    blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height / 2, offRoad: polyDef })
+    // Decorations
+    let decorations = stageElemDef.variations[theme + '_' + input + '_' + output + '_' + variation]
+    if (typeof decorations !== 'undefined') {
+      decorations.forEach((deco) => {
+        usedDecorationElements.push(deco.element)
+      })
+    }
+
+    blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height / 2, offRoad: polyDef, decorations: decorations || [] })
   })
 
   fs.writeFile(output, JSON.stringify(blockConfig, null, 2), {}, function (err) {
@@ -82,4 +95,13 @@ readDirPromise(stagesFolder).then((filePaths) => {
       console.error('Error writing blockConfig.json'); 
     }
   })
+
+  usedDecorationElements = array.uniq(usedDecorationElements)
+
+  fs.writeFile(elemOutput, JSON.stringify({elements: stageElemDef.elements}, null, 2), {}, function (err) {
+    if (err != null) {
+      console.error('Error writing stageElementsConfig.json') 
+    }
+  })
+
 })

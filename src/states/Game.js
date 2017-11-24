@@ -34,6 +34,7 @@ export default class extends Phaser.State {
 
   visibleBlocks = []
   visiblePolygons = []
+  visibleStageElements = []
   enemies = []
 
 
@@ -118,16 +119,27 @@ export default class extends Phaser.State {
         // console.log("Addnew")
         // console.log('newY: ', this.game.world.height - totalHeight)
         updateBlockMatrix = true
+        let definition = this.mapGenerator.maps[this.currentBlockIndex]
         let newBlock = new Block({
           game: this.game,
           x: 0,
           y: array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height,
-          definition: this.mapGenerator.maps[this.currentBlockIndex]
+          definition: definition
         })
         const block = this.game.add.existing(newBlock)
         block.setPosition(0, block.position.y - block.height)
         this.gameWorld.add(block)
         this.visibleBlocks.push(block)
+
+        // Add stage elements if needed
+        if (definition.decorations.length > 0) {
+          definition.decorations.forEach((deco) => {
+            let sprite = new Phaser.Sprite(this.game, deco.x, deco.y + block.position.y, 'se_' + deco.element)
+            //const sp = this.game.add.existing(sprite)
+            this.gameWorld.add(sprite)
+          })
+          console.log('Decorations added')
+        }
 
         this.currentBlockIndex++
         hasEnough = false
