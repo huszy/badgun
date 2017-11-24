@@ -11,6 +11,7 @@ export default class EnemyManager {
   static enemyGroup = null
   static enemyCollisionGroup = null
   static playerCollisionGroup = null
+  static blockMatrix = null
 
   static initialize (game, enemyCollisionGroup, playerCollisionGroup) {
     this.game = game
@@ -30,22 +31,26 @@ export default class EnemyManager {
     return enemyDefs.enemies.map(x => 'enemy_' + x.name)
   }
 
-  static addRandomEnemy (worldCurrentVelocity, worldMaxVelocity) {
-    let enemyDef = new EnemySprite({
+  static addRandomEnemy (x, y) {
+    let enemyDef = collection.sample(this.getAvailableEnemies())
+    let enemySpriteDef = new EnemySprite({
       game: this.game,
-      x: 250 + (125 / 2),
-      y: -125,
-      asset: collection.sample(this.getAvailableEnemies())
+      x: x,
+      y: y,
+      asset: enemyDef
     })
-    let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: worldCurrentVelocity, worldMaxVelocity: worldMaxVelocity, velocity: 300 + (Math.random() * 400) })
+    let enemy = new Enemy(enemySpriteDef, this.game, this.enemyGroup, this.enemyCollisionGroup, enemyDef)
     this.enemies.push(enemy)
-    this.enemyGroup.add(enemy.sprite)
+    // this.enemyGroup.add(enemy.sprite)
     // enemy.sprite.body.setRectangle(enemy.sprite.width, enemy.sprite.height)
-    enemy.sprite.body.setCollisionGroup(this.enemyCollisionGroup)
-    enemy.sprite.body.collideWorldBounds = false
-    enemy.sprite.body.angularDamping = 1
-    enemy.sprite.body.damping = 0.2
     enemy.sprite.body.collides([this.enemyCollisionGroup, this.playerCollisionGroup])
+  }
+
+  static updateMovement (blockMatrix) {
+    this.blockMatrix = blockMatrix
+    this.enemies.forEach(x => x.updateMovement(this.blockMatrix))
+
+    this.enemies.forEach(x => { if (x.sprite.y > this.game.camera.view.y + this.game.camera.view.height + 100) { this.removeEnemy(x) } })
   }
 
   static setWorldVelocity (velocity) {

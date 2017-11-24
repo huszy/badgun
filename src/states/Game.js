@@ -42,12 +42,12 @@ export default class extends Phaser.State {
   }
   
   init () {
-    this.game.world.resize(this.game.world.width, 1250 * 100)
+    this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
     this.gameWorld.position.setTo(0, 0)
     this.game.physics.startSystem(Phaser.Physics.P2JS)
     this.game.physics.p2.setImpactEvents(true)
-    this.game.physics.p2.restitution = 0.1
+    this.game.physics.p2.restitution = 0.5
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     EnemyManager.initialize(this.game, this.enemyCollisionGroup, this.playerCollisionGroup)
@@ -143,14 +143,17 @@ export default class extends Phaser.State {
     }
 
     if (updateBlockMatrix) {
-      this.blockMatrix.data = collection.sortBy(this.visibleBlocks, 'y').map(x => x._freeSpaceMap).reduce((a, b) => a.concat(b), [])
+      let sortedBlocks = collection.sortBy(this.visibleBlocks, 'y')
+      this.blockMatrix.startY = sortedBlocks[0].y
+      this.blockMatrix.data = sortedBlocks.map(x => x._freeSpaceMap).reduce((a, b) => a.concat(b), [])
       this.visiblePolygons = [].concat.apply([], this.visibleBlocks.map(x => x.offRoadPolygons))
-      // this.debugBlockData(this.blockMatrix.data)
+      // this.debugBlockData(this.blockMatrix)
     }
   }
 
   debugBlockData (blockData) {
-    console.log(blockData.join('').replace(/(.{6})/g, "$1\n"))
+    console.log("startY", blockData.startY)
+    console.log(blockData.data.join('').replace(/(.{6})/g, "$1\n"))
   }
 
   render () {
@@ -216,6 +219,14 @@ export default class extends Phaser.State {
       this.game.camera.shake(0.005, 100)
       this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
     }
+
+    if (EnemyManager.enemies.length < 1) {
+      EnemyManager.addRandomEnemy(62.5 + (Math.floor(Math.random() * 5) * 125), this.game.camera.view.y, 0, 0)
+    }
+
+    EnemyManager.updateMovement(this.blockMatrix)
+
+    //console.log(this.player.body.mass)
   }
 
   playerCollisionCallback () {
