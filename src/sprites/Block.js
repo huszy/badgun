@@ -9,6 +9,17 @@ export default class extends Phaser.Sprite {
     this._createAvailibilityMap()
   }
 
+  setPosition (x, y) {
+    this.x = x
+    this.y = y
+    this.offRoadPolygons.forEach((offRoadPoly) => {
+      offRoadPoly._points.forEach((point) => {
+        point.x += x
+        point.y += y
+      })
+    })
+  }
+
   _createOffRoadPolygons () {
     if (this.definition.offRoad === '') { return }
     this.definition.offRoad.split('-').forEach((polyDefinition) => {

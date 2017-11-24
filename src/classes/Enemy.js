@@ -6,10 +6,10 @@ export default class Enemy {
     this.game = game
     this.options = options
     this.worldCurrentVelocity = this.options.worldCurrentVelocity
-    game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
+    // game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.originalVelocity = options.velocity
-    this.sprite.body.velocity.y = options.velocity || 0
-    this.sprite.body.bounce.set(0.5)
+    // this.sprite.body.velocity.y = options.velocity || 0
+    // this.sprite.body.bounce.set(0.5)
     this.isMoving = false
   }
 
@@ -23,19 +23,21 @@ export default class Enemy {
     return { x: x, y: y, idx: idx }
   }
 
-  updateEnemy (blockMatrix, yOffset) {
+  update (blockMatrix, yOffset) {
+    
     if (this.sprite.body.velocity.x > 0) {
       this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x - 10 * 1.75, 0)
     } else if (this.sprite.body.velocity.x < 0) {
       this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x + 10 * 1.75, 0)
     }
 
+    /*
     let worldVelocityDiff = (this.options.worldMaxVelocity - this.worldCurrentVelocity)
     if (this.sprite.body.velocity.y > this.originalVelocity - worldVelocityDiff) {
       this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y - 10 * 1.75, this.originalVelocity - worldVelocityDiff)
     } else if (this.sprite.body.velocity.y < this.originalVelocity - worldVelocityDiff) {
       this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y + 10 * 1.75, this.originalVelocity - worldVelocityDiff)
-    }
+    }*/
 
     // Get current block position
     let selfData = this.getPositionData(yOffset)
@@ -45,6 +47,7 @@ export default class Enemy {
     let canMoveRight = true
     let canStay = true
     
+
     // Check left
     if (selfData.x === 0) { canMoveLeft = false }
     if (!this._getFreeCellByDirection(blockMatrix.data, selfData, { x: -1, y: -1 })) {
@@ -67,24 +70,35 @@ export default class Enemy {
     // console.log(`Can move: STAY: ${canStay}, LEFT: ${canMoveLeft}, RIGHT: ${canMoveRight}`)
     
     if (this.isMoving) { return }
+    console.log(canMoveLeft, canMoveRight, canStay)
     if (!canStay) {
       if (canMoveLeft && canMoveRight) {
         if (Math.round(Math.random())) {
-          this._moveLeft()
+          this._moveLeftP2()
         } else {
-          this._moveRight()
+          this._moveRightP2()
         }
       } else {
         if (canMoveLeft) {
-          this._moveLeft()
+          this._moveLeftP2()
         } else if (canMoveRight) {
-          this._moveRight()
+          this._moveRightP2()
         } else {
           console.log("CAR CANNOT MOVE!!!")
           this.sprite.body.velocity.y += 10
         }
       }
     }
+  }
+
+  _moveLeftP2 () {
+    // this.isMoving = true
+    this.sprite.body.moveLeft(1250)
+  }
+
+  _moveRightP2 () {
+    // this.isMoving = true
+    this.sprite.body.moveRight(1250)
   }
 
   _moveLeft () {

@@ -9,10 +9,16 @@ export default class EnemyManager {
   static enemies = []
   static game = null
   static enemyGroup = null
+  static enemyCollisionGroup = null
+  static playerCollisionGroup = null
 
-  static initialize (game) {
+  static initialize (game, enemyCollisionGroup, playerCollisionGroup) {
     this.game = game
+    this.enemyCollisionGroup = enemyCollisionGroup
+    this.playerCollisionGroup = playerCollisionGroup
     this.enemyGroup = new Phaser.Group(game, undefined, 'enemies', false, true)
+    this.enemyGroup.physicsBodyType = Phaser.Physics.P2JS
+    this.enemyGroup.enableBody = true
     game.world.bringToTop(this.enemyGroup)
   }
 
@@ -34,6 +40,12 @@ export default class EnemyManager {
     let enemy = new Enemy(enemyDef, this.game, { worldCurrentVelocity: worldCurrentVelocity, worldMaxVelocity: worldMaxVelocity, velocity: 300 + (Math.random() * 400) })
     this.enemies.push(enemy)
     this.enemyGroup.add(enemy.sprite)
+    // enemy.sprite.body.setRectangle(enemy.sprite.width, enemy.sprite.height)
+    enemy.sprite.body.setCollisionGroup(this.enemyCollisionGroup)
+    enemy.sprite.body.collideWorldBounds = false
+    enemy.sprite.body.angularDamping = 1
+    enemy.sprite.body.damping = 0.2
+    enemy.sprite.body.collides([this.enemyCollisionGroup, this.playerCollisionGroup])
   }
 
   static setWorldVelocity (velocity) {
@@ -43,15 +55,17 @@ export default class EnemyManager {
   static updateEnemies (blockMatrix, firstBlockY, player) {
     let bm = JSON.parse(JSON.stringify(blockMatrix))
     this.enemies.forEach(x => { bm.data[x.getPositionData(firstBlockY).idx] = 2 })
-    this.enemies.forEach(x => { x.updateEnemy(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
+    this.enemies.forEach(x => { x.update(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
 
+    
     let playerCollided = false
+    /*
     this.enemies.forEach(x => {
       let collided = EnemyManager.game.physics.arcade.collide(player, x.sprite)
       if (!playerCollided && collided) {
         playerCollided = true
       }
-    })
+    })*/
     return playerCollided
   }
 
