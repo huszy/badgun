@@ -25,6 +25,13 @@ export default class extends Phaser.State {
     deceleration: 15
   }
 
+  gameConfig = {
+    stage: 1,
+    currentTheme: 'desert',
+    requiredEnemies: 3,
+    enemyAppearInterval: 1500
+  }
+
   visibleBlocks = []
   visiblePolygons = []
   enemies = []
@@ -37,7 +44,7 @@ export default class extends Phaser.State {
     this.mapGenerator = new MapGenerator()
 
     for (var i = 0; i <= 10; i++) {
-      this.mapGenerator.generateNext()
+      this.mapGenerator.generateNext(this.gameConfig.currentTheme)
     }
   }
   
@@ -101,7 +108,7 @@ export default class extends Phaser.State {
     let updateBlockMatrix = false
     while (hasEnough === false) {
       while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
-        this.mapGenerator.generateNext()
+        this.mapGenerator.generateNext(this.gameConfig.currentTheme)
       }
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
@@ -180,7 +187,7 @@ export default class extends Phaser.State {
       if (this.player.body.velocity.x < 0) {
         this.player.body.velocity.x = 0
       }
-      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)  
+      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)
     } else {
       if (this.player.body.velocity.x > 0) {
         this.player.body.velocity.x = Math.min(this.player.body.velocity.x - this.playerConfig.turnVelocity * 1.75, 0)
@@ -202,7 +209,7 @@ export default class extends Phaser.State {
       }
     }
 
-    let camDiffY = this.game.math.linear(0, this.player.body.velocity.y - this.playerConfig.initialVelocity, 0.1);
+    let camDiffY = this.game.math.linear(0, this.player.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
     camDiffY = 0
     this.game.camera.y = this.player.y - 3 * (this.game.height / 4) - camDiffY * 5
 
@@ -221,9 +228,24 @@ export default class extends Phaser.State {
       this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
     }
 
+    let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
+    let y = Math.floor(topPos / 125)
+    let idx = y * 6
+
+    let availableSpaces = []
+    for (var i = idx; i < idx + 6; i++) {
+      if (this.blockMatrix.data[i] === 1) {
+        availableSpaces.push(i - idx)
+      }
+    }
+
+    if (availableSpaces.length > 0) {
+      EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 100, this.gameConfig, this.game.time.elapsedMS)
+    }
+    /*
     if (EnemyManager.enemies.length < 5) {
       EnemyManager.addRandomEnemy(62.5 + (Math.floor(Math.random() * 5) * 125), this.game.camera.view.y, 0, 0)
-    }
+    } */
 
     EnemyManager.updateMovement(this.blockMatrix)
 

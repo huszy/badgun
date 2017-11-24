@@ -12,6 +12,7 @@ export default class EnemyManager {
   static enemyCollisionGroup = null
   static playerCollisionGroup = null
   static blockMatrix = null
+  static timeSinceLastAdd = 0
 
   static initialize (game, enemyCollisionGroup, playerCollisionGroup) {
     this.game = game
@@ -29,6 +30,14 @@ export default class EnemyManager {
 
   static getAvailableEnemies () {
     return enemyDefs.enemies.map(x => 'enemy_' + x.name)
+  }
+
+  static addRandomEnemyIfNeeded (x, y, gameConfig, timeElapsed) {
+    this.timeSinceLastAdd += timeElapsed
+    if (this.enemies.length >= gameConfig.requiredEnemies) { return }
+    if (this.timeSinceLastAdd < gameConfig.enemyAppearInterval) { return }
+    this.addRandomEnemy(x, y)
+    this.timeSinceLastAdd = 0
   }
 
   static addRandomEnemy (x, y) {
@@ -51,27 +60,6 @@ export default class EnemyManager {
     this.enemies.forEach(x => x.updateMovement(this.blockMatrix))
 
     this.enemies.forEach(x => { if (x.sprite.y > this.game.camera.view.y + this.game.camera.view.height + 100) { this.removeEnemy(x) } })
-  }
-
-  static setWorldVelocity (velocity) {
-    EnemyManager.enemies.forEach(x => { x.worldCurrentVelocity = velocity })
-  }
-
-  static updateEnemies (blockMatrix, firstBlockY, player) {
-    let bm = JSON.parse(JSON.stringify(blockMatrix))
-    this.enemies.forEach(x => { bm.data[x.getPositionData(firstBlockY).idx] = 2 })
-    this.enemies.forEach(x => { x.update(bm, firstBlockY); if (x.sprite.y > this.game.height + 100) { this.removeEnemy(x) } })
-
-    
-    let playerCollided = false
-    /*
-    this.enemies.forEach(x => {
-      let collided = EnemyManager.game.physics.arcade.collide(player, x.sprite)
-      if (!playerCollided && collided) {
-        playerCollided = true
-      }
-    })*/
-    return playerCollided
   }
 
   static removeEnemy (enemy) {

@@ -14,17 +14,18 @@ export default class MapGenerator {
     this.maps = [blockDef, blockDef, blockDef, blockDef, blockDef]
   }
 
-  generateNext () {
+  generateNext (newTheme = null) {
     if (window.isDebug) {
       this._generateNextInSequence()
     } else {
-      this._generateNextRandom()
+      this._generateNextRandom(newTheme)
     }
   }
 
-  _generateNextRandom () {
+  _generateNextRandom (newTheme = null) {
     let lastBlock = array.last(this.maps)
-    this.maps.push(collection.sample(MapGenerator.getBlocksByQuery({input: lastBlock.output, theme: lastBlock.theme})))
+    let theme = newTheme || lastBlock.theme
+    this.maps.push(collection.sample(MapGenerator.getBlocksByQuery({input: lastBlock.output, theme: theme})))
   }
 
   _generateNextInSequence () {
