@@ -11,6 +11,7 @@ const STATE_AUTOPILOT = 'autopilot'
 const STATE_INCONTACT = 'incontact'
 const STATE_DRIFTING = 'drifting'
 const STATE_RECOVERING = 'recovering'
+const STATE_RECOVERING_LANE = 'recovering_lane'
 
 export default class Enemy {
   currentState = STATE_AUTOPILOT
@@ -119,6 +120,7 @@ export default class Enemy {
 
     if (this.currentState === STATE_DRIFTING) { return }
     if (this.currentState === STATE_INCONTACT) { return }
+    if (this.currentState === STATE_RECOVERING_LANE) { return }
 
     if (this.currentState === STATE_RECOVERING) {
       let speedRecovered = false
@@ -143,16 +145,9 @@ export default class Enemy {
         rotationRecovered = true
       }
 
-      // Get back to normal lane
-      let idealLane = Math.min(Math.max(0, this.possibleMovementMatrix.selfData.x), 5)
-      let idealLanePos = idealLane * 125 + (this.sprite.width / 2)
-
-      if (this.sprite.body.x != idealLanePos) {
-        
-      }
-
       if (rotationRecovered && speedRecovered) {
-        this.currentState = STATE_AUTOPILOT
+        this.currentState = STATE_RECOVERING_LANE
+        this._recoverLane()
         return
       } else {
         console.log("rotation: "+rotationRecovered+" - speed: "+speedRecovered)
@@ -168,6 +163,30 @@ export default class Enemy {
         this._moveRightP2()
       }
     }
+  }
+
+  _recoverLane () {
+    // Get back to normal lane
+    let idealLane = Math.min(Math.max(0, this.possibleMovementMatrix.selfData.x), 5)
+    let idealLanePos = idealLane * 125 + (125 / 2)
+
+    if (Math.floor(this.sprite.body.x) === idealLanePos) {
+      this.currentState = STATE_AUTOPILOT
+      return
+    }
+
+    let laneDiff = idealLanePos - this.sprite.body.x
+    console.log(`Ideal lane: ${idealLanePos} - current: ${this.sprite.body.x}`)
+
+    this.sprite.body.velocity.x = 0
+    let recoverTween = this.game.add.tween(this.sprite.body)
+    recoverTween.to({x: idealLanePos}, 300, "Linear")
+    recoverTween.onComplete.add(this._laneRecovered, this)
+    recoverTween.start()
+  }
+
+  _laneRecovered () {
+    this.currentState = STATE_AUTOPILOT
   }
 
   update (blockMatrix, yOffset) {

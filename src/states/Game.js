@@ -203,6 +203,7 @@ export default class extends Phaser.State {
     }
 
     let camDiffY = this.game.math.linear(0, this.player.body.velocity.y - this.playerConfig.initialVelocity, 0.1);
+    camDiffY = 0
     this.game.camera.y = this.player.y - 3 * (this.game.height / 4) - camDiffY * 5
 
     // UPDATE POLYGONS AND CHECK COLLISION
@@ -220,7 +221,7 @@ export default class extends Phaser.State {
       this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
     }
 
-    if (EnemyManager.enemies.length < 1) {
+    if (EnemyManager.enemies.length < 5) {
       EnemyManager.addRandomEnemy(62.5 + (Math.floor(Math.random() * 5) * 125), this.game.camera.view.y, 0, 0)
     }
 
