@@ -124,7 +124,7 @@ export default class extends Phaser.State {
         let newBlock = new Block({
           game: this.game,
           x: 0,
-          y: yPos - (definition.height * 2),
+          y: yPos - definition.height,
           definition: definition
         })
         const block = this.game.add.existing(newBlock)

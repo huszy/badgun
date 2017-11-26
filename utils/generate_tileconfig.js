@@ -87,7 +87,7 @@ readDirPromise(stagesFolder).then((filePaths) => {
       })
     }
 
-    blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height / 2, offRoad: polyDef, decorations: decorations || [] })
+    blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height, offRoad: polyDef, decorations: decorations || [] })
   })
 
   fs.writeFile(output, JSON.stringify(blockConfig, null, 2), {}, function (err) {
