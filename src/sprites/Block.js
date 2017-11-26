@@ -10,50 +10,29 @@ export default class extends Phaser.Sprite {
     super(game, x, y, definition.sprite)
     this.definition = definition
     this.offRoadPolygons = []
-    this._createOffRoadPolygons()
+    this._createOffRoadPolygons(x, y)
+    this._createStageElements(x, y)
     this._createAvailibilityMap()
-    this._createStageElements()
   }
 
-  setPosition (x, y) {
-    this.x = x
-    this.y = y
-    this.offRoadPolygons.forEach((offRoadPoly) => {
-      offRoadPoly._points.forEach((point) => {
-        point.x += x
-        point.y += y
-      })
-    })
-
-    this.stageElements.forEach((element) => { element.y += y })
-
-    this.stageElementsHitArea.forEach((poly) => {
-      poly._points.forEach((point) => {
-        point.x += x
-        point.y += y
-      })
-    })
-  }
-
-  _createStageElements () {
+  _createStageElements (xPos, yPos) {
     if (this.definition.decorations.length > 0) {
       this.definition.decorations.forEach((deco) => {
-        let sprite = new Phaser.Sprite(this.game, deco.x, deco.y, 'se_' + deco.element)
+        let sprite = new Phaser.Sprite(this.game, deco.x + xPos, deco.y + yPos, 'se_' + deco.element)
         this.stageElements.push(sprite)
-        let polygons = StageElementsManager.getHitPolygonsForElement(deco.element)
+        let polygons = StageElementsManager.getHitPolygonsForElement(deco.element, deco.x + xPos, deco.y + yPos)
         this.stageElementsHitArea.push(...polygons)
       })
-      console.log('Decorations added')
     }
   }
 
-  _createOffRoadPolygons () {
+  _createOffRoadPolygons (xPos, yPos) {
     if (this.definition.offRoad === '') { return }
     this.definition.offRoad.split('-').forEach((polyDefinition) => {
       let coords = polyDefinition.split(' ')
       let polyPoints = coords.map((pointDef) => {
         let points = pointDef.split(',')
-        return new Phaser.Point(parseInt(points[0]), parseInt(points[1]))
+        return new Phaser.Point(parseInt(points[0]) + xPos, parseInt(points[1]) + yPos)
       })
       /*
       // Quick fix if the last point is not equals to the first point
