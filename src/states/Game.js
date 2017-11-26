@@ -120,26 +120,18 @@ export default class extends Phaser.State {
         // console.log('newY: ', this.game.world.height - totalHeight)
         updateBlockMatrix = true
         let definition = this.mapGenerator.maps[this.currentBlockIndex]
+        let yPos = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
         let newBlock = new Block({
           game: this.game,
           x: 0,
-          y: array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height,
+          y: yPos - (definition.height * 2),
           definition: definition
         })
         const block = this.game.add.existing(newBlock)
-        block.setPosition(0, block.position.y - block.height)
+        // block.setPosition(0, block.position.y - block.height)
         this.gameWorld.add(block)
+        block.stageElements.forEach(elem => this.gameWorld.add(elem))
         this.visibleBlocks.push(block)
-
-        // Add stage elements if needed
-        if (definition.decorations.length > 0) {
-          definition.decorations.forEach((deco) => {
-            let sprite = new Phaser.Sprite(this.game, deco.x, deco.y + block.position.y, 'se_' + deco.element)
-            //const sp = this.game.add.existing(sprite)
-            this.gameWorld.add(sprite)
-          })
-          console.log('Decorations added')
-        }
 
         this.currentBlockIndex++
         hasEnough = false
@@ -227,12 +219,24 @@ export default class extends Phaser.State {
 
     // UPDATE POLYGONS AND CHECK COLLISION
     let playerWallCollision = false
+    let playerStageElementCollision = false
     this.visiblePolygons.forEach((poly) => {
       if (poly.contains(this.player.x, this.player.y) ||
           poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
           poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2)) {
         playerWallCollision = true
       }
+    })
+
+    this.visibleBlocks.forEach((block) => {
+      block.stageElementsHitArea.forEach((poly) => {
+        if (poly.contains(this.player.x, this.player.y) ||
+          poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
+          poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2)) {
+            playerStageElementCollision = true
+            console.log("STAGE ELEMENT COLLISION")
+        }
+      })
     })
 
     if (playerWallCollision) {

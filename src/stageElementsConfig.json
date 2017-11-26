@@ -14,7 +14,7 @@
     },
     "desert_trexbig": {
       "sprite": "desert/t-rex-big.png",
-      "hitArea": ""
+      "hitArea": "0,193 456,193 456,276 0,276"
     },
     "desert_cactus": {
       "sprite": "desert/cactus.png",

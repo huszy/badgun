@@ -379,8 +379,8 @@
       "decorations": [
         {
           "element": "desert_rock1",
-          "x": 163,
-          "y": 359
+          "x": 70,
+          "y": 350
         },
         {
           "element": "desert_skull",
@@ -389,7 +389,7 @@
         },
         {
           "element": "desert_trexbig",
-          "x": 430,
+          "x": 380,
           "y": 970
         },
         {
@@ -432,8 +432,8 @@
       "decorations": [
         {
           "element": "desert_rock1",
-          "x": 163,
-          "y": 359
+          "x": 70,
+          "y": 350
         },
         {
           "element": "desert_skull",
@@ -442,7 +442,7 @@
         },
         {
           "element": "desert_trexbig",
-          "x": 430,
+          "x": 380,
           "y": 970
         },
         {
