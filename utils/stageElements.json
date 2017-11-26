@@ -1,0 +1,53 @@
+{
+  "elements": {
+    "desert_airplane_crash": {
+      "sprite":"desert/airplane-crash.png",
+      "hitArea":""
+    },
+    "desert_rock1": {
+      "sprite":"desert/rock.png",
+      "hitArea":""
+    },
+    "desert_skull": {
+      "sprite":"desert/skull.png",
+      "hitArea":""
+    },
+    "desert_trexbig": {
+      "sprite":"desert/t-rex-big.png",
+      "hitArea":"0,193 456,193 456,276 0,276"
+    },
+    "desert_cactus": {
+      "sprite":"desert/cactus.png",
+      "hitArea":""
+    }
+  },
+  "variations": {
+    "desert_100011_110001_1":[
+      {
+        "element":"desert_rock1",
+        "x":70,
+        "y":350
+      },
+      {
+        "element":"desert_skull",
+        "x":50,
+        "y":1120
+      },
+      {
+        "element":"desert_trexbig",
+        "x":380,
+        "y":970
+      },
+      {
+        "element":"desert_cactus",
+        "x":-100,
+        "y":640
+      },
+      {
+        "element":"desert_cactus",
+        "x":525,
+        "y":80
+      }
+    ]
+  }
+}

@@ -6,6 +6,14 @@ export const centerGameObjects = (objects) => {
   })
 }
 
+export function mapNumber (value, in_min, in_max, out_min, out_max) {
+  return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+export function debugHTML (html) {
+  document.getElementById('debug').innerHTML = html
+}
+
 Phaser.Polygon.prototype.intersectsRectangle = function (rect) {
   if (this._points.length < 2) { return false }
   for (var i = 0; i < this._points.length; i++) {
