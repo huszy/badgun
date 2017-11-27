@@ -3,8 +3,9 @@ import PlayerSprite from '../sprites/Player'
 import { setTimeout, clearTimeout } from 'timers'
 import { debugHTML } from '../utils'
 
-const STATE_NORMAL = 'normal'
-const STATE_COLLIDED = 'collided'
+export const STATE_NORMAL = 'normal'
+export const STATE_COLLIDED = 'collided'
+export const STATE_INVINCIBLE = 'invincible'
 
 export default class Player {
   playerConfig = {
@@ -25,6 +26,10 @@ export default class Player {
     this.playerGroup.enableBody = true
     this.setupPlayer()
     // this.setupCrashEffect()
+
+    this.showPlayer = this._showPlayer.bind(this)
+    this.playerRecovered = this._playerRecovered.bind(this)
+    this.returnToNormalState = this._returnToNormalState.bind(this)
   }
 
   setupPlayer () {
@@ -54,7 +59,7 @@ export default class Player {
   }
 
   update () {
-    if (this.playerConfig.state !== STATE_NORMAL) {
+    if (this.playerConfig.state === STATE_COLLIDED) {
       return
     }
 
@@ -87,7 +92,7 @@ export default class Player {
       if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
         this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.acceleration, this.playerConfig.initialVelocity)
       } else if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
-        this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
+        this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
       }
     }
 
@@ -129,7 +134,6 @@ export default class Player {
     // console.dir(bounds)
     collectables.forEach((collectable) => {
       if (Phaser.Rectangle.containsPoint(bounds, collectable.position)) {
-        console.dir(collectable.position)
         collisions.push(collectable)
       }
     })
@@ -143,10 +147,29 @@ export default class Player {
   startRecoveryAnimation () {
     this.playerConfig.state = STATE_COLLIDED
     this.crashPosition = { x: this.sprite.x, y: this.sprite.y }
-    this.sprite.x = -1000
+    this.sprite.visible = false
     this.sprite.body.setZeroVelocity()
     this.sprite.body.setZeroRotation()
     this.sprite.body.setZeroForce()
+    this.game.state.getCurrentState().helicopter.moveIn(this.crashPosition.x, this.crashPosition.y, this.showPlayer, this.playerRecovered)
+  }
+
+  _showPlayer () {
+    this.sprite.visible = true
+  }
+
+  _playerRecovered () {
+    this.playerConfig.state = STATE_INVINCIBLE
+    this.blinkTween = this.game.add.tween(this.sprite)
+    this.blinkTween.to({ alpha: 0.2 }, 100, 'Linear', true, 0, -1, true)
+    this.blinkTween.start()
+    this.invincibleTimer = setTimeout(this.returnToNormalState, 2000)
+  }
+
+  _returnToNormalState () {
+    this.blinkTween.stop()
+    this.sprite.alpha = 1
+    this.playerConfig.state = STATE_NORMAL
   }
 
   setupCrashEffect () {

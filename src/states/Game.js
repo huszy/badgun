@@ -5,6 +5,7 @@ import Block from '../sprites/Block'
 import MapGenerator from './MapGenerator'
 
 import Player from '../classes/Player'
+import { STATE_NORMAL, STATE_COLLIDED } from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
 import CollectableManager from '../classes/CollectableManager'
 import Helicopter from '../sprites/Helicopter'
@@ -110,7 +111,7 @@ export default class extends Phaser.State {
         this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
         this.gameConfig.themeChangeCount++
       }
-      console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
+      // console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
 
@@ -171,9 +172,6 @@ export default class extends Phaser.State {
 
   render () {
     this.fillVisibleBlocksAndGenerateMoreIfNeeded()
-    if (EnemyManager.enemies.length > 0) {
-      this.game.debug.bodyInfo(EnemyManager.enemies[0].sprite, 0, 20)
-    }
   }
 
   update (...args) {
@@ -182,9 +180,32 @@ export default class extends Phaser.State {
     }
 
     this.player.update()
-    this.helicopter.y = this.player.sprite.y
 
     // UPDATE POLYGONS AND CHECK COLLISION
+    if (this.player.playerConfig.state === STATE_NORMAL) {
+      this.handlePlayerCollisions()
+    
+      let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
+      let y = Math.floor(topPos / 125)
+      let idx = y * 6
+
+      let availableSpaces = []
+      for (var i = idx; i < idx + 6; i++) {
+        if (this.blockMatrix.data[i] === 1) {
+          availableSpaces.push(i - idx)
+        }
+      }
+
+      if (availableSpaces.length > 0) {
+        EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 100, this.gameConfig, this.game.time.elapsedMS)
+      }
+
+      EnemyManager.updateMovement(this.blockMatrix)
+    }
+    this.updateTimeLeft(this.game.time.now)
+  }
+
+  handlePlayerCollisions () {
     let playerWallCollision = this.player.checkWallCollision(this.visiblePolygons)
     let playerStageElementCollision = this.player.checkStageElementCollision(this.visibleBlocks)
     let playerCollectablesCollision = this.player.checkCollectableCollision(CollectableManager.collectables)
@@ -198,7 +219,12 @@ export default class extends Phaser.State {
       CollectableManager.removeCollectables(playerCollectablesCollision)
     }
 
-    if (playerWallCollision || playerStageElementCollision) {
+    if (playerStageElementCollision) {
+      this.player.startRecoveryAnimation()
+      return
+    }
+
+    if (playerWallCollision) {
       this.game.camera.shake(0.005, 100)
       this.player.slowDown()
     }
@@ -209,24 +235,6 @@ export default class extends Phaser.State {
         this.player.startCrashEffect()
       }
     }
-
-    let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
-    let y = Math.floor(topPos / 125)
-    let idx = y * 6
-
-    let availableSpaces = []
-    for (var i = idx; i < idx + 6; i++) {
-      if (this.blockMatrix.data[i] === 1) {
-        availableSpaces.push(i - idx)
-      }
-    }
-
-    if (availableSpaces.length > 0) {
-      EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 100, this.gameConfig, this.game.time.elapsedMS)
-    }
-
-    EnemyManager.updateMovement(this.blockMatrix)
-    this.updateTimeLeft(this.game.time.now)
   }
 
   updateTimeLeft (msec) {
