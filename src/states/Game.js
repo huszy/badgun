@@ -16,6 +16,8 @@ export default class extends Phaser.State {
   gameConfig = {
     stage: 1,
     currentTheme: 'desert',
+    themesAvailable: ['desert', 'city'],
+    themeChangeCount: 0,
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0
@@ -93,6 +95,16 @@ export default class extends Phaser.State {
       while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
         this.mapGenerator.generateNext(this.gameConfig.currentTheme)
       }
+      if (Math.floor(this.mapGenerator.maps.length / 20) !== this.gameConfig.themeChangeCount) {
+        let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
+        themeIndex++
+        if (themeIndex >= this.gameConfig.themesAvailable.length) {
+          themeIndex = 0
+        }
+        this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
+        this.gameConfig.themeChangeCount++
+      }
+      console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
 
