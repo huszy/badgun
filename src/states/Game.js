@@ -7,6 +7,7 @@ import MapGenerator from './MapGenerator'
 import Player from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
 import CollectableManager from '../classes/CollectableManager'
+import Helicopter from '../sprites/Helicopter'
 
 const array = require('lodash/array')
 const collection = require('lodash/collection')
@@ -34,6 +35,7 @@ export default class extends Phaser.State {
   enemyGroup = null
   playerGroup = null
   decorationGroup = null
+  helicopterGroup = null
 
   constructor () {
     super()
@@ -53,6 +55,7 @@ export default class extends Phaser.State {
     this.enemyGroup = new Phaser.Group(this.game, undefined, 'enemies', false, true)
     this.playerGroup = new Phaser.Group(this.game, undefined, 'player', false, true)
     this.decorationGroup = new Phaser.Group(this.game, undefined, 'deco', false, true)
+    this.helicopterGroup = new Phaser.Group(this.game, undefined, 'helicopter', false, true)
     this.gameWorld.position.setTo(0, 0)
     this.game.physics.startSystem(Phaser.Physics.P2JS)
     this.game.physics.p2.setImpactEvents(true)
@@ -82,6 +85,9 @@ export default class extends Phaser.State {
 
     this.game.physics.p2.updateBoundsCollisionGroup()
     this.player.sprite.body.collides(this.enemyCollisionGroup, this.hitEnemy, this)
+
+    this.helicopter = new Helicopter({game: this.game, x: -400, y: this.player.sprite.y})
+    this.helicopterGroup.add(this.helicopter)
   }
 
   hitEnemy (body1, body2) {
@@ -176,6 +182,7 @@ export default class extends Phaser.State {
     }
 
     this.player.update()
+    this.helicopter.y = this.player.sprite.y
 
     // UPDATE POLYGONS AND CHECK COLLISION
     let playerWallCollision = this.player.checkWallCollision(this.visiblePolygons)
