@@ -52,6 +52,7 @@ export default class extends Phaser.Sprite {
         let idx = y * 6 + x
         let rectToCheck = new Phaser.Rectangle((x * 125) + 10 + this.x, (y * 125) + 10 + this.y, 125 - 20, 125 - 20)
         this._freeSpaceMap[idx] = (this.offRoadPolygons.map((poly) => poly.intersectsRectangle(rectToCheck)).includes(true)) ? 0 : 1
+        this._freeSpaceMap[idx] &= (this.stageElementsHitArea.map((poly) => poly.intersectsRectangle(rectToCheck)).includes(true)) ? 0 : 1
         // console.log(this.offRoadPolygons.map((poly) => poly.intersectsRectangle(rectToCheck)).filter(Boolean))
       }
     }

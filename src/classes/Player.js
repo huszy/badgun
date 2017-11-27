@@ -3,6 +3,9 @@ import PlayerSprite from '../sprites/Player'
 import { setTimeout, clearTimeout } from 'timers'
 import { debugHTML } from '../utils'
 
+const STATE_NORMAL = 'normal'
+const STATE_COLLIDED = 'collided'
+
 export default class Player {
   playerConfig = {
     initialVelocity: -1000,
@@ -10,7 +13,8 @@ export default class Player {
     minVelocity: -500,
     turnVelocity: 30,
     acceleration: 10,
-    deceleration: 15
+    deceleration: 25,
+    state: STATE_NORMAL
   }
 
   constructor (game, playerGroup, playerCollisionGroup) {
@@ -46,9 +50,14 @@ export default class Player {
 
     this.game.camera.focusOn(this.sprite)
     this.sprite.body.velocity.y = this.playerConfig.initialVelocity
+    this.playerConfig.state = STATE_NORMAL
   }
 
   update () {
+    if (this.playerConfig.state !== STATE_NORMAL) {
+      return
+    }
+
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation - 0.02, -0.2, 0)
       if (this.sprite.body.velocity.x > 0) {
@@ -129,6 +138,15 @@ export default class Player {
 
   slowDown () {
     this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
+  }
+
+  startRecoveryAnimation () {
+    this.playerConfig.state = STATE_COLLIDED
+    this.crashPosition = { x: this.sprite.x, y: this.sprite.y }
+    this.sprite.x = -1000
+    this.sprite.body.setZeroVelocity()
+    this.sprite.body.setZeroRotation()
+    this.sprite.body.setZeroForce()
   }
 
   setupCrashEffect () {

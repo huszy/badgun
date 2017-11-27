@@ -2,23 +2,39 @@
   "elements": {
     "desert_airplane_crash": {
       "sprite": "desert/airplane-crash.png",
-      "hitArea": ""
-    },
-    "desert_rock1": {
-      "sprite": "desert/rock.png",
-      "hitArea": ""
-    },
-    "desert_skull": {
-      "sprite": "desert/skull.png",
-      "hitArea": ""
-    },
-    "desert_trexbig": {
-      "sprite": "desert/t-rex-big.png",
-      "hitArea": "0,193 456,193 456,276 0,276"
+      "hitArea": "132,120 371,120 371,174 132,174"
     },
     "desert_cactus": {
       "sprite": "desert/cactus.png",
-      "hitArea": ""
+      "hitArea": "67,160 160,111 256,165 256,194 159,153 67,186"
+    },
+    "desert_monkeytree": {
+      "sprite": "desert/monkeytree.png",
+      "hitArea": "105,233 168,233 171,288 104,288"
+    },
+    "desert_rock1": {
+      "sprite": "desert/rock.png",
+      "hitArea": "92,126 175,91 242,91 242,124 175,124 146,154 92,154"
+    },
+    "desert_rock2": {
+      "sprite": "desert/rock-2.png",
+      "hitArea": "69,143 217,143 241,88 285,88 258,202 175,159 88,159"
+    },
+    "desert_rock3": {
+      "sprite": "desert/rock-3.png",
+      "hitArea": "50,105 214,105 205,163 76,163"
+    },
+    "desert_skull": {
+      "sprite": "desert/skull.png",
+      "hitArea": "0,0 156,0 156,88 0,88"
+    },
+    "desert_trexbig": {
+      "sprite": "desert/t-rex-big.png",
+      "hitArea": "84,195 433,195 433,246 84,246"
+    },
+    "desert_trexsmall": {
+      "sprite": "desert/t-rex-small.png",
+      "hitArea": "83,69 438,69 438,113 83,113"
     }
   }
 }

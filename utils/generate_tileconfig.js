@@ -85,6 +85,8 @@ readDirPromise(stagesFolder).then((filePaths) => {
       decorations.forEach((deco) => {
         usedDecorationElements.push(deco.element)
       })
+    } else {
+      console.log("No decoration for: "+theme + '_' + input + '_' + output + '_' + variation)
     }
 
     blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height, offRoad: polyDef, decorations: decorations || [] })

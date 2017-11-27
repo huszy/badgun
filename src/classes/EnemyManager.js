@@ -21,7 +21,7 @@ export default class EnemyManager {
     this.playerCollisionGroup = playerCollisionGroup
     this.enemyGroup.physicsBodyType = Phaser.Physics.P2JS
     this.enemyGroup.enableBody = true
-    game.world.bringToTop(this.enemyGroup)
+    // game.world.bringToTop(this.enemyGroup)
   }
 
   static getDefinitionByName (name) {

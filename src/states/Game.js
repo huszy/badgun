@@ -47,8 +47,8 @@ export default class extends Phaser.State {
   init () {
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
-    this.enemyGroup = new Phaser.Group(this.game, undefined, 'enemies', false, true)
     this.collectablesGroup = new Phaser.Group(this.game, undefined, 'collectables', false, true)
+    this.enemyGroup = new Phaser.Group(this.game, undefined, 'enemies', false, true)
     this.playerGroup = new Phaser.Group(this.game, undefined, 'player', false, true)
     this.decorationGroup = new Phaser.Group(this.game, undefined, 'deco', false, true)
     this.gameWorld.position.setTo(0, 0)
@@ -57,8 +57,8 @@ export default class extends Phaser.State {
     this.game.physics.p2.restitution = 0.5
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
-    EnemyManager.initialize(this.game, this.enemyGroup, this.enemyCollisionGroup, this.playerCollisionGroup)
     CollectableManager.initialize(this.game, this.collectablesGroup)
+    EnemyManager.initialize(this.game, this.enemyGroup, this.enemyCollisionGroup, this.playerCollisionGroup)
 
     // UI
     this.timeElement = document.getElementById('timeLeft')
