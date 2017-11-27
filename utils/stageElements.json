@@ -53,6 +53,102 @@
       "hitArea": "83,69 438,69 438,113 83,113",
       "width": "444",
       "height": "132"
+    },
+    "city_bench": {
+      "sprite": "city/bench.png",
+      "hitArea": "",
+      "width": "76",
+      "height": "112"
+    },
+    "city_bench2": {
+      "sprite": "city/bench2.png",
+      "hitArea": "",
+      "width": "124",
+      "height": "52"
+    },
+    "city_busstop": {
+      "sprite": "city/bus-stop.png",
+      "hitArea": "",
+      "width": "108",
+      "height": "120"
+    },
+    "city_bush": {
+      "sprite": "city/bush.png",
+      "hitArea": "",
+      "width": "148",
+      "height": "132"
+    },
+    "city_containerblue": {
+      "sprite": "city/container-blue.png",
+      "hitArea": "",
+      "width": "276",
+      "height": "112"
+    },
+    "city_containerred": {
+      "sprite": "city/container-red.png",
+      "hitArea": "",
+      "width": "152",
+      "height": "264"
+    },
+    "city_fence": {
+      "sprite": "city/fence.png",
+      "hitArea": "",
+      "width": "124",
+      "height": "56"
+    },
+    "city_house": {
+      "sprite": "city/house.png",
+      "hitArea": "",
+      "width": "416",
+      "height": "208"
+    },
+    "city_house2": {
+      "sprite": "city/house2.png",
+      "hitArea": "",
+      "width": "412",
+      "height": "308"
+    },
+    "city_house3": {
+      "sprite": "city/house3.png",
+      "hitArea": "",
+      "width": "412",
+      "height": "240"
+    },
+    "city_hydrant": {
+      "sprite": "city/hydrant.png",
+      "hitArea": "",
+      "width": "80",
+      "height": "72"
+    },
+    "city_shop": {
+      "sprite": "city/shop.png",
+      "hitArea": "",
+      "width": "312",
+      "height": "300"
+    },
+    "city_train": {
+      "sprite": "city/train.png",
+      "hitArea": "",
+      "width": "92",
+      "height": "804"
+    },
+    "city_trash": {
+      "sprite": "city/trash.png",
+      "hitArea": "",
+      "width": "80",
+      "height": "80"
+    },
+    "city_tree": {
+      "sprite": "city/tree.png",
+      "hitArea": "",
+      "width": "288",
+      "height": "280"
+    },
+    "city_tree2": {
+      "sprite": "city/tree2.png",
+      "hitArea": "",
+      "width": "192",
+      "height": "292"
     }
   },
   "variations": {
