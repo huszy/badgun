@@ -19,12 +19,39 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            background-color: #2a2a2a;
+        }
+
+        #contentHolder {
+            width: 800px;
+            height: 760px;
+            position: relative;
         }
 
         #content {
             width: 375px;
             height: 667px;
+            margin-left: 53px;
+            margin-top: 46px;
         }
+
+        #machine {
+            background: url('assets/ui/background@2x.png') no-repeat transparent;
+            background-size: contain;
+            width: 800px;
+            height: 760px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #time {
+            position: absolute;
+            left: 100px;
+            top: 20px;
+            color: green;
+        }
+
         #debug {
             position: absolute;
             top: 0px;
@@ -38,7 +65,13 @@
 
 <body>
     <div id="debug"></div>
-    <div id="content"></div>
+    <div id="contentHolder">
+        <div id="content"></div>
+        <div id="machine">
+            <div id="time">56:00.111</div>
+            <div id="point">9.123.456</div>
+        </div>
+    </div>
     <!-- uncomment the line bellow for cordova feature -->
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
 </body>
