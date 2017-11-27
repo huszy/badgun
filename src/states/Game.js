@@ -1,31 +1,16 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Player from '../sprites/Player'
 import Block from '../sprites/Block'
-import EnemySprite from '../sprites/Enemy'
 import MapGenerator from './MapGenerator'
 
-import Enemy from '../classes/Enemy'
+import Player from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
-
-import { mapNumber } from '../utils'
 import CollectableManager from '../classes/CollectableManager'
 
 const array = require('lodash/array')
-const math = require('lodash/math')
 const collection = require('lodash/collection')
 
 export default class extends Phaser.State {
-
-  playerConfig = {
-    initialVelocity: -1000,
-    maxVelocity: -1500,
-    minVelocity: -500,
-    turnVelocity: 30,
-    acceleration: 10,
-    deceleration: 15
-  }
-
   gameConfig = {
     stage: 1,
     currentTheme: 'desert',
@@ -38,7 +23,6 @@ export default class extends Phaser.State {
   visibleStageElements = []
   enemies = []
 
-
   constructor () {
     super()
     this.blockMatrix = {data: []}
@@ -49,7 +33,7 @@ export default class extends Phaser.State {
       this.mapGenerator.generateNext(this.gameConfig.currentTheme)
     }
   }
-  
+
   init () {
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
@@ -65,7 +49,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    this.setupPlayer()
+    this.player = new Player(this.game, this.playerCollisionGroup)
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
     // Setup user input - TODO: Handle mobile touch
     if (!this.game.device.desktop) {
@@ -74,36 +58,11 @@ export default class extends Phaser.State {
     this.userInput = this.game.device.desktop ? this.game.input.mousePointer : this.game.input.pointer1
 
     this.game.physics.p2.updateBoundsCollisionGroup()
-    this.player.body.collides(this.enemyCollisionGroup, this.hitEnemy, this)
+    this.player.sprite.body.collides(this.enemyCollisionGroup, this.hitEnemy, this)
   }
 
   hitEnemy (body1, body2) {
     console.log("enemy hit")
-  }
-
-  setupPlayer () {
-    this.playerDef = new Player({
-      game: this.game,
-      x: this.game.world.centerX,
-      y: this.game.world.height - this.game.height / 2,
-      asset: 'car'
-    })
-    this.playerDef.anchor.set(0.5)
-    this.player = this.game.add.existing(this.playerDef)
-    this.game.physics.p2.enable(this.player, false)
-    // this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
-    // this.player.body.maxAngular = 100
-    // this.player.body.angularDrag = 150
-    // this.player.body.collideWorldBounds = true
-
-    // this.player.body.immovable = true
-    this.player.body.fixedRotation = true
-    this.player.body.damping = 0
-
-    this.player.body.setCollisionGroup(this.playerCollisionGroup)
-
-    this.game.camera.focusOn(this.player)
-    this.player.body.velocity.y = this.playerConfig.initialVelocity
   }
 
   fillVisibleBlocksAndGenerateMoreIfNeeded (shouldCleanup = true) {
@@ -183,69 +142,15 @@ export default class extends Phaser.State {
       this.game.paused = !this.game.paused
     }
 
-    // console.log(this.player.y, this.player.body.velocity.y, this.game.camera.y)
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      this.player.rotation = Phaser.Math.clamp(this.player.rotation - 0.02, -0.2, 0)
-      if (this.player.body.velocity.x > 0) {
-        this.player.body.velocity.x = 0
-      }
-      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x - this.playerConfig.turnVelocity, -1 * this.playerConfig.turnVelocity * 20, 0)
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      this.player.rotation = Phaser.Math.clamp(this.player.rotation + 0.02, 0, 0.2)
-      if (this.player.body.velocity.x < 0) {
-        this.player.body.velocity.x = 0
-      }
-      this.player.body.velocity.x = Phaser.Math.clamp(this.player.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)
-    } else {
-      if (this.player.body.velocity.x > 0) {
-        this.player.body.velocity.x = Math.min(this.player.body.velocity.x - this.playerConfig.turnVelocity * 1.75, 0)
-      } else if (this.player.body.velocity.x < 0) {
-        this.player.body.velocity.x = Math.max(this.player.body.velocity.x + this.playerConfig.turnVelocity * 1.75, 0)
-      }
-      this.game.add.tween(this.player).to({ rotation: this.player.rotation * -1 }, 100, 'Linear', true)
-    }
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      this.player.body.velocity.y = Math.max(this.player.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.maxVelocity)
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
-    } else {
-      if (this.player.body.velocity.y < this.playerConfig.initialVelocity) {
-        this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.acceleration, this.playerConfig.initialVelocity)
-      } else if (this.player.body.velocity.y > this.playerConfig.initialVelocity) {
-        this.player.body.velocity.y = Math.max(this.player.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
-      }
-    }
-
-    let camDiffY = this.game.math.linear(0, this.player.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
-    camDiffY = 0
-    this.game.camera.y = this.player.y - 3 * (this.game.height / 4) - camDiffY * 5
+    this.player.update()
 
     // UPDATE POLYGONS AND CHECK COLLISION
-    let playerWallCollision = false
-    let playerStageElementCollision = false
-    this.visiblePolygons.forEach((poly) => {
-      if (poly.contains(this.player.x, this.player.y) ||
-          poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
-          poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2)) {
-        playerWallCollision = true
-      }
-    })
+    let playerWallCollision = this.player.checkWallCollision(this.visiblePolygons)
+    let playerStageElementCollision = this.player.checkStageElementCollision(this.visibleBlocks)
 
-    this.visibleBlocks.forEach((block) => {
-      block.stageElementsHitArea.forEach((poly) => {
-        if (poly.contains(this.player.x, this.player.y) ||
-          poly.contains(this.player.x - this.player.width / 2, this.player.y - this.player.height / 2) ||
-          poly.contains(this.player.x + this.player.width / 2, this.player.y + this.player.height / 2)) {
-            playerStageElementCollision = true
-            console.log("STAGE ELEMENT COLLISION")
-        }
-      })
-    })
-
-    if (playerWallCollision) {
+    if (playerWallCollision || playerStageElementCollision) {
       this.game.camera.shake(0.005, 100)
-      this.player.body.velocity.y = Math.min(this.player.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
+      this.player.slowDown()
     }
 
     let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
@@ -262,10 +167,6 @@ export default class extends Phaser.State {
     if (availableSpaces.length > 0) {
       EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 100, this.gameConfig, this.game.time.elapsedMS)
     }
-    /*
-    if (EnemyManager.enemies.length < 5) {
-      EnemyManager.addRandomEnemy(62.5 + (Math.floor(Math.random() * 5) * 125), this.game.camera.view.y, 0, 0)
-    } */
 
     EnemyManager.updateMovement(this.blockMatrix)
   }
