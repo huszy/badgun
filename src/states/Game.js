@@ -10,13 +10,15 @@ import CollectableManager from '../classes/CollectableManager'
 
 const array = require('lodash/array')
 const collection = require('lodash/collection')
+const string = require('lodash/string')
 
 export default class extends Phaser.State {
   gameConfig = {
     stage: 1,
     currentTheme: 'desert',
     requiredEnemies: 3,
-    enemyAppearInterval: 1500
+    enemyAppearInterval: 1500,
+    currentScore: 0
   }
 
   visibleBlocks = []
@@ -57,8 +59,15 @@ export default class extends Phaser.State {
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     EnemyManager.initialize(this.game, this.enemyGroup, this.enemyCollisionGroup, this.playerCollisionGroup)
     CollectableManager.initialize(this.game, this.collectablesGroup)
+
+    // UI
+    this.timeElement = document.getElementById('timeLeft')
+    this.scoreElement = document.getElementById('score')
   }
-  preload () {}
+  preload () {
+    this.game.forceSingleUpdate = true
+    this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
+  }
 
   create () {
     this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
@@ -159,10 +168,27 @@ export default class extends Phaser.State {
     // UPDATE POLYGONS AND CHECK COLLISION
     let playerWallCollision = this.player.checkWallCollision(this.visiblePolygons)
     let playerStageElementCollision = this.player.checkStageElementCollision(this.visibleBlocks)
+    let playerCollectablesCollision = this.player.checkCollectableCollision(CollectableManager.collectables)
+
+    if (playerCollectablesCollision.length > 0) {
+      let pointsToAdd = playerCollectablesCollision.reduce((c, a) => { return a.pointValue + c }, 0)
+      if (pointsToAdd > 0) {
+        this.gameConfig.currentScore += pointsToAdd
+        this.updatePoints()
+      }
+      CollectableManager.removeCollectables(playerCollectablesCollision)
+    }
 
     if (playerWallCollision || playerStageElementCollision) {
       this.game.camera.shake(0.005, 100)
       this.player.slowDown()
+    }
+
+    if (playerWallCollision) {
+      if (!this.startedEffect) {
+        this.startedEffect = true
+        this.player.startCrashEffect()
+      }
     }
 
     let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
@@ -181,6 +207,22 @@ export default class extends Phaser.State {
     }
 
     EnemyManager.updateMovement(this.blockMatrix)
+    this.updateTimeLeft(this.game.time.now)
+  }
+
+  updateTimeLeft (msec) {
+    let sec = Math.floor(msec / 1000)
+    let min = 0
+    if (sec >= 60) {
+      min = Math.floor(sec / 60)
+      sec -= min * 60
+    }
+    let ms = msec - (min * 60 * 1000) - (sec * 1000)
+    this.timeElement.innerHTML = `${string.padStart(min, 2, '0')}:${string.padStart(sec, 2, '0')}.${string.padStart(ms, 3, '0')}`
+  }
+
+  updatePoints () {
+    this.scoreElement.innerHTML = this.gameConfig.currentScore
   }
 
   setWorldPosition (scale) {

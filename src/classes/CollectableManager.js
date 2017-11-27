@@ -28,6 +28,17 @@ export default class CollectableManager {
 
       let coin = new Coin({ game: this.game, x: (x * 125) + 62.5, y: (y * 125) + 62.5 + block.y, asset: 'coin'})
       this.collectableGroup.add(coin)
+      this.collectables.push(coin)
+    })
+  }
+
+  static removeCollectables (collectables) {
+    collectables.forEach((collectable) => {
+      let idx = this.collectables.indexOf(collectable)
+      if (idx > -1) {
+        this.collectables.splice(idx, 1)
+      }
+      collectable.destroy()
     })
   }
 }

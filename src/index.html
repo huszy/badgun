@@ -3,12 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Phaser - ES6 - Webpack</title>
+    <title>BADGUN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta http-equiv="cleartype" content="on">
     <meta name="format-detection" content="telephone=no">
+    <meta name="google-signin-client_id" content="1079918399573-7p85l0fg3iifbmpnfd528cae0e301ddn.apps.googleusercontent.com" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+    <meta name="google-signin-callback" content="signinCallback" />
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
     <style>
         html,
         body {
@@ -54,7 +58,7 @@
             font-size: 48px;
             width: 194px;
             height: 54px;
-            text-align: center;
+            text-align: left;
             line-height: 60px;
             background: url('assets/ui/lcd-bg@2x.png') no-repeat transparent;
             background-size: contain;
@@ -69,6 +73,10 @@
             height: 54px;
             background: url('assets/ui/lcd-fg@2x.png') no-repeat transparent;
             background-size: contain;
+        }
+
+        #timeLeft {
+            padding-left: 6px
         }
 
         #point {
@@ -198,17 +206,19 @@
         <div id="content"></div>
         <div id="machine">
             <div id="time">
-                <span class="noselect">56:00.111</span>
+                <span id="timeLeft" class="noselect">56:00.111</span>
                 <div class="fg"><!-- --></div>
             </div>
             <div id="point">
-                <span class="noselect">9.123.456</span>
+                <span id="score" class="noselect">0</span>
                 <div class="fg"><!-- --></div>
             </div>
         </div>
     </div>
     <!-- uncomment the line bellow for cordova feature -->
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

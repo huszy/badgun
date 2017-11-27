@@ -20,6 +20,7 @@ export default class Player {
     this.playerGroup.physicsBodyType = Phaser.Physics.P2JS
     this.playerGroup.enableBody = true
     this.setupPlayer()
+    // this.setupCrashEffect()
   }
 
   setupPlayer () {
@@ -113,7 +114,56 @@ export default class Player {
     return playerStageElementCollision
   }
 
+  checkCollectableCollision (collectables) {
+    let collisions = []
+    let bounds = new Phaser.Rectangle(this.sprite.x - this.sprite.width / 2, this.sprite.y - this.sprite.height / 2, this.sprite.width, this.sprite.height)
+    // console.dir(bounds)
+    collectables.forEach((collectable) => {
+      if (Phaser.Rectangle.containsPoint(bounds, collectable.position)) {
+        console.dir(collectable.position)
+        collisions.push(collectable)
+      }
+    })
+    return collisions
+  }
+
   slowDown () {
     this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
+  }
+
+  setupCrashEffect () {
+    this.manager = this.game.plugins.add(Phaser.ParticleStorm)
+    
+    var data = {
+        lifespan: 100
+    }
+
+    this.manager.addData('basic', data)
+
+    this.emitter = this.manager.createEmitter(Phaser.ParticleStorm.PIXEL)
+
+    this.emitter.renderer.pixelSize = 8
+
+    this.emitter.addToWorld(this.playerGroup)
+
+    this.image = this.manager.createImageZone('car')
+
+    //  This will use the Pixel Emitter to display our carrot.png Image Zone
+    //  Each 'pixel' is 8x8 so we set that as the spacing value
+    //  
+    //  The 'setColor' property tells the renderer to tint each 'pixel' to match the
+    //  color of the respective pixel in the source image.
+  }
+
+  startCrashEffect () {
+    return
+    console.log(this.sprite.y)
+    this.emitter.emit('basic', 200, this.sprite.y, { zone: this.image, full: true, spacing: 8, setColor: true })
+    // this.emitter.forEachNew(this.crashEffect, this, 200, 200)
+  }
+
+  crashEffect (particle, x, y) {
+    particle.setLife(3000)
+    particle.radiateFrom(x, y, 3)
   }
 }
