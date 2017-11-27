@@ -6,12 +6,12 @@ const collection = require('lodash/collection')
 export default class CollectableManager {
   static collectables = []
   static game = null
-  static worldGroup = null
+  static collectableGroup = null
   static timeSinceLastAdd = 0
 
-  static initialize (game, worldGroup) {
+  static initialize (game, collectableGroup) {
     this.game = game
-    this.worldGroup = worldGroup
+    this.collectableGroup = collectableGroup
   }
 
   static addCoinsToBlock (block, coinsToAdd) {
@@ -27,7 +27,7 @@ export default class CollectableManager {
       let x = cp - (y * 6)
 
       let coin = new Coin({ game: this.game, x: (x * 125) + 62.5, y: (y * 125) + 62.5 + block.y, asset: 'coin'})
-      this.worldGroup.add(coin)
+      this.collectableGroup.add(coin)
     })
   }
 }

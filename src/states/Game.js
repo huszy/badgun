@@ -1,4 +1,5 @@
 /* globals __DEV__ */
+// Layers: blocks, collectable, enemy, player, stage deco
 import Phaser from 'phaser'
 import Block from '../sprites/Block'
 import MapGenerator from './MapGenerator'
@@ -23,6 +24,13 @@ export default class extends Phaser.State {
   visibleStageElements = []
   enemies = []
 
+  // Groups
+  gameWorld = null
+  collectablesGroup = null
+  enemyGroup = null
+  playerGroup = null
+  decorationGroup = null
+
   constructor () {
     super()
     this.blockMatrix = {data: []}
@@ -37,19 +45,23 @@ export default class extends Phaser.State {
   init () {
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
+    this.enemyGroup = new Phaser.Group(this.game, undefined, 'enemies', false, true)
+    this.collectablesGroup = new Phaser.Group(this.game, undefined, 'collectables', false, true)
+    this.playerGroup = new Phaser.Group(this.game, undefined, 'player', false, true)
+    this.decorationGroup = new Phaser.Group(this.game, undefined, 'deco', false, true)
     this.gameWorld.position.setTo(0, 0)
     this.game.physics.startSystem(Phaser.Physics.P2JS)
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
-    EnemyManager.initialize(this.game, this.enemyCollisionGroup, this.playerCollisionGroup)
-    CollectableManager.initialize(this.game, this.gameWorld)
+    EnemyManager.initialize(this.game, this.enemyGroup, this.enemyCollisionGroup, this.playerCollisionGroup)
+    CollectableManager.initialize(this.game, this.collectablesGroup)
   }
   preload () {}
 
   create () {
-    this.player = new Player(this.game, this.playerCollisionGroup)
+    this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
     // Setup user input - TODO: Handle mobile touch
     if (!this.game.device.desktop) {
@@ -91,7 +103,7 @@ export default class extends Phaser.State {
         const block = this.game.add.existing(newBlock)
         // block.setPosition(0, block.position.y - block.height)
         this.gameWorld.add(block)
-        block.stageElements.forEach(elem => this.gameWorld.add(elem))
+        block.stageElements.forEach(elem => this.decorationGroup.add(elem))
         this.visibleBlocks.push(block)
 
         CollectableManager.addCoinsToBlock(block, 10)
@@ -138,7 +150,7 @@ export default class extends Phaser.State {
   }
 
   update (...args) {
-    if (this.game.input.keyboard.isDown(32)) {
+    if (this.game.input.keyboard.isDown(32) && __DEV__) {
       this.game.paused = !this.game.paused
     }
 

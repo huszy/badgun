@@ -105,6 +105,16 @@
             border: 1;
         }
 
+        .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome and Opera */
+        }
+
         @font-face {
             font-family: 'disposabledroid_bbbold';
             src: url('assets/ui/disposabledroidbb_bld-webfont.woff2') format('woff2'),
@@ -188,11 +198,11 @@
         <div id="content"></div>
         <div id="machine">
             <div id="time">
-                <span>56:00.111</span>
+                <span class="noselect">56:00.111</span>
                 <div class="fg"><!-- --></div>
             </div>
             <div id="point">
-                <span>9.123.456</span>
+                <span class="noselect">9.123.456</span>
                 <div class="fg"><!-- --></div>
             </div>
         </div>

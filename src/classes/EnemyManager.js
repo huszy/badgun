@@ -14,11 +14,11 @@ export default class EnemyManager {
   static blockMatrix = null
   static timeSinceLastAdd = 0
 
-  static initialize (game, enemyCollisionGroup, playerCollisionGroup) {
+  static initialize (game, enemyGroup, enemyCollisionGroup, playerCollisionGroup) {
     this.game = game
+    this.enemyGroup = enemyGroup
     this.enemyCollisionGroup = enemyCollisionGroup
     this.playerCollisionGroup = playerCollisionGroup
-    this.enemyGroup = new Phaser.Group(game, undefined, 'enemies', false, true)
     this.enemyGroup.physicsBodyType = Phaser.Physics.P2JS
     this.enemyGroup.enableBody = true
     game.world.bringToTop(this.enemyGroup)

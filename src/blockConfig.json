@@ -376,7 +376,33 @@
       "output": "100001",
       "height": 1250,
       "offRoad": "0,0 125,0 125,1250 0,1250-625,0 750,0 750,1250 625,1250",
-      "decorations": []
+      "decorations": [
+        {
+          "element": "desert_rock1",
+          "x": 70,
+          "y": 350
+        },
+        {
+          "element": "desert_skull",
+          "x": 50,
+          "y": 1120
+        },
+        {
+          "element": "desert_trexbig",
+          "x": 380,
+          "y": 970
+        },
+        {
+          "element": "desert_cactus",
+          "x": -100,
+          "y": 640
+        },
+        {
+          "element": "desert_cactus",
+          "x": 525,
+          "y": 80
+        }
+      ]
     },
     {
       "theme": "desert",

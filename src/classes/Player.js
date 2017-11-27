@@ -13,9 +13,12 @@ export default class Player {
     deceleration: 15
   }
 
-  constructor (game, playerCollisionGroup) {
+  constructor (game, playerGroup, playerCollisionGroup) {
     this.game = game
+    this.playerGroup = playerGroup
     this.playerCollisionGroup = playerCollisionGroup
+    this.playerGroup.physicsBodyType = Phaser.Physics.P2JS
+    this.playerGroup.enableBody = true
     this.setupPlayer()
   }
 
@@ -27,7 +30,7 @@ export default class Player {
       asset: 'car'
     })
     this.playerDef.anchor.set(0.5)
-    this.sprite = this.game.add.existing(this.playerDef)
+    this.sprite = this.playerGroup.add(this.playerDef)
     this.game.physics.p2.enable(this.sprite, false)
     // this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     // this.player.body.maxAngular = 100
