@@ -9,6 +9,7 @@ import Enemy from '../classes/Enemy'
 import EnemyManager from '../classes/EnemyManager'
 
 import { mapNumber } from '../utils'
+import CollectableManager from '../classes/CollectableManager'
 
 const array = require('lodash/array')
 const math = require('lodash/math')
@@ -59,6 +60,7 @@ export default class extends Phaser.State {
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     EnemyManager.initialize(this.game, this.enemyCollisionGroup, this.playerCollisionGroup)
+    CollectableManager.initialize(this.game, this.gameWorld)
   }
   preload () {}
 
@@ -132,6 +134,8 @@ export default class extends Phaser.State {
         this.gameWorld.add(block)
         block.stageElements.forEach(elem => this.gameWorld.add(elem))
         this.visibleBlocks.push(block)
+
+        CollectableManager.addCoinsToBlock(block, 10)
 
         this.currentBlockIndex++
         hasEnough = false
@@ -264,19 +268,6 @@ export default class extends Phaser.State {
     } */
 
     EnemyManager.updateMovement(this.blockMatrix)
-
-    //console.log(this.player.body.mass)
-  }
-
-  playerCollisionCallback () {
-    this.playerCollided = true
-    this.playerSlowdownVelocity = 75
-  }
-
-  removeEnemy (enemy) {
-    this.enemies.splice(this.enemies.indexOf(enemy), 1)
-    enemy.sprite.destroy()
-    enemy = null
   }
 
   setWorldPosition (scale) {
