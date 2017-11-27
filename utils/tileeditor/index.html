@@ -1,0 +1,541 @@
+<html>
+<head>
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: OpenSans, Helvetica, Arial, sans-serif;
+        }
+        .left {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+        .menu {
+            position: absolute;
+            top: 0px;
+            left: 760px;
+            width: 400px;
+            margin: 20px;
+        }
+
+        div.jsonexport {
+            border: 1px solid lightgray;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        div.jsonexport pre {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            display: block;
+            height: 100%;
+            overflow: scroll;
+        }
+
+        #mapHolder {
+            width: 750px;
+            border: 1px solid black;
+            position: fixed;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        #elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 750px;
+        }
+
+        div.decorator {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+        }
+
+        div.sprite {
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0px 0px;
+            position: absolute;
+            cursor: move;
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        div.spriteSelector {
+            border: 1px solid lightgray;
+            margin: 5px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #spriteHolder div.sprite {
+            background-color: transparent;
+        }
+
+        div.sprite.selected {
+            background-color: rgba(0,255,0,0.3);
+        }
+
+        #currentSprite {
+            font-size: 12px;
+        }
+
+        #spriteHolder {
+            height: 200px;
+            overflow: scroll;
+        }
+        div.wall {
+            background-color: yellow;
+            display: inline-block;
+            position: absolute;
+            opacity: 0.85;
+        }
+        div.wall.selected {
+            background-color: yellowgreen;
+        }
+        h3 {
+            margin: 10px 0;
+        }
+        p.help {
+            font-size: 11px;
+        }
+        div.box {
+            border: 1px solid lightgray;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        div.box h3.title {
+            background-color: lightgray;
+            margin: -8px -9px 10px;
+            border-radius: 6px 6px 0px 0px;
+            padding: 6px;
+        }
+        div.helpbox {
+            background-color: lemonchiffon;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid lightgray;
+        }
+
+        div.helpbox ul {
+            margin: 0;
+            padding: 0px 0px 0px 12px;
+            font-size: 11px;
+            list-style: none;
+        }
+        div.bgChange {
+            display: inline-block;
+            float: right;
+        }
+
+        div.bgChange a.block {
+            width: 16px;
+            height: 16px;
+            border: 1px solid darkgray;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        div.bgChange a.block.selected {
+            border: 1px solid red;
+        }
+
+        div.box.spritedata p {
+            margin: 0;
+            font-weight: bold;
+        }
+        div.box.spritedata p span {
+            font-weight: normal;
+        }
+
+        div.box.stageinfo p {
+            margin: 0;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        div.box.stageinfo p span {
+            font-weight: normal;
+        }
+
+        body.hideSpriteBG #elements div.sprite {
+            background-color: transparent !important;
+        }
+
+        body.hideSpriteBG #elements div.wall {
+            background-color: transparent !important;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css"/>
+</head>
+<body>
+<div class="left">
+    <div id="mapHolder">
+        <div id="background">
+        </div>
+        <div id="elements"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="menu">
+        <div class="box">
+            <h3 class="title">Commands</h3>
+            <div id="commands">
+                <button type="button" onclick="window.Editor.saveConfig();">Save config (NOT LOCAL)</button>&nbsp;
+                <button type="button" onclick="window.Editor.toggleSpriteBG();">Toggle sprite backgrounds</button>
+                <hr/>
+                <select id="tileSelect" onchange="window.Editor.selectTile();">
+
+                </select>
+            </div>
+        </div>
+        <div class="box spritedata">
+            <h3 class="title">Selected sprite</h3>
+            <div id="currentSprite">
+                <p>Name: <span class="dataName"></span></p>
+                <p>X: <span class="dataLeft"></span></p>
+                <p>Y: <span class="dataTop"></span></p>
+            </div>
+        </div>
+        <div class="box spriteholder">
+            <h3 class="title">Available sprites
+            <div class="bgChange">
+                <a onclick="window.Editor.changeSpriteBGColor(this,'white');" class="block selected" style="background-color: white" title="white"><!-- --></a>
+                <a onclick="window.Editor.changeSpriteBGColor(this,'lightgray');" class="block" style="background-color: lightgray" title="lightgray"><!-- --></a>
+                <a onclick="window.Editor.changeSpriteBGColor(this,'black');" class="block" style="background-color: black" title="black"><!-- --></a>
+            </div>
+            </h3>
+            <div id="spriteHolder">
+
+            </div>
+        </div>
+        <div class="helpbox">
+            <ul>
+                <li><b>KB arrows</b> - Move selected sprite</li>
+                <li><b>"D"</b> - Delete sprite</li>
+                <li><b>Doubleclick sprite</b> - Add sprite</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="vendor/jquery-3.2.0.min.js"></script>
+<script src="vendor/jquery.preload.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script>
+
+  (function() {
+
+    $(window).on("resize", function() {
+      if (window.Editor) {
+        window.Editor.resizeEditor($(window).height());
+      }
+      console.log($(window).height());
+    });
+
+    function Editor()
+    {
+      this.currentLevel = 5;
+      this.canvas = null;
+      this.levelConfig = null;
+      this.storedLevelConfig = null;
+      this.bgImages = [];
+      this.decorators = [];
+      this.spriteData = [];
+      this.wallData = [];
+      this.selectedSprite = null;
+      this.original = null;
+      this.spritePreviewOriginalData = null;
+      this.animFrameHandle = null;
+      
+      this.currentTile = null;
+
+      this.init = function()
+      {
+        // Setup background images
+        this.resizeEditor($(window).height());
+        var t = this;
+        $.getJSON('/stageElements.json?t='+Math.random(), function(data) {
+          t.storedLevelConfig = data
+
+          for (var item in data.variations) {
+            var option = $('<option/>').html(item).attr('value',item)
+            $('#tileSelect').append(option)
+          }
+
+          // Sprites
+          for (var spriteName in data.elements) {
+            let spriteData = data.elements[spriteName]
+            let sprite = $('<div data-spritename="'+spriteName+'"/>')
+              .attr("class","sprite spriteSelector")
+              .attr("title",spriteName+" - "+spriteData.sprite)
+              .width(spriteData.width / 4)
+              .height(spriteData.height / 4)
+              .css("background-image","url(/stage_elements/"+spriteData.sprite+")");
+            $(sprite).on('dblclick', function() {
+              window.Editor.addSprite(this);
+            })
+            $(sprite).data("score",spriteData.score);
+            $('#spriteHolder').append(sprite);
+            t.spriteData[spriteData.name] = spriteData;
+          }
+          t.setupKeyboard();
+          t.selectTile()
+        });
+      };
+
+      this.selectTile = function() {
+        this.saveTile()
+        var value = $('#tileSelect').val()
+        this.currentTile = value
+        $('#background').children().remove()
+        $('#background').append($('<img/>').attr('src','/stages/'+value+".png").on('dragstart', false));
+
+        // Load sprites
+        $('#elements').children().remove()
+        let t = this
+        this.storedLevelConfig.variations[value].forEach(function(item) {
+          let element = t.createSprite(item.element, item.x, item.y)
+        })
+        this.selectedSprite = null
+        this.updateSelectedSpriteData()
+      }
+
+      this.saveTile = function() {
+        if(this.currentTile === null) { return }
+        var t = this
+        this.storedLevelConfig.variations[this.currentTile] = []
+        $('#elements div.sprite').each(function(index,element) {
+          let name = $(element).data("spritename");
+          var x = $(element).position().left;
+          var y = $(element).position().top;
+          t.storedLevelConfig.variations[t.currentTile].push({
+            element: name,
+            x: x,
+            y: y
+          })
+        })
+
+        this.saveConfig()
+      }
+
+      this.saveConfig = function() {
+        $.ajax({
+          type: "POST",
+          url: '/stageElements.json',
+          data: this.storedLevelConfig,
+          success: function() {
+            alert("Tile configs saved!")
+          },
+          dataType: 'json'
+        });
+      }
+
+      this.toggleSpriteBG = function() {
+        $('body').toggleClass("hideSpriteBG");
+      }
+
+      this.setupKeyboard = function() {
+        $(document).on("keydown",function(e) {
+          switch(e.which) {
+            case 32: {
+              e.preventDefault();
+              break;
+            }
+            case 38: {
+              window.Editor.moveSprite({x:0, y:-1});
+              e.preventDefault();
+              break;
+            }
+            case 37: {
+              window.Editor.moveSprite({x:-1, y:0});
+              e.preventDefault();
+              break;
+            }
+            case 39: {
+              window.Editor.moveSprite({x:1, y:0});
+              e.preventDefault();
+              break;
+            }
+            case 40: {
+              window.Editor.moveSprite({x:0, y:1});
+              e.preventDefault();
+              break;
+            }
+            case 32: {
+              if(window.Editor.selectedSprite) {
+                window.Editor.toggleSpriteGridMode(window.Editor.selectedSprite);
+                e.preventDefault();
+              }
+              break;
+            }
+            case 68: {
+              if(window.Editor.selectedSprite) {
+                $(window.Editor.selectedSprite).remove();
+                window.Editor.selectedSprite = null;
+                window.Editor.updateStageInfo();
+                e.preventDefault();
+              }
+              break;
+            }
+          }
+          console.log(e.which);
+        });
+      }
+
+      this.createSprite = function(spriteName, x, y) {
+        let sprite = $('#spriteHolder div.sprite[data-spritename="'+spriteName+'"]');
+        let element = window.Editor.addSprite(sprite);
+        let anchor = element.data("anchor");
+        let newX = x
+        let newY = y
+        $(element).css("top",newY).css("left",newX);
+        return element;
+      }
+
+      this.resizeEditor = function(newHeight)
+      {
+        console.log("New editor height: "+newHeight);
+        $('#mapHolder').height(newHeight);
+      }
+
+      this.updateStageInfo = function() {
+        return
+        var sprites = $('#elements div.sprite');
+        var totalScore = 0;
+        var stats = [];
+        var statScore = [];
+        for(var i=0;i<sprites.length;i++) {
+          var score = $(sprites[i]).data("score")
+          var spriteName = $(sprites[i]).data("spritename")
+          if (score) {
+            totalScore+= score
+          } else {
+            //console.log("NO score: ");
+            //console.dir($(sprites[i]).data("spritename"))
+          }
+          if(stats[spriteName] === undefined) {
+            stats[spriteName] = {count: 1, score: score || 0};
+          } else {
+            stats[spriteName].count++;
+            stats[spriteName].score += score || 0;
+          }
+        }
+        $('div.menu p.scoreData span').html(totalScore);
+      }
+
+      this.updateSelectedSpriteData = function() {
+        if(!window.Editor.selectedSprite) { return }
+        let element = window.Editor.selectedSprite;
+        let snapEnabled = !$(element).data('snapToGrid');
+        let bgHeight = $('#background').height();
+        $('#currentSprite span.dataName').html($(element).data("spritename"));
+        $('#currentSprite span.dataGrid').html(snapEnabled ? "Enabled" : "Disabled");
+        $('#currentSprite span.dataLeft').html($(element).position().left);
+        $('#currentSprite span.dataTop').html($(element).position().top);
+        window.Editor.updateStageInfo();
+      }
+
+      this.moveSprite = function(direction) {
+        if (!this.selectedSprite) {
+          return;
+        }
+        let movement = $(this.selectedSprite).data('snapToGrid') ? 125 : 1;
+        let x = $(this.selectedSprite).position().left;
+        let y = $(this.selectedSprite).position().top;
+        $(this.selectedSprite).css("left", x + (direction.x * movement));
+        $(this.selectedSprite).css("top", y + (direction.y * movement));
+        window.Editor.updateSelectedSpriteData();
+      }
+
+      this.toggleSpriteGridMode = function(element) {
+        let snapEnabled = !$(element).data('snapToGrid');
+        $(element).data('snapToGrid',snapEnabled);
+        console.log("Snap enabled: "+snapEnabled);
+        if (snapEnabled) {
+          $(element).draggable({grid: [125,125], scroll: false});
+          $(element).css("left", Math.round($(element).position().left / 125) * 125);
+          $(element).css("top", Math.round($(element).position().top / 125) * 125);
+        } else {
+          $(element).draggable({grid: false, scroll: false});
+        }
+        window.Editor.updateSelectedSpriteData();
+      }
+
+      this.setSelectedType = function(newType) {
+        if (!this.selectedSprite) {
+          return;
+        }
+        $(this.selectedSprite).data("spritetype", newType);
+        window.Editor.updateSelectedSpriteData();
+      }
+
+      this.setSelectedSprite = function(element) {
+        if(window.Editor.selectedSprite) {
+          $(window.Editor.selectedSprite).removeClass("selected")
+        }
+        window.Editor.selectedSprite = element;
+        $(window.Editor.selectedSprite).addClass("selected")
+        window.Editor.updateSelectedSpriteData();
+      }
+
+      this.addSprite = function(sprite)
+      {
+        let element = $(sprite).clone();
+        element.width(element.width() * 4)
+        element.height(element.height() * 4)
+        element.removeClass("spriteSelector");
+        element.data('snapToGrid',false);
+        element.data('score', $(sprite).data('score'));
+        $('#elements').append(element);
+        $(element).draggable({ grid: false, scroll: false,
+          drag: function() {
+            window.Editor.updateSelectedSpriteData();
+          },
+          start: function(event,ui) {
+            window.Editor.setSelectedSprite(event.currentTarget);
+          }
+        });
+        let top = $('#mapHolder').scrollTop() - ($('#mapHolder').scrollTop() % 125);
+        $(element).css("left",125).css("top",top + 125);
+        $(element).on('dblclick', function() {
+          window.Editor.toggleSpriteGridMode(this);
+        });
+        $(element).on('click', function() {
+          window.Editor.setSelectedSprite(this);
+        })
+        window.Editor.updateStageInfo();
+        return element;
+      }
+
+      this.changeSpriteBGColor = function(elem, color) {
+        $('div.bgChange a.block').removeClass("selected");
+        $(elem).addClass('selected');
+        $('div.box.spriteholder').css("background-color",color);
+      }
+
+    }
+
+    window.Editor = new Editor;
+    window.Editor.init();
+
+  })();
+
+  var byProperty = function(prop) {
+    return function(a,b) {
+      if (typeof a[prop] == "number") {
+        return (a[prop] - b[prop]);
+      } else {
+        return ((a[prop] < b[prop]) ? -1 : ((a[prop] > b[prop]) ? 1 : 0));
+      }
+    };
+  };
+
+
+</script>
+
+</body>
+</html>

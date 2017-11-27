@@ -8,7 +8,8 @@
         "dev": "webpack",
         "deploy": "webpack --config webpack.production.config.js",
         "cordova": "webpack --config webpack.cordova.config.js",
-        "test": "eslint ./src/**/**.js"
+        "test": "eslint ./src/**/**.js",
+        "tileeditor": "node server.js"
     },
     "license": "MIT",
     "devDependencies": {
@@ -34,6 +35,7 @@
     },
     "dependencies": {
         "babel-preset-stage-0": "^6.24.1",
+        "body-parser": "^1.18.2",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
