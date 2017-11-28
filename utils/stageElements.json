@@ -202,602 +202,966 @@
   "variations": {
     "desert_100011_110001_1": [
       {
-        "element": "desert_rock1",
-        "x": 300,
-        "y": 1060
-      },
-      {
-        "element": "desert_trexbig",
-        "x": 360,
-        "y": 360
-      },
-      {
         "element": "desert_monkeytree",
-        "x": 60,
-        "y": 40
+        "x": 417.984375,
+        "y": 277.9921875
       },
       {
-        "element": "desert_skull",
-        "x": 100,
-        "y": 740
-      }
-    ],
-    "desert_000000_000000_1": [
+        "element": "desert_cactus",
+        "x": -61.0078125,
+        "y": 397.9921875
+      },
       {
-        "element": "desert_skull",
-        "x": "480",
-        "y": "150"
+        "element": "desert_rock3",
+        "x": 55.9921875,
+        "y": 47.953125
+      },
+      {
+        "element": "desert_rock2",
+        "x": 376.9921875,
+        "y": 908.9765625
       }
     ],
+    "desert_000000_000000_1": [],
     "desert_000000_000000_2": [
       {
         "element": "desert_monkeytree",
-        "x": "50",
-        "y": "40"
+        "x": 48.984375,
+        "y": 619.9921875
+      },
+      {
+        "element": "desert_trexbig",
+        "x": 503.9765625,
+        "y": 688.9921875
       }
     ],
     "desert_000000_000000_3": [
       {
-        "element": "desert_rock3",
-        "x": "50",
-        "y": "426"
-      },
-      {
-        "element": "desert_skull",
-        "x": "550",
-        "y": "365"
+        "element": "desert_monkeytree",
+        "x": 430.9921875,
+        "y": 13.9921875
       }
     ],
     "desert_000000_100000_1": [
       {
-        "element": "desert_rock2",
-        "x": "320",
-        "y": "270"
+        "element": "desert_rock1",
+        "x": -109.0078125,
+        "y": 493.9921875
+      },
+      {
+        "element": "desert_cactus",
+        "x": -147.984375,
+        "y": 2.9765625
       }
     ],
     "desert_100000_000000_1": [
       {
-        "element": "desert_rock1",
-        "x": "0",
-        "y": "700"
+        "element": "desert_monkeytree",
+        "x": -79.9921875,
+        "y": 403.9921875
       }
     ],
     "desert_000001_000000_1": [
       {
-        "element": "desert_skull",
-        "x": "100",
-        "y": "150"
+        "element": "desert_cactus",
+        "x": 580.9921875,
+        "y": 1009.96875
+      },
+      {
+        "element": "desert_rock2",
+        "x": -34.9921875,
+        "y": 980.9765625
+      },
+      {
+        "element": "desert_rock3",
+        "x": 563.9765625,
+        "y": 48.984375
       }
     ],
     "desert_000000_000001_1": [
       {
-        "element": "desert_rock2",
-        "x": "440",
-        "y": "290"
+        "element": "desert_cactus",
+        "x": 574.9921875,
+        "y": 377.9765625
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 551.9765625,
+        "y": 1.9921875
       }
     ],
     "desert_000000_100001_1": [
       {
-        "element": "desert_rock3",
-        "x": "373",
-        "y": "720"
+        "element": "desert_rock1",
+        "x": -112.9921875,
+        "y": 474.9609375
+      },
+      {
+        "element": "desert_rock2",
+        "x": 519.984375,
+        "y": 71.9765625
       }
     ],
     "desert_100001_000000_1": [
       {
         "element": "desert_trexbig",
-        "x": "430",
-        "y": "740"
+        "x": 129.984375,
+        "y": 181.9921875
+      },
+      {
+        "element": "desert_cactus",
+        "x": 570.984375,
+        "y": 502.9921875
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": -76.9921875,
+        "y": 883.9921875
       }
     ],
     "desert_100000_100000_1": [
       {
+        "element": "desert_cactus",
+        "x": -142.0078125,
+        "y": 923.9765625
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": -70.9921875,
+        "y": 415.9921875
+      },
+      {
         "element": "desert_rock1",
-        "x": "500",
-        "y": "580"
+        "x": -10.0078125,
+        "y": 25.9921875
       }
     ],
     "desert_010000_010000_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "50",
-        "y": "10"
+        "element": "desert_rock3",
+        "x": 557.9765625,
+        "y": 304.9921875
       },
       {
         "element": "desert_monkeytree",
-        "x": "50",
-        "y": "760"
+        "x": 46.9921875,
+        "y": 806.9765625
       }
     ],
-    "desert_000000_010000_1": [
-      {
-        "element": "desert_rock3",
-        "x": "50",
-        "y": "950"
-      }
-    ],
+    "desert_000000_010000_1": [],
     "desert_010000_000000_1": [
       {
-        "element": "desert_skull",
-        "x": "350",
-        "y": "150"
+        "element": "desert_rock1",
+        "x": 15.984375,
+        "y": 530.9765625
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 45.984375,
+        "y": 894.984375
       }
     ],
     "desert_001000_000000_1": [
       {
-        "element": "desert_rock2",
-        "x": "160",
-        "y": "270"
+        "element": "desert_rock3",
+        "x": 176.7890625,
+        "y": 534.5625
       }
     ],
-    "desert_000100_000000_1": [
-      {
-        "element": "desert_monkeytree",
-        "x": "500",
-        "y": "530"
-      }
-    ],
+    "desert_000100_000000_1": [],
     "desert_000010_000000_1": [
       {
         "element": "desert_rock1",
-        "x": "150",
-        "y": "70"
+        "x": 390.9609375,
+        "y": 187.96875
+      },
+      {
+        "element": "desert_rock3",
+        "x": 37.9921875,
+        "y": 178.9921875
       }
     ],
     "desert_000000_001000_1": [
       {
-        "element": "desert_skull",
-        "x": "230",
-        "y": "530"
+        "element": "desert_monkeytree",
+        "x": 178.9921875,
+        "y": 26.9765625
       }
     ],
     "desert_000000_000100_1": [
       {
         "element": "desert_monkeytree",
-        "x": "300",
-        "y": "40"
+        "x": 302.9765625,
+        "y": 288.984375
       }
     ],
     "desert_000000_000010_1": [
       {
-        "element": "desert_trexsmall",
-        "x": "190",
-        "y": "350"
+        "element": "desert_rock3",
+        "x": 421.9921875,
+        "y": 727.9921875
+      },
+      {
+        "element": "desert_rock1",
+        "x": 333.984375,
+        "y": 86.9765625
       }
     ],
     "desert_001000_001000_1": [
       {
-        "element": "desert_rock1",
-        "x": 70,
-        "y": 570
-      }
-    ],
-    "desert_001000_001000_2": [
-      {
-        "element": "desert_skull",
-        "x": "310",
-        "y": "140"
-      }
-    ],
-    "desert_000100_000100_1": [
-      {
         "element": "desert_monkeytree",
-        "x": "300",
-        "y": "800"
+        "x": 175.9921875,
+        "y": 792.984375
       },
       {
         "element": "desert_monkeytree",
-        "x": "300",
-        "y": "180"
+        "x": 174.984375,
+        "y": 25.96875
+      }
+    ],
+    "desert_001000_001000_2": [],
+    "desert_000100_000100_1": [
+      {
+        "element": "desert_rock3",
+        "x": 229.96875,
+        "y": 557.9765625
+      },
+      {
+        "element": "desert_rock1",
+        "x": 337.9921875,
+        "y": 88.9921875
       }
     ],
     "desert_000010_000010_1": [
       {
+        "element": "desert_rock1",
+        "x": 338.9765625,
+        "y": 579.984375
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 424.9921875,
+        "y": 30.984375
+      },
+      {
         "element": "desert_rock3",
-        "x": "50",
-        "y": "300"
+        "x": -103.0078125,
+        "y": 308.9765625
       }
     ],
     "desert_000001_000001_1": [
       {
         "element": "desert_trexbig",
-        "x": "310",
-        "y": "460"
+        "x": 303.984375,
+        "y": 208.9921875
+      },
+      {
+        "element": "desert_rock1",
+        "x": -124.9921875,
+        "y": 827.859375
       }
     ],
     "desert_100001_100001_1": [
       {
-        "element": "desert_trexsmall",
-        "x": "310",
-        "y": "360"
+        "element": "desert_rock1",
+        "x": 448.9921875,
+        "y": 85.9921875
       },
       {
-        "element": "desert_skull",
-        "x": "220",
-        "y": "1030"
+        "element": "desert_rock2",
+        "x": -43.0078125,
+        "y": 549.984375
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 536.9765625,
+        "y": 816.984375
       }
     ],
     "desert_110011_110011_1": [
       {
-        "element": "desert_airplane_crash",
-        "x": "370",
-        "y": "70"
+        "element": "desert_monkeytree",
+        "x": 61.9921875,
+        "y": 888.984375
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 417.984375,
+        "y": 180.984375
+      },
+      {
+        "element": "desert_rock3",
+        "x": 94.9921875,
+        "y": 310.96875
+      },
+      {
+        "element": "desert_rock1",
+        "x": 365.9765625,
+        "y": 1009.9921875
       }
     ],
     "desert_110001_110001_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "550",
-        "y": "650"
+        "element": "desert_trexbig",
+        "x": 505.921875,
+        "y": 304.6640625
       },
       {
         "element": "desert_cactus",
-        "x": "-30",
-        "y": "270"
+        "x": -34.9921875,
+        "y": 4.9921875
+      },
+      {
+        "element": "desert_rock2",
+        "x": 454.9921875,
+        "y": 404.9765625
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 55.96875,
+        "y": 905.9765625
       }
     ],
     "desert_000000_110001_1": [
       {
-        "element": "desert_cactus",
-        "x": "-30",
-        "y": "30"
+        "element": "desert_rock3",
+        "x": 556.9921875,
+        "y": 61.9921875
       },
       {
-        "element": "desert_skull",
-        "x": "520",
-        "y": "400"
+        "element": "desert_cactus",
+        "x": -130.0078125,
+        "y": 13.96875
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 53.9765625,
+        "y": 221.9765625
       }
     ],
     "desert_110001_000000_1": [
       {
-        "element": "desert_trexbig",
-        "x": "130",
-        "y": "200"
+        "element": "desert_monkeytree",
+        "x": 67.9921875,
+        "y": 495.984375
+      },
+      {
+        "element": "desert_rock1",
+        "x": 518.9765625,
+        "y": 596.9765625
+      },
+      {
+        "element": "desert_rock2",
+        "x": -97.9921875,
+        "y": 1009.96875
       }
     ],
     "desert_000000_100011_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "430",
-        "y": "190"
+        "element": "desert_rock3",
+        "x": 517.9921875,
+        "y": 802.9921875
+      },
+      {
+        "element": "desert_rock2",
+        "x": -121.0078125,
+        "y": 358.9921875
+      },
+      {
+        "element": "desert_cactus",
+        "x": 483.984375,
+        "y": 310.9921875
       }
     ],
     "desert_100011_000000_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "-80",
-        "y": "530"
+        "element": "desert_rock2",
+        "x": 364.9921875,
+        "y": 611.9765625
       },
       {
-        "element": "desert_rock2",
-        "x": "370",
-        "y": "920"
+        "element": "desert_rock1",
+        "x": -70.0078125,
+        "y": 648.984375
+      },
+      {
+        "element": "desert_trexbig",
+        "x": 508.9921875,
+        "y": 896.9765625
       }
     ],
     "desert_100011_100011_1": [
       {
-        "element": "desert_cactus",
-        "x": "440",
-        "y": "530"
+        "element": "desert_trexbig",
+        "x": 379.9921875,
+        "y": 787.96875
       },
       {
         "element": "desert_cactus",
-        "x": "-150",
-        "y": "280"
+        "x": -156,
+        "y": 277.9921875
       }
     ],
     "desert_001100_001100_1": [
       {
-        "element": "desert_airplane_crash",
-        "x": "150",
-        "y": "730"
+        "element": "desert_monkeytree",
+        "x": 166.9921875,
+        "y": 847.96875
       },
       {
-        "element": "desert_rock2",
-        "x": "200",
-        "y": "200"
+        "element": "desert_monkeytree",
+        "x": 165.984375,
+        "y": 298.9921875
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 292.9921875,
+        "y": 568.96875
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 303.984375,
+        "y": 31.9921875
       }
     ],
     "desert_001100_001100_2": [
       {
-        "element": "desert_rock2",
-        "x": "90",
-        "y": "790"
+        "element": "desert_airplane_crash",
+        "x": 136.9921875,
+        "y": 945.984375
       },
       {
-        "element": "desert_rock1",
-        "x": "320",
-        "y": "60"
+        "element": "desert_cactus",
+        "x": 215.9765625,
+        "y": 1.9921875
       }
     ],
     "desert_001100_000000_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "310",
-        "y": "440"
+        "element": "desert_trexsmall",
+        "x": 441.984375,
+        "y": 97.9921875
       },
       {
-        "element": "desert_monkeytree",
-        "x": "170",
-        "y": "920"
+        "element": "desert_rock1",
+        "x": 326.9765625,
+        "y": 840.984375
       }
     ],
     "desert_000000_001100_1": [
       {
         "element": "desert_cactus",
-        "x": "210",
-        "y": "20"
+        "x": 212.953125,
+        "y": 425.953125
       },
       {
-        "element": "desert_rock1",
-        "x": "340",
-        "y": "340"
+        "element": "desert_monkeytree",
+        "x": 293.9765625,
+        "y": 16.96875
       }
     ],
     "desert_001100_110011_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "60",
-        "y": "90"
+        "element": "desert_cactus",
+        "x": -93.0234375,
+        "y": 192.984375
       },
       {
-        "element": "desert_monkeytree",
-        "x": "310",
-        "y": "930"
+        "element": "desert_cactus",
+        "x": 505.96875,
+        "y": 3.984375
       },
       {
         "element": "desert_rock2",
-        "x": "420",
-        "y": "240"
+        "x": 200.9765625,
+        "y": 985.96875
       }
     ],
     "desert_110011_001100_1": [
       {
-        "element": "desert_airplane_crash",
-        "x": "390",
-        "y": "480"
+        "element": "desert_monkeytree",
+        "x": 408.984375,
+        "y": 359.9765625
       },
       {
-        "element": "desert_skull",
-        "x": "420",
-        "y": "90"
+        "element": "desert_rock3",
+        "x": 342.9609375,
+        "y": 1.96875
+      },
+      {
+        "element": "desert_rock2",
+        "x": -28.0078125,
+        "y": 418.9921875
       }
     ],
     "desert_110011_000000_1": [
       {
-        "element": "desert_rock3",
-        "x": "240",
-        "y": "50"
+        "element": "desert_rock2",
+        "x": -13.0078125,
+        "y": 413.9765625
       },
       {
-        "element": "desert_monkeytree",
-        "x": "60",
-        "y": "360"
+        "element": "desert_rock1",
+        "x": 398.9765625,
+        "y": 451.9921875
+      },
+      {
+        "element": "desert_rock3",
+        "x": 599.953125,
+        "y": 310.96875
+      },
+      {
+        "element": "desert_cactus",
+        "x": -138,
+        "y": 948.984375
       }
     ],
     "desert_001100_100000_1": [
       {
         "element": "desert_trexbig",
-        "x": "420",
-        "y": "150"
+        "x": 531.984375,
+        "y": 210.984375
       },
       {
         "element": "desert_cactus",
-        "x": "210",
-        "y": "800"
+        "x": -154.0078125,
+        "y": 226.9921875
+      },
+      {
+        "element": "desert_rock3",
+        "x": 246.984375,
+        "y": 1015.96875
       }
     ],
     "desert_100000_001100_1": [
       {
-        "element": "desert_rock1",
-        "x": "-20",
-        "y": "820"
+        "element": "desert_cactus",
+        "x": -145.0078125,
+        "y": 629.9765625
       },
       {
-        "element": "desert_rock3",
-        "x": "350",
-        "y": "70"
+        "element": "desert_airplane_crash",
+        "x": 131.9765625,
+        "y": 228.984375
       }
     ],
     "desert_001100_000001_1": [
       {
-        "element": "desert_trexsmall",
-        "x": "300",
-        "y": "110"
+        "element": "desert_monkeytree",
+        "x": 163.9921875,
+        "y": 518.9765625
       },
       {
-        "element": "desert_rock2",
-        "x": "90",
-        "y": "790"
+        "element": "desert_rock1",
+        "x": 315.984375,
+        "y": 1017.984375
       }
     ],
     "desert_000001_001100_1": [
       {
-        "element": "desert_cactus",
-        "x": "570",
-        "y": "920"
+        "element": "desert_rock2",
+        "x": 331.96875,
+        "y": 50.9765625
       },
       {
-        "element": "desert_airplane_crash",
-        "x": "150",
-        "y": "120"
+        "element": "desert_rock1",
+        "x": 532.9921875,
+        "y": 589.9921875
       }
     ],
     "desert_001100_100001_1": [
       {
-        "element": "desert_monkeytree",
-        "x": "310",
-        "y": "550"
+        "element": "desert_rock2",
+        "x": 459.984375,
+        "y": 23.9765625
       },
       {
-        "element": "desert_rock2",
-        "x": "100",
-        "y": "1030"
+        "element": "desert_rock1",
+        "x": -51,
+        "y": 208.9921875
+      },
+      {
+        "element": "desert_rock3",
+        "x": 240.984375,
+        "y": 586.96875
       }
     ],
     "desert_100001_001100_1": [
       {
         "element": "desert_monkeytree",
-        "x": "310",
-        "y": "150"
+        "x": -79.0078125,
+        "y": 513.984375
       },
       {
-        "element": "desert_rock1",
-        "x": "-20",
-        "y": "820"
+        "element": "desert_monkeytree",
+        "x": 556.9921875,
+        "y": 514.9921875
+      },
+      {
+        "element": "desert_cactus",
+        "x": 213.984375,
+        "y": 19.9921875
       }
     ],
     "desert_000011_000011_1": [
       {
-        "element": "desert_trexbig",
-        "x": "240",
-        "y": "90"
+        "element": "desert_rock2",
+        "x": 323.9765625,
+        "y": 265.9921875
       },
       {
-        "element": "desert_rock3",
-        "x": "0",
-        "y": "800"
+        "element": "desert_airplane_crash",
+        "x": 390.984375,
+        "y": 771.984375
       }
     ],
     "desert_110000_110000_1": [
       {
-        "element": "desert_trexsmall",
-        "x": "-50",
-        "y": "360"
+        "element": "desert_trexbig",
+        "x": 445.9921875,
+        "y": 357.984375
       },
       {
         "element": "desert_cactus",
-        "x": "-20",
-        "y": "1020"
+        "x": -31.9921875,
+        "y": 16.9921875
+      },
+      {
+        "element": "desert_rock3",
+        "x": 39.984375,
+        "y": 436.9921875
       }
     ],
     "desert_000000_110000_1": [
       {
-        "element": "desert_skull",
-        "x": "470",
-        "y": "780"
+        "element": "desert_rock3",
+        "x": 523.9921875,
+        "y": 298.9921875
       },
       {
-        "element": "desert_rock2",
-        "x": "80",
-        "y": "50"
+        "element": "desert_monkeytree",
+        "x": -78,
+        "y": 517.9921875
+      },
+      {
+        "element": "desert_monkeytree",
+        "x": 51.984375,
+        "y": 50.9765625
       }
     ],
     "desert_000000_000011_1": [
       {
         "element": "desert_rock3",
-        "x": "120",
-        "y": "1040"
+        "x": 489.984375,
+        "y": 897.984375
       },
       {
-        "element": "desert_rock1",
-        "x": "380",
-        "y": "570"
+        "element": "desert_cactus",
+        "x": 550.9921875,
+        "y": 559.96875
       },
       {
-        "element": "desert_monkeytree",
-        "x": "500",
-        "y": "30"
+        "element": "desert_trexbig",
+        "x": 308.9765625,
+        "y": 11.9765625
       }
     ],
     "desert_110000_000000_1": [
       {
-        "element": "desert_rock2",
-        "x": "380",
-        "y": "30"
-      },
-      {
-        "element": "desert_cactus",
-        "x": "-30",
-        "y": "530"
-      },
-      {
-        "element": "desert_cactus",
-        "x": "-30",
-        "y": "530"
-      },
-      {
         "element": "desert_monkeytree",
-        "x": "50",
-        "y": "930"
+        "x": 58.9921875,
+        "y": 286.9921875
+      },
+      {
+        "element": "desert_rock2",
+        "x": 81,
+        "y": 1007.953125
       }
     ],
     "desert_000011_000000_1": [
       {
-        "element": "desert_rock1",
-        "x": "-80",
-        "y": "60"
+        "element": "desert_airplane_crash",
+        "x": 403.96875,
+        "y": 272.953125
       },
       {
-        "element": "desert_rock2",
-        "x": "310",
-        "y": "780"
+        "element": "desert_trexsmall",
+        "x": 311.9765625,
+        "y": 1054.96875
       }
     ],
     "desert_000011_110000_1": [
       {
         "element": "desert_monkeytree",
-        "x": "60",
-        "y": "360"
+        "x": 492,
+        "y": 190.9921875
       },
       {
         "element": "desert_monkeytree",
-        "x": "420",
-        "y": "360"
+        "x": 48,
+        "y": 189.984375
       },
       {
-        "element": "desert_cactus",
-        "x": "450",
-        "y": "920"
+        "element": "desert_rock3",
+        "x": 360.984375,
+        "y": 814.9921875
       }
     ],
     "desert_110000_000011_1": [
       {
-        "element": "desert_airplane_crash",
-        "x": "300",
-        "y": "0"
+        "element": "desert_cactus",
+        "x": 518,
+        "y": 61
       },
       {
-        "element": "desert_rock2",
-        "x": "100",
-        "y": "940"
+        "element": "desert_cactus",
+        "x": -143,
+        "y": 557
+      },
+      {
+        "element": "desert_rock1",
+        "x": 357,
+        "y": 632
       }
     ],
     "desert_110001_100011_1": [
       {
+        "element": "desert_cactus",
+        "x": -19,
+        "y": 1005
+      },
+      {
         "element": "desert_rock2",
-        "x": "390",
-        "y": "30"
-      },
-      {
-        "element": "desert_monkeytree",
-        "x": "50",
-        "y": "290"
-      },
-      {
-        "element": "desert_cactus",
-        "x": "460",
-        "y": "510"
-      },
-      {
-        "element": "desert_cactus",
-        "x": "-20",
-        "y": "1030"
+        "x": 420,
+        "y": 662
       }
     ],
-    "city_000000_000000_1": [],
-    "city_000000_000000_2": [],
-    "city_000000_000000_3": [],
-    "city_000000_000001_1": [],
-    "city_000000_000010_1": [],
-    "city_000000_000011_1": [],
-    "city_000000_000100_1": [],
-    "city_000000_001000_1": [],
-    "city_000000_001100_1": [],
-    "city_000000_010000_1": [],
-    "city_000000_100000_1": [],
-    "city_000000_100001_1": [],
-    "city_000000_100011_1": [],
+    "city_000000_000000_1": [
+      {
+        "element": "city_containerred",
+        "x": 466.9921875,
+        "y": 1.9921875
+      }
+    ],
+    "city_000000_000000_2": [
+      {
+        "element": "city_fence",
+        "x": 126.984375,
+        "y": 884.9765625
+      },
+      {
+        "element": "city_hydrant",
+        "x": 125.9765625,
+        "y": 120.9609375
+      },
+      {
+        "element": "city_busstop",
+        "x": 113.9765625,
+        "y": 756.9609375
+      },
+      {
+        "element": "city_bench",
+        "x": 130.9921875,
+        "y": 543.984375
+      },
+      {
+        "element": "city_bench",
+        "x": 130.9921875,
+        "y": 323.9765625
+      }
+    ],
+    "city_000000_000000_3": [
+      {
+        "element": "city_containerred",
+        "x": 466.9921875,
+        "y": 252.984375
+      },
+      {
+        "element": "city_hydrant",
+        "x": 502.96875,
+        "y": 588.9609375
+      },
+      {
+        "element": "city_hydrant",
+        "x": 504.984375,
+        "y": 751.9921875
+      }
+    ],
+    "city_000000_000001_1": [
+      {
+        "element": "city_shop",
+        "x": 601.9921875,
+        "y": 16.9921875
+      },
+      {
+        "element": "city_fence",
+        "x": 631.9921875,
+        "y": 338.9765625
+      }
+    ],
+    "city_000000_000010_1": [
+      {
+        "element": "city_busstop",
+        "x": 487.9921875,
+        "y": 704.9765625
+      },
+      {
+        "element": "city_bench",
+        "x": 505.9921875,
+        "y": 40.9921875
+      },
+      {
+        "element": "city_bench",
+        "x": 507.984375,
+        "y": 278.9765625
+      },
+      {
+        "element": "city_bench",
+        "x": 505.9921875,
+        "y": 528.984375
+      }
+    ],
+    "city_000000_000011_1": [
+      {
+        "element": "city_house2",
+        "x": 399.984375,
+        "y": 46.9921875
+      },
+      {
+        "element": "city_house",
+        "x": 400.9921875,
+        "y": 398.9765625
+      }
+    ],
+    "city_000000_000100_1": [
+      {
+        "element": "city_containerblue",
+        "x": 102.84375,
+        "y": 875.6953125
+      },
+      {
+        "element": "city_busstop",
+        "x": 361.9921875,
+        "y": 456.984375
+      },
+      {
+        "element": "city_bench",
+        "x": 380.9765625,
+        "y": 309.984375
+      }
+    ],
+    "city_000000_001000_1": [
+      {
+        "element": "city_containerred",
+        "x": 216.984375,
+        "y": 323.9296875
+      }
+    ],
+    "city_000000_001100_1": [
+      {
+        "element": "city_containerred",
+        "x": 594.984375,
+        "y": 104.9765625
+      },
+      {
+        "element": "city_bench2",
+        "x": 296.9765625,
+        "y": 52.9921875
+      },
+      {
+        "element": "city_bench2",
+        "x": 292.96875,
+        "y": 390
+      },
+      {
+        "element": "city_fence",
+        "x": 314.9765625,
+        "y": 550.9921875
+      },
+      {
+        "element": "city_fence",
+        "x": 310.96875,
+        "y": 209.9765625
+      }
+    ],
+    "city_000000_010000_1": [
+      {
+        "element": "city_busstop",
+        "x": 110.9765625,
+        "y": 457.9921875
+      },
+      {
+        "element": "city_bench",
+        "x": 127.9921875,
+        "y": 321.9609375
+      },
+      {
+        "element": "city_bench",
+        "x": 129.984375,
+        "y": 198.984375
+      }
+    ],
+    "city_000000_100000_1": [
+      {
+        "element": "city_tree",
+        "x": -106.9921875,
+        "y": 18.9609375
+      },
+      {
+        "element": "city_hydrant",
+        "x": -5.015625,
+        "y": 496.9921875
+      }
+    ],
+    "city_000000_100001_1": [
+      {
+        "element": "city_busstop",
+        "x": 574.9921875,
+        "y": 435.984375
+      },
+      {
+        "element": "city_fence",
+        "x": 623.9765625,
+        "y": 49.9921875
+      },
+      {
+        "element": "city_fence",
+        "x": 0.984375,
+        "y": 49.9921875
+      },
+      {
+        "element": "city_house2",
+        "x": -315,
+        "y": 231.984375
+      },
+      {
+        "element": "city_bench2",
+        "x": 614.9765625,
+        "y": 124.9921875
+      }
+    ],
+    "city_000000_100011_1": [
+      {
+        "element": "city_house",
+        "x": 400.9921875,
+        "y": 22.9921875
+      },
+      {
+        "element": "city_house3",
+        "x": 397.9921875,
+        "y": 257.9765625
+      },
+      {
+        "element": "city_hydrant",
+        "x": -7.0078125,
+        "y": 445.9921875
+      },
+      {
+        "element": "city_hydrant",
+        "x": -1.0078125,
+        "y": 141.984375
+      }
+    ],
     "city_000000_110000_1": [],
     "city_000000_110001_1": [],
     "city_000001_000000_1": [],
@@ -839,59 +1203,65 @@
     "city_110011_000000_1": [],
     "city_110011_001100_1": [],
     "city_110011_110011_1": [],
-    "woods_000000_000000_1":[],
-    "woods_000000_000000_2":[],
-    "woods_000000_000000_3":[],
-    "woods_000000_000001_1":[],
-    "woods_000000_000010_1":[],
-    "woods_000000_000011_1":[],
-    "woods_000000_000100_1":[],
-    "woods_000000_001000_1":[],
-    "woods_000000_001100_1":[],
-    "woods_000000_010000_1":[],
-    "woods_000000_100000_1":[],
-    "woods_000000_100001_1":[],
-    "woods_000000_100011_1":[],
-    "woods_000000_110000_1":[],
-    "woods_000000_110001_1":[],
-    "woods_000001_000000_1":[],
-    "woods_000001_000001_1":[],
-    "woods_000001_001100_1":[],
-    "woods_000010_000000_1":[],
-    "woods_000010_000010_1":[],
-    "woods_000011_000000_1":[],
-    "woods_000011_000011_1":[],
-    "woods_000011_110000_1":[],
-    "woods_000100_000000_1":[],
-    "woods_000100_000100_1":[],
-    "woods_001000_000000_1":[],
-    "woods_001000_001000_1":[],
-    "woods_001100_000000_1":[],
-    "woods_001100_000001_1":[],
-    "woods_001100_001100_1":[],
-    "woods_001100_001100_2":[],
-    "woods_001100_100000_1":[],
-    "woods_001100_100001_1":[],
-    "woods_001100_110011_1":[],
-    "woods_010000_000000_1":[],
-    "woods_010000_010000_1":[],
-    "woods_100000_000000_1":[],
-    "woods_100000_001100_1":[],
-    "woods_100000_100000_1":[],
-    "woods_100001_000000_1":[],
-    "woods_100001_001100_1":[],
-    "woods_100001_100001_1":[],
-    "woods_100011_000000_1":[],
-    "woods_100011_100011_1":[],
-    "woods_100011_110001_1":[],
-    "woods_110000_000000_1":[],
-    "woods_110000_000011_1":[],
-    "woods_110000_110000_1":[],
-    "woods_110001_000000_1":[],
-    "woods_110001_100011_1":[],
-    "woods_110001_110001_1":[],
-    "woods_110011_000000_1":[],
-    "woods_110011_001100_1":[],
-    "woods_110011_110011_1":[]
+    "woods_000000_000000_1": [],
+    "woods_000000_000000_2": [],
+    "woods_000000_000000_3": [],
+    "woods_000000_000001_1": [],
+    "woods_000000_000010_1": [],
+    "woods_000000_000011_1": [],
+    "woods_000000_000100_1": [],
+    "woods_000000_001000_1": [],
+    "woods_000000_001100_1": [],
+    "woods_000000_010000_1": [],
+    "woods_000000_100000_1": [],
+    "woods_000000_100001_1": [],
+    "woods_000000_100011_1": [],
+    "woods_000000_110000_1": [],
+    "woods_000000_110001_1": [],
+    "woods_000001_000000_1": [],
+    "woods_000001_000001_1": [],
+    "woods_000001_001100_1": [],
+    "woods_000010_000000_1": [],
+    "woods_000010_000010_1": [],
+    "woods_000011_000000_1": [],
+    "woods_000011_000011_1": [],
+    "woods_000011_110000_1": [],
+    "woods_000100_000000_1": [],
+    "woods_000100_000100_1": [],
+    "woods_001000_000000_1": [],
+    "woods_001000_001000_1": [],
+    "woods_001100_000000_1": [],
+    "woods_001100_000001_1": [],
+    "woods_001100_001100_1": [],
+    "woods_001100_001100_2": [],
+    "woods_001100_100000_1": [],
+    "woods_001100_100001_1": [],
+    "woods_001100_110011_1": [],
+    "woods_010000_000000_1": [],
+    "woods_010000_010000_1": [],
+    "woods_100000_000000_1": [
+      {
+        "element": "woods_tree2",
+        "x": 34,
+        "y": 583
+      }
+    ],
+    "woods_100000_001100_1": [],
+    "woods_100000_100000_1": [],
+    "woods_100001_000000_1": [],
+    "woods_100001_001100_1": [],
+    "woods_100001_100001_1": [],
+    "woods_100011_000000_1": [],
+    "woods_100011_100011_1": [],
+    "woods_100011_110001_1": [],
+    "woods_110000_000000_1": [],
+    "woods_110000_000011_1": [],
+    "woods_110000_110000_1": [],
+    "woods_110001_000000_1": [],
+    "woods_110001_100011_1": [],
+    "woods_110001_110001_1": [],
+    "woods_110011_000000_1": [],
+    "woods_110011_001100_1": [],
+    "woods_110011_110011_1": []
   }
 }
