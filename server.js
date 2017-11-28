@@ -26,12 +26,13 @@ server.get("/stageElements.json", function(req, res, next) {
 });
 
 server.post('/stageElements.json', function(req, res) {
-	let fields = req.body;
+	let fields = JSON.parse(req.body.data);
+	// console.dir(fields)
 	fs.writeFile(path.join(__dirname, 'utils/stageElements.json'), JSON.stringify(fields, null, 2), {}, function (err) {
     if (err != null) {
-			res.status(500).send('Error saving stageElements')
+			res.status(500).send('{"status":"Error saving stageElements"}')
     } else {
-			res.status(200).send('Ok')
+			res.status(200).send('{"status":"ok"}')
 		}
   })
 })

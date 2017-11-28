@@ -318,15 +318,15 @@
             y: y
           })
         })
-
-        this.saveConfig()
       }
 
       this.saveConfig = function() {
+        this.saveTile()
+        console.dir(this.storedLevelConfig)
         $.ajax({
           type: "POST",
           url: '/stageElements.json',
-          data: this.storedLevelConfig,
+          data: {data: JSON.stringify(this.storedLevelConfig)},
           success: function() {
             alert("Tile configs saved!")
           },
