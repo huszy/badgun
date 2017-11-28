@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import StageElementsManager from '../classes/StageElementsManager'
+import FinishLine from './FinishLine'
 
 export default class extends Phaser.Sprite {
 
@@ -23,6 +24,15 @@ export default class extends Phaser.Sprite {
         let polygons = StageElementsManager.getHitPolygonsForElement(deco.element, deco.x + xPos, deco.y + yPos)
         this.stageElementsHitArea.push(...polygons)
       })
+    }
+
+    if (this.definition.stageEnd === true) {
+      let finishLine = new FinishLine({game: this.game, x: 0, y: yPos})
+      this.stageElements.push(finishLine)
+      let finishLinePoly = new Phaser.Polygon([0, yPos - 10, this.game.width, yPos - 10, this.game.width, yPos + 10, 0, yPos + 10])
+      finishLinePoly.isFinishLine = true
+      finishLinePoly.isCrossed = false
+      this.stageElementsHitArea.push(finishLinePoly)
     }
   }
 

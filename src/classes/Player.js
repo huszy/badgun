@@ -32,6 +32,23 @@ export default class Player {
     this.returnToNormalState = this._returnToNormalState.bind(this)
   }
 
+  getPlayerConfigForStage (stageNum) {
+    let baseVelocity = 600
+    let stageIncrement = 100
+    let initialVelocity = -1 * (baseVelocity + (stageNum * stageIncrement))
+    let config = {
+      initialVelocity: initialVelocity,
+      maxVelocity: initialVelocity * 1.3,
+      minVelocity: initialVelocity * 0.5,
+      turnVelocity: 30,
+      acceleration: 7 + (stageNum * (stageIncrement / 50)),
+      deceleration: 20 + (stageNum * (stageIncrement / 50))
+    }
+
+    let newConfig = Object.assign({}, this.playerConfig, config)
+    return newConfig
+  }
+
   setupPlayer () {
     this.playerDef = new PlayerSprite({
       game: this.game,
@@ -77,9 +94,9 @@ export default class Player {
       this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)
     } else {
       if (this.sprite.body.velocity.x > 0) {
-        this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x - this.playerConfig.turnVelocity * 1.75, 0)
+        this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x - this.playerConfig.turnVelocity * 1.75, 0)
       } else if (this.sprite.body.velocity.x < 0) {
-        this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x + this.playerConfig.turnVelocity * 1.75, 0)
+        this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x + this.playerConfig.turnVelocity * 1.75, 0)
       }
       this.game.add.tween(this.sprite).to({ rotation: this.sprite.rotation * -1 }, 100, 'Linear', true)
     }
@@ -92,9 +109,11 @@ export default class Player {
       if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
         this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.acceleration, this.playerConfig.initialVelocity)
       } else if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
-        this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
+        this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
       }
     }
+
+    // console.log('Player velo: '+this.sprite.body.velocity.x+' Max: '+this.playerConfig.initialVelocity)
 
     let camDiffY = this.game.math.linear(0, this.sprite.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
     camDiffY = 0
@@ -120,7 +139,7 @@ export default class Player {
         if (poly.contains(this.sprite.x, this.sprite.y) ||
           poly.contains(this.sprite.x - this.sprite.width / 2, this.sprite.y - this.sprite.height / 2) ||
           poly.contains(this.sprite.x + this.sprite.width / 2, this.sprite.y + this.sprite.height / 2)) {
-          playerStageElementCollision = block
+          playerStageElementCollision = {block: block, poly: poly}
         }
       })
     })

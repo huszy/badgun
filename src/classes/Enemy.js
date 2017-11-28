@@ -52,7 +52,7 @@ export default class Enemy {
   }
 
   _onContactBegin () {
-    console.log('contact begin')
+    // console.log('contact begin')
     this.currentState = STATE_INCONTACT
     if (this.recoveryTimeout != null) {
       clearTimeout(this.recoveryTimeout)
@@ -61,7 +61,7 @@ export default class Enemy {
   }
 
   _onContactEnd () {
-    console.log('contact end')
+    // console.log('contact end')
     this.currentState = STATE_DRIFTING
     if (this.recoveryTimeout != null) {
       clearTimeout(this.recoveryTimeout)
@@ -71,7 +71,7 @@ export default class Enemy {
   }
 
   _onRecoveryFinished () {
-    console.log('recovery finished')
+    // console.log('recovery finished')
     this.currentState = STATE_RECOVERING
   }
 
@@ -150,7 +150,7 @@ export default class Enemy {
         this._recoverLane()
         return
       } else {
-        console.log("rotation: "+rotationRecovered+" - speed: "+speedRecovered)
+        // console.log("rotation: "+rotationRecovered+" - speed: "+speedRecovered)
       }
     }
 
@@ -176,7 +176,7 @@ export default class Enemy {
     }
 
     let laneDiff = idealLanePos - this.sprite.body.x
-    console.log(`Ideal lane: ${idealLanePos} - current: ${this.sprite.body.x}`)
+    // console.log(`Ideal lane: ${idealLanePos} - current: ${this.sprite.body.x}`)
 
     this.sprite.body.velocity.x = 0
     let recoverTween = this.game.add.tween(this.sprite.body)
@@ -236,7 +236,7 @@ export default class Enemy {
     // console.log(`Can move: STAY: ${canStay}, LEFT: ${canMoveLeft}, RIGHT: ${canMoveRight}`)
     
     if (this.isMoving) { return }
-    console.log(canMoveLeft, canMoveRight, canStay)
+    // console.log(canMoveLeft, canMoveRight, canStay)
     if (!canStay) {
       if (canMoveLeft && canMoveRight) {
         if (Math.round(Math.random())) {
@@ -263,7 +263,7 @@ export default class Enemy {
   }
 
   _moveLeftP2 () {
-    console.log("MOVE LEFT")
+    // console.log("MOVE LEFT")
     this.isMoving = true
     this.moveTween = this.game.add.tween(this.sprite.body)
     this.sprite.body.velocity.x = 0
@@ -273,7 +273,7 @@ export default class Enemy {
   }
 
   _moveRightP2 () {
-    console.log("MOVE RIGHT")
+    // console.log("MOVE RIGHT")
     this.isMoving = true
     this.moveTween = this.game.add.tween(this.sprite.body)
     this.sprite.body.velocity.x = 0

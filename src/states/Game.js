@@ -14,15 +14,21 @@ const array = require('lodash/array')
 const collection = require('lodash/collection')
 const string = require('lodash/string')
 
+const THEME_TIME_IN_SECONDS = 30
+
 export default class extends Phaser.State {
   gameConfig = {
     stage: 1,
+    mapTilesNeededForStage: 18,
+    mapTilesNeededTotal: 18,
     currentTheme: 'desert',
     themesAvailable: ['desert', 'city'],
     themeChangeCount: 0,
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
-    currentScore: 0
+    currentScore: 0,
+    stageStartTime: 0,
+    stageTimeLeft: THEME_TIME_IN_SECONDS * 1000
   }
 
   visibleBlocks = []
@@ -44,9 +50,10 @@ export default class extends Phaser.State {
     this.currentBlockIndex = 0
     this.mapGenerator = new MapGenerator()
 
-    for (var i = 0; i <= 10; i++) {
+    /*
+    for (var i = 0; i <= this.gameConfig.ma; i++) {
       this.mapGenerator.generateNext(this.gameConfig.currentTheme)
-    }
+    }*/
   }
 
   init () {
@@ -75,8 +82,27 @@ export default class extends Phaser.State {
     this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
   }
 
+  calculateMapNeededForStage (stage) {
+    let playerConfig = this.player.getPlayerConfigForStage(stage)
+    let pixelPerSec = -1 * playerConfig.initialVelocity
+    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS - 3)
+    let mapTileNumber = Math.ceil(totalPixel / 1250)
+    return mapTileNumber
+  }
+
   create () {
     this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
+    this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
+    this.gameConfig.mapTilesNeededTotal = this.calculateMapNeededForStage(1)
+    // let calculateMap = this.calculateMapNeededForStage(1)
+    
+    /*
+    console.log(this.calculateMapNeededForStage(1))
+    console.log(this.calculateMapNeededForStage(2))
+    console.log(this.calculateMapNeededForStage(3))
+    console.log(this.calculateMapNeededForStage(4))
+*/
+
     this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
     // Setup user input - TODO: Handle mobile touch
     if (!this.game.device.desktop) {
@@ -92,7 +118,7 @@ export default class extends Phaser.State {
   }
 
   hitEnemy (body1, body2) {
-    console.log("enemy hit")
+    // console.log("enemy hit")
   }
 
   fillVisibleBlocksAndGenerateMoreIfNeeded (shouldCleanup = true) {
@@ -101,7 +127,23 @@ export default class extends Phaser.State {
     while (hasEnough === false) {
       while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
         this.mapGenerator.generateNext(this.gameConfig.currentTheme)
-      }
+      } 
+
+      if (this.mapGenerator.maps.length === this.gameConfig.mapTilesNeededTotal) {
+        // Add finish line to the last block
+        this.mapGenerator.maps[this.mapGenerator.maps.length - 1].stageEnd = true
+        // Need to change theme
+        let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
+        themeIndex++
+        if (themeIndex >= this.gameConfig.themesAvailable.length) {
+          themeIndex = 0
+        }
+        this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
+        this.gameConfig.themeChangeCount++
+        this.gameConfig.mapTilesNeededTotal += this.calculateMapNeededForStage(this.gameConfig.stage + 1)
+      } 
+
+      /*
       if (Math.floor(this.mapGenerator.maps.length / 20) !== this.gameConfig.themeChangeCount) {
         let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
         themeIndex++
@@ -110,7 +152,8 @@ export default class extends Phaser.State {
         }
         this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
         this.gameConfig.themeChangeCount++
-      }
+      } */
+
       // console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
@@ -202,7 +245,10 @@ export default class extends Phaser.State {
 
       EnemyManager.updateMovement(this.blockMatrix)
     }
-    this.updateTimeLeft(this.game.time.now)
+
+    // Update times
+    let timeLeft = this.gameConfig.stageTimeLeft - (this.game.time.now - this.gameConfig.stageStartTime)
+    this.updateTimeLeft(timeLeft)
   }
 
   handlePlayerCollisions () {
@@ -220,8 +266,22 @@ export default class extends Phaser.State {
     }
 
     if (playerStageElementCollision) {
-      this.player.startRecoveryAnimation()
-      return
+      if (playerStageElementCollision.poly.isFinishLine === true && playerStageElementCollision.poly.isCrossed === false) {
+        // Check time left
+        playerStageElementCollision.poly.isCrossed = true
+        let timeLeft = this.gameConfig.stageTimeLeft - (this.game.time.now - this.gameConfig.stageStartTime)
+        if (timeLeft > 0) {
+          // Move to next stage
+          this.gameConfig.stage++
+          this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
+          this.gameConfig.stageTimeLeft = timeLeft + (THEME_TIME_IN_SECONDS * 1000)
+          this.gameConfig.stageStartTime = this.game.time.now
+          return
+        }
+      } else {
+        // this.player.startRecoveryAnimation()
+        return
+      }
     }
 
     if (playerWallCollision) {
