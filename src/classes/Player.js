@@ -34,7 +34,7 @@ export default class Player {
 
   getPlayerConfigForStage (stageNum) {
     let baseVelocity = 600
-    let stageIncrement = 150
+    let stageIncrement = 100
     let initialVelocity = -1 * (baseVelocity + (stageNum * stageIncrement))
     let config = {
       initialVelocity: initialVelocity,
