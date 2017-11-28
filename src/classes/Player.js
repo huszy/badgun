@@ -24,6 +24,7 @@ export default class Player {
     this.playerCollisionGroup = playerCollisionGroup
     this.playerGroup.physicsBodyType = Phaser.Physics.P2JS
     this.playerGroup.enableBody = true
+    this.playerConfig = this.getPlayerConfigForStage(1)
     this.setupPlayer()
     // this.setupCrashEffect()
 
