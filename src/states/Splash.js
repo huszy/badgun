@@ -18,8 +18,8 @@ export default class extends Phaser.State {
     // load your assets
     //
     this.load.image('car', 'assets/images/car.png')
+    this.load.image('stageFinish', 'assets/images/finish-line.png')
     this.load.image('enemy', 'assets/images/enemy_mini.png')
-    this.load.image('stage', 'assets/images/stage.png')
     this.load.image('helicopter', 'assets/images/helicopter.png')
     this.load.image('helicopter_rotor_big', 'assets/images/helicopter_rotor_big.png')
     this.load.image('helicopter_rotor_small', 'assets/images/helicopter_rotor_small.png')

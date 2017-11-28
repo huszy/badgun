@@ -14,11 +14,13 @@ export default class MapGenerator {
     this.maps = [blockDef, blockDef, blockDef, blockDef, blockDef]
   }
 
-  generateNext (newTheme = null) {
-    if (window.isDebug) {
-      this._generateNextInSequence()
-    } else {
-      this._generateNextRandom(newTheme)
+  generateNext (newTheme = null, numberToGenerate = 1) {
+    for (var i = 0; i < numberToGenerate; i++) {
+      if (window.isDebug) {
+        this._generateNextInSequence()
+      } else {
+        this._generateNextRandom(newTheme)
+      }
     }
   }
 
