@@ -197,6 +197,150 @@
       "hitArea": "",
       "width": "188",
       "height": "292"
+    },
+    "vulcano_bones": {
+      "sprite": "vulcano/bones.png",
+      "hitArea": "",
+      "width": "184",
+      "height": "124"
+    },
+    "vulcano_crater": {
+      "sprite": "vulcano/crater.png",
+      "hitArea": "",
+      "width": "200",
+      "height": "80"
+    },
+    "vulcano_fire": {
+      "sprite": "vulcano/fire.png",
+      "hitArea": "",
+      "width": "60",
+      "height": "60"
+    },
+    "vulcano_fire2": {
+      "sprite": "vulcano/fire2.png",
+      "hitArea": "",
+      "width": "68",
+      "height": "76"
+    },
+    "vulcano_hole": {
+      "sprite": "vulcano/hole.png",
+      "hitArea": "",
+      "width": "192",
+      "height": "168"
+    },
+    "vulcano_tree": {
+      "sprite": "vulcano/tree.png",
+      "hitArea": "",
+      "width": "168",
+      "height": "200"
+    },
+    "vulcano_treetrunk": {
+      "sprite": "vulcano/treetrun.png",
+      "hitArea": "",
+      "width": "188",
+      "height": "136"
+    },
+    "vulcano_vulcan": {
+      "sprite": "vulcano/vulcan.png",
+      "hitArea": "",
+      "width": "352",
+      "height": "284"
+    },
+    "vulcano_vulcan2": {
+      "sprite": "vulcano/vulcan2.png",
+      "hitArea": "",
+      "width": "316",
+      "height": "232"
+    },
+    "snow_bush": {
+      "sprite": "snow/bush.png",
+      "hitArea": "",
+      "width": "148",
+      "height": "132"
+    },
+    "snow_icetable": {
+      "sprite": "snow/icetable.png",
+      "hitArea": "",
+      "width": "252",
+      "height": "272"
+    },
+    "snow_icetable2": {
+      "sprite": "snow/icetable2.png",
+      "hitArea": "",
+      "width": "284",
+      "height": "164"
+    },
+    "snow_pine": {
+      "sprite": "snow/pine.png",
+      "hitArea": "",
+      "width": "204",
+      "height": "328"
+    },
+    "snow_pine2": {
+      "sprite": "snow/pine2.png",
+      "hitArea": "",
+      "width": "132",
+      "height": "208"
+    },
+    "snow_snow": {
+      "sprite": "snow/snow.png",
+      "hitArea": "",
+      "width": "440",
+      "height": "188"
+    },
+    "snow_snowdigger": {
+      "sprite": "snow/snowdigger.png",
+      "hitArea": "",
+      "width": "176",
+      "height": "172"
+    },
+    "snow_snowman": {
+      "sprite": "snow/snowman.png",
+      "hitArea": "",
+      "width": "104",
+      "height": "160"
+    },
+    "neon_alienship": {
+      "sprite": "snow/alienship.png",
+      "hitArea": "",
+      "width": "376",
+      "height": "248"
+    },
+    "neon_crater": {
+      "sprite": "snow/crater.png",
+      "hitArea": "",
+      "width": "396",
+      "height": "200"
+    },
+    "neon_crater2": {
+      "sprite": "snow/crater2.png",
+      "hitArea": "",
+      "width": "396",
+      "height": "200"
+    },
+    "neon_crater3": {
+      "sprite": "snow/crater3.png",
+      "hitArea": "",
+      "width": "436",
+      "height": "156"
+    },
+    "neon_hole": {
+      "sprite": "snow/hole.png",
+      "hitArea": "",
+      "width": "200",
+      "height": "156"
+    },
+    "neon_meteorit": {
+      "sprite": "snow/meteorit.png",
+      "hitArea": "",
+      "width": "420",
+      "height": "244"
+    },
+    "neon_rocket": {
+      "sprite": "snow/rocket.png",
+      "hitArea": "",
+      "width": "456",
+      "height": "376"
     }
   },
   "variations": {
