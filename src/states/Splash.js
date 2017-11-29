@@ -4,6 +4,7 @@ import { centerGameObjects } from '../utils'
 const blockDefs = require('../blockConfig.json')
 const enemyDefs = require('../enemyConfig.json')
 const stageElementsConfig = require('../stageElementsConfig.json')
+const soundConfig = require('../soundConfig.json')
 
 export default class extends Phaser.State {
   init () {}
@@ -41,7 +42,9 @@ export default class extends Phaser.State {
       }
     }
 
-    this.game.load.audio('bass2', 'assets/sounds/bass2.wav')
+    soundConfig.sounds.loops.forEach((sound) => {
+      this.game.load.audio(sound.name, `assets/sounds/${sound.file}`)
+    })
   }
 
   create () {
