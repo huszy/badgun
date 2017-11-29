@@ -16,19 +16,21 @@ const string = require('lodash/string')
 
 const THEME_TIME_IN_SECONDS = 30
 
+const GAME_STATE_NOT_STARTED = 'not_started'
+const GAME_STATE_STARTED = 'started'
+const GAME_STATE_PAUSED = 'paused'
+
 export default class extends Phaser.State {
   gameConfig = {
-    stage: 1,
+    stage: 0,
+    currentState: GAME_STATE_NOT_STARTED,
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
-    currentTheme: 'desert',
     themesAvailable: ['desert', 'city', 'woods'],
-    themeChangeCount: 0,
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0,
-    stageStartTime: 0,
-    stageTimeLeft: THEME_TIME_IN_SECONDS * 1000
+    gameStartTime: 0
   }
 
   visibleBlocks = []
@@ -68,6 +70,18 @@ export default class extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.P2JS)
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
+    this.game.physics.p2.useElapsedTime = false
+
+    /*
+    Phaser.Physics.P2.update = function () {
+      if (this.paused)
+      {
+          return;
+      }
+
+      this.world.step(this.game.time.now);
+    } */
+
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     CollectableManager.initialize(this.game, this.collectablesGroup)
@@ -82,28 +96,44 @@ export default class extends Phaser.State {
     this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
   }
 
+  getThemeForStage (stage) {
+    return array.nth(this.gameConfig.themesAvailable, stage % this.gameConfig.themesAvailable.length)
+  }
+
   calculateMapNeededForStage (stage) {
     let playerConfig = this.player.getPlayerConfigForStage(stage)
     let pixelPerSec = -1 * playerConfig.initialVelocity
-    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS - 3)
-    let mapTileNumber = Math.ceil(totalPixel / 1250)
+    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS) - 1000 // -1000: player position on screen
+    let mapTileNumber = Math.floor(totalPixel / 1250)
+
+    console.log(`stage: ${stage} playerSpeed: ${playerConfig.initialVelocity}, pixelPerSec: ${pixelPerSec}, totalPixel: ${totalPixel}, mapTileNum: ${mapTileNumber}`)
+
     return mapTileNumber
+  }
+
+  generateMapForStage (theme, tilesNeeded) {
+    for (var i = 0; i < tilesNeeded; i++) {
+      this.mapGenerator.generateNext(theme)
+    }
+    // Add the finish line at the end of stage
+    this.mapGenerator.maps[this.mapGenerator.maps.length - 1].stageEnd = true
+  }
+
+  checkPointReached () {
+    // Generate next stage
+    this.gameConfig.stage++
+    let nextStage = this.gameConfig.stage + 1
+    this.generateMapForStage(this.getThemeForStage(nextStage), this.calculateMapNeededForStage(nextStage))
+    this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
   }
 
   create () {
     this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
     this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
-    this.gameConfig.mapTilesNeededTotal = this.calculateMapNeededForStage(1)
-    // let calculateMap = this.calculateMapNeededForStage(1)
-    
-    /*
-    console.log(this.calculateMapNeededForStage(1))
-    console.log(this.calculateMapNeededForStage(2))
-    console.log(this.calculateMapNeededForStage(3))
-    console.log(this.calculateMapNeededForStage(4))
-*/
+    // Generate first two stage
+    this.generateMapForStage(this.getThemeForStage(0), this.calculateMapNeededForStage(0) - 5)
+    this.generateMapForStage(this.getThemeForStage(1), this.calculateMapNeededForStage(1))
 
-    this.fillVisibleBlocksAndGenerateMoreIfNeeded(false)
     // Setup user input - TODO: Handle mobile touch
     if (!this.game.device.desktop) {
       this.game.input.addPointer()
@@ -115,6 +145,13 @@ export default class extends Phaser.State {
 
     this.helicopter = new Helicopter({game: this.game, x: -400, y: this.player.sprite.y})
     this.helicopterGroup.add(this.helicopter)
+
+    this.startGame()
+  }
+
+  startGame () {
+    this.gameConfig.gameStartTime = this.game.time.now
+    this.gameConfig.currentState = GAME_STATE_STARTED
   }
 
   hitEnemy (body1, body2) {
@@ -125,12 +162,14 @@ export default class extends Phaser.State {
     let hasEnough = false
     let updateBlockMatrix = false
     while (hasEnough === false) {
+      /*
       while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
         this.mapGenerator.generateNext(this.gameConfig.currentTheme)
       } 
 
       if (this.mapGenerator.maps.length === this.gameConfig.mapTilesNeededTotal) {
         // Add finish line to the last block
+        // console.log('END LINE AT: '+(this.mapGenerator.maps.length - 1)+' MAPS NEEDED: '+this.gameConfig.mapTilesNeededTotal)
         this.mapGenerator.maps[this.mapGenerator.maps.length - 1].stageEnd = true
         // Need to change theme
         let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
@@ -141,17 +180,6 @@ export default class extends Phaser.State {
         this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
         this.gameConfig.themeChangeCount++
         this.gameConfig.mapTilesNeededTotal += this.calculateMapNeededForStage(this.gameConfig.stage + 1)
-      } 
-
-      /*
-      if (Math.floor(this.mapGenerator.maps.length / 20) !== this.gameConfig.themeChangeCount) {
-        let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
-        themeIndex++
-        if (themeIndex >= this.gameConfig.themesAvailable.length) {
-          themeIndex = 0
-        }
-        this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
-        this.gameConfig.themeChangeCount++
       } */
 
       // console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
@@ -159,7 +187,7 @@ export default class extends Phaser.State {
       let lastBlockY = array.last(this.visibleBlocks) ? array.last(this.visibleBlocks).y : this.game.world.height
 
       // console.log(lastBlockY, this.game.camera.view.y)
-      if (lastBlockY > this.game.camera.view.y - 100) {
+      if (lastBlockY > this.game.camera.view.y - 1000) {
         // console.log("Addnew")
         // console.log('newY: ', this.game.world.height - totalHeight)
         updateBlockMatrix = true
@@ -247,8 +275,13 @@ export default class extends Phaser.State {
     }
 
     // Update times
-    let timeLeft = this.gameConfig.stageTimeLeft - (this.game.time.now - this.gameConfig.stageStartTime)
-    this.updateTimeLeft(timeLeft)
+    let totalTime = ((this.gameConfig.stage + 1) * (THEME_TIME_IN_SECONDS * 1000))
+    let timeLeft = totalTime - (this.game.time.now - this.gameConfig.gameStartTime + this.game.time.pauseDuration)
+    this.updateTimeLeft(Math.max(timeLeft, 0))
+    if (timeLeft < 0) {
+      // GAMEOVER
+      console.log('GAMEOVER')
+    }
   }
 
   handlePlayerCollisions () {
@@ -266,20 +299,17 @@ export default class extends Phaser.State {
     }
 
     if (playerStageElementCollision) {
-      if (playerStageElementCollision.poly.isFinishLine === true && playerStageElementCollision.poly.isCrossed === false) {
-        // Check time left
-        playerStageElementCollision.poly.isCrossed = true
-        let timeLeft = this.gameConfig.stageTimeLeft - (this.game.time.now - this.gameConfig.stageStartTime)
-        if (timeLeft > 0) {
-          // Move to next stage
-          this.gameConfig.stage++
-          this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
-          this.gameConfig.stageTimeLeft = timeLeft + (THEME_TIME_IN_SECONDS * 1000)
-          this.gameConfig.stageStartTime = this.game.time.now
+      if (playerStageElementCollision.poly.isFinishLine === true) {
+        if (playerStageElementCollision.poly.isCrossed === false) {
+          playerStageElementCollision.poly.isCrossed = true
+          this.checkPointReached()
           return
+        } 
+        return
+
         }
       } else {
-        // this.player.startRecoveryAnimation()
+        this.player.startRecoveryAnimation()
         return
       }
     }

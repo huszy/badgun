@@ -18,6 +18,8 @@ export default class Player {
     state: STATE_NORMAL
   }
 
+  turning = false
+
   constructor (game, playerGroup, playerCollisionGroup) {
     this.game = game
     this.playerGroup = playerGroup
@@ -34,16 +36,17 @@ export default class Player {
   }
 
   getPlayerConfigForStage (stageNum) {
+    let limitedStageNum = Math.min(stageNum, 10)
     let baseVelocity = 600
     let stageIncrement = 100
-    let initialVelocity = -1 * (baseVelocity + (stageNum * stageIncrement))
+    let initialVelocity = -1 * (baseVelocity + (limitedStageNum * stageIncrement))
     let config = {
       initialVelocity: initialVelocity,
       maxVelocity: initialVelocity * 1.3,
       minVelocity: initialVelocity * 0.5,
       turnVelocity: 30,
-      acceleration: 7 + (stageNum * (stageIncrement / 50)),
-      deceleration: 20 + (stageNum * (stageIncrement / 50))
+      acceleration: 7 + (limitedStageNum * (stageIncrement / 50)),
+      deceleration: 20 + (limitedStageNum * (stageIncrement / 50))
     }
 
     let newConfig = Object.assign({}, this.playerConfig, config)
@@ -68,6 +71,7 @@ export default class Player {
     // this.player.body.immovable = true
     this.sprite.body.fixedRotation = true
     this.sprite.body.damping = 0
+    this.sprite.body.friction = 1
 
     this.sprite.body.setCollisionGroup(this.playerCollisionGroup)
 
@@ -77,18 +81,32 @@ export default class Player {
   }
 
   update () {
+    if (!this.startTime) {
+      this.startTime = this.game.time.now
+      this.startY = this.sprite.body.y
+    }
+    let currY = this.sprite.body.y
+    // console.log('TimeDiff: '+ (this.game.time.now - this.lastUpdate) + ' ydiff: ' + (this.lastY - currY))
+    let avgTotal = (this.sprite.body.y - this.startY) / ((this.game.time.now - this.startTime) / 1000)
+    let avg = (this.lastY - currY) / ((this.game.time.now - this.lastUpdate) / 1000)
+    // console.log('TotalTDiff: '+ (this.game.time.now - this.startTime) +' TY: '+(this.sprite.body.y - this.startY)+ 'AVGTotal: '+avgTotal+' AVG: '+avg)
+    // console.log('Velo: '+this.sprite.body.velocity.y)
+    this.lastUpdate = this.game.time.now
+    this.lastY = currY
     if (this.playerConfig.state === STATE_COLLIDED) {
       return
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation - 0.02, -0.2, 0)
+      this.turning = true
       if (this.sprite.body.velocity.x > 0) {
         this.sprite.body.velocity.x = 0
       }
       this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x - this.playerConfig.turnVelocity, -1 * this.playerConfig.turnVelocity * 20, 0)
     } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation + 0.02, 0, 0.2)
+      this.turning = true
       if (this.sprite.body.velocity.x < 0) {
         this.sprite.body.velocity.x = 0
       }
@@ -99,7 +117,12 @@ export default class Player {
       } else if (this.sprite.body.velocity.x < 0) {
         this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x + this.playerConfig.turnVelocity * 1.75, 0)
       }
-      this.game.add.tween(this.sprite).to({ rotation: this.sprite.rotation * -1 }, 100, 'Linear', true)
+      if (this.turning) {
+        this.turning = false
+        this.game.add.tween(this.sprite).to({ rotation: 0 }, 100, 'Linear', true)
+      } else if (this.sprite.rotation !== 0) {
+        this.sprite.rotation = 0
+      }
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {

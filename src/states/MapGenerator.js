@@ -27,12 +27,12 @@ export default class MapGenerator {
   _generateNextRandom (newTheme = null) {
     let lastBlock = array.last(this.maps)
     let theme = newTheme || lastBlock.theme
-    this.maps.push(collection.sample(MapGenerator.getBlocksByQuery({input: lastBlock.output, theme: theme})))
+    this.maps.push(Object.assign({}, collection.sample(MapGenerator.getBlocksByQuery({input: lastBlock.output, theme: theme}))))
   }
 
   _generateNextInSequence () {
     this.currentIndex++
-    if(this.currentIndex >= blockDefs.blocks.length) {
+    if (this.currentIndex >= blockDefs.blocks.length) {
       this.currentIndex = 0
     }
     this.maps.push(blockDefs.blocks[this.currentIndex])
