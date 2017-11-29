@@ -56,147 +56,273 @@
     },
     "city_bench": {
       "sprite": "city/bench.png",
-      "hitArea": "",
+      "hitArea": "36,73 76,73 76,112 36,112",
       "width": "76",
       "height": "112"
     },
     "city_bench2": {
       "sprite": "city/bench2.png",
-      "hitArea": "",
+      "hitArea": "32,20 124,20 124,52 32,52",
       "width": "124",
       "height": "52"
     },
     "city_busstop": {
       "sprite": "city/bus-stop.png",
-      "hitArea": "",
+      "hitArea": "71,89 79,89 79,111 71,111",
       "width": "108",
       "height": "120"
     },
     "city_bush": {
       "sprite": "city/bush.png",
-      "hitArea": "",
+      "hitArea": "64,83 96,83 96,114 64,114",
       "width": "148",
       "height": "132"
     },
     "city_containerblue": {
       "sprite": "city/container-blue.png",
-      "hitArea": "",
+      "hitArea": "40,80 276,80 276,112 40,112",
       "width": "276",
       "height": "112"
     },
     "city_containerred": {
       "sprite": "city/container-red.png",
-      "hitArea": "",
+      "hitArea": "40,120 152,120 152,264 40,264",
       "width": "152",
       "height": "264"
     },
     "city_fence": {
       "sprite": "city/fence.png",
-      "hitArea": "",
+      "hitArea": "0,20 124,20 124,56 0,56",
       "width": "124",
       "height": "56"
     },
     "city_house": {
       "sprite": "city/house.png",
-      "hitArea": "",
+      "hitArea": "164,108 394,108 394,203 164,203",
       "width": "416",
       "height": "208"
     },
     "city_house2": {
       "sprite": "city/house2.png",
-      "hitArea": "",
+      "hitArea": "164,108 394,108 394,203 164,203",
       "width": "412",
       "height": "308"
     },
     "city_house3": {
       "sprite": "city/house3.png",
-      "hitArea": "",
+      "hitArea": "164,108 394,108 394,203 164,203",
       "width": "412",
       "height": "240"
     },
     "city_hydrant": {
       "sprite": "city/hydrant.png",
-      "hitArea": "",
+      "hitArea": "45,39 75,39 75,68 45,68",
       "width": "80",
       "height": "72"
     },
     "city_shop": {
       "sprite": "city/shop.png",
-      "hitArea": "",
+      "hitArea": "163,240 396,240 396,294 163,294",
       "width": "416",
       "height": "300"
     },
     "city_train": {
       "sprite": "city/train.png",
-      "hitArea": "",
+      "hitArea": "20,20 68,20 68,802 20,802",
       "width": "92",
       "height": "804"
     },
-    "city_trash": {
-      "sprite": "city/trash.png",
-      "hitArea": "",
-      "width": "80",
-      "height": "80"
-    },
     "city_tree": {
       "sprite": "city/tree.png",
-      "hitArea": "",
+      "hitArea": "107,211 191,211 191,241 107,241",
       "width": "288",
       "height": "280"
     },
     "city_tree2": {
       "sprite": "city/tree2.png",
-      "hitArea": "",
+      "hitArea": "76,222 135,222 135,251 76,251",
       "width": "192",
       "height": "292"
     },
     "woods_bush": {
       "sprite": "woods/bush.png",
-      "hitArea": "",
+      "hitArea": "63,84 94,84 94,116 63,116",
       "width": "148",
       "height": "132"
     },
     "woods_house": {
       "sprite": "woods/house.png",
-      "hitArea": "",
+      "hitArea": "165,148 393,148 393,223 165,223",
       "width": "484",
       "height": "236"
     },
     "woods_house2": {
       "sprite": "woods/house2.png",
-      "hitArea": "",
+      "hitArea": "165,148 393,148 393,223 165,223",
       "width": "416",
       "height": "228"
     },
     "woods_pile": {
       "sprite": "woods/pile.png",
-      "hitArea": "",
+      "hitArea": "98,87 374,87 374,127 98,127",
       "width": "388",
       "height": "136"
     },
     "woods_rock": {
       "sprite": "woods/rock.png",
-      "hitArea": "",
+      "hitArea": "63,81 249,81 249,128 63,128",
       "width": "256",
       "height": "148"
     },
     "woods_rock2": {
       "sprite": "woods/rock2.png",
-      "hitArea": "",
+      "hitArea": "52,108 215,108 215,140 139,169 60,137",
       "width": "216",
       "height": "184"
     },
     "woods_tree": {
       "sprite": "woods/tree.png",
-      "hitArea": "",
+      "hitArea": "118,170 181,170 181,234 118,234",
       "width": "288",
       "height": "280"
     },
     "woods_tree2": {
       "sprite": "woods/tree2.png",
-      "hitArea": "",
+      "hitArea": "76,202 123,202 123,250 76,250",
       "width": "188",
       "height": "292"
+    },
+    "vulcano_bones": {
+      "sprite": "vulcano/bones.png",
+      "hitArea": "17,30 171,30 171,80 17,80",
+      "width": "184",
+      "height": "124"
+    },
+    "vulcano_crater": {
+      "sprite": "vulcano/crater.png",
+      "hitArea": "28,20 188,20 188,46 28,46",
+      "width": "200",
+      "height": "80"
+    },
+    "vulcano_hole": {
+      "sprite": "vulcano/hole.png",
+      "hitArea": "44,77 148,77 148,127, 44,127",
+      "width": "192",
+      "height": "168"
+    },
+    "vulcano_tree": {
+      "sprite": "vulcano/tree.png",
+      "hitArea": "64,100 103,100 103,155 64,155",
+      "width": "168",
+      "height": "200"
+    },
+    "vulcano_treetrunk": {
+      "sprite": "vulcano/treetrunk.png",
+      "hitArea": "8,98 154,12 180,46 75,110 24,114",
+      "width": "188",
+      "height": "136"
+    },
+    "vulcano_vulcan": {
+      "sprite": "vulcano/vulcan.png",
+      "hitArea": "44,174 281,174 323,220 250,245 72,245 29,227",
+      "width": "352",
+      "height": "284"
+    },
+    "vulcano_vulcan2": {
+      "sprite": "vulcano/vulcan2.png",
+      "hitArea": "0,176 55,146 269,148 311,190 23,190",
+      "width": "316",
+      "height": "232"
+    },
+    "snow_bush": {
+      "sprite": "snow/bush.png",
+      "hitArea": "63,84 94,84 94,115 63,115",
+      "width": "148",
+      "height": "132"
+    },
+    "snow_icetable": {
+      "sprite": "snow/icetable.png",
+      "hitArea": "62,154 245,154 245,194 194,194 194,246 97,246 97,195 62,194",
+      "width": "252",
+      "height": "272"
+    },
+    "snow_icetable2": {
+      "sprite": "snow/icetable2.png",
+      "hitArea": "147,82 271,82 271,126 195,126 194,160 128,160 128,110 146,110",
+      "width": "284",
+      "height": "164"
+    },
+    "snow_pine": {
+      "sprite": "snow/pine.png",
+      "hitArea": "99,244 138,244 138,283 99,283",
+      "width": "204",
+      "height": "328"
+    },
+    "snow_pine2": {
+      "sprite": "snow/pine2.png",
+      "hitArea": "55,160 82,160 82,187 55,187",
+      "width": "132",
+      "height": "208"
+    },
+    "snow_snow": {
+      "sprite": "snow/snow.png",
+      "hitArea": "51,117 431,101 431,160 51,161",
+      "width": "440",
+      "height": "188"
+    },
+    "snow_snowdigger": {
+      "sprite": "snow/snowdigger.png",
+      "hitArea": "34,107 166,107 166,150 34,150",
+      "width": "176",
+      "height": "172"
+    },
+    "snow_snowman": {
+      "sprite": "snow/snowman.png",
+      "hitArea": "19,103 82,103 82,151 19,151",
+      "width": "104",
+      "height": "160"
+    },
+    "neon_alienship": {
+      "sprite": "neon/alienship.png",
+      "hitArea": "91,141 120,80 331,80 315,145 280,196 111,197",
+      "width": "376",
+      "height": "248"
+    },
+    "neon_crater": {
+      "sprite": "neon/crater.png",
+      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
+      "width": "396",
+      "height": "200"
+    },
+    "neon_crater2": {
+      "sprite": "neon/crater2.png",
+      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
+      "width": "396",
+      "height": "200"
+    },
+    "neon_crater3": {
+      "sprite": "neon/crater3.png",
+      "hitArea": "57,70 110,42 263,42 318,72 392,72 436,117 332,146 306,124 147,124",
+      "width": "436",
+      "height": "156"
+    },
+    "neon_hole": {
+      "sprite": "neon/hole.png",
+      "hitArea": "44,77 148,77 148,127, 44,127",
+      "width": "200",
+      "height": "156"
+    },
+    "neon_meteorit": {
+      "sprite": "neon/meteorit.png",
+      "hitArea": "104,133 378,133 378,192 104,192",
+      "width": "420",
+      "height": "244"
+    },
+    "neon_rocket": {
+      "sprite": "neon/rocket.png",
+      "hitArea": "142,294 437,294 437,330 142,330",
+      "width": "456",
+      "height": "376"
     }
   }
 }

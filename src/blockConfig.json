@@ -1,6 +1,492 @@
 {
   "blocks": [
     {
+      "theme": "beach",
+      "sprite": "beach_000000_000000_1.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000000_2.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "189,112 250,170 250,890 189,960 125,890 125,170",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000000_3.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "562,235 625,300 625,1020 562,1076 500,1020 500,300",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000001_1.png",
+      "input": "000000",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000010_1.png",
+      "input": "000000",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,790 560,855 500,790",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000011_1.png",
+      "input": "000000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,870 500,645",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_000100_1.png",
+      "input": "000000",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,540 440,600 375,540",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_001000_1.png",
+      "input": "000000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,290 314,350 250,290",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_001100_1.png",
+      "input": "000000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,610 375,740 250,610",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_010000_1.png",
+      "input": "000000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,540 187,600 125,540",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_100000_1.png",
+      "input": "000000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,530 0,625",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_100001_1.png",
+      "input": "000000",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,540 0,615-625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_100011_1.png",
+      "input": "000000",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,510 0,545-500,0 750,0 750,545 500,510",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_110000_1.png",
+      "input": "000000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000000_110001_1.png",
+      "input": "000000",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,500 0,540-625,0 750,0 750,540 625,545",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000001_000000_1.png",
+      "input": "000001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "625,1250 625,660 750,600 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000001_000001_1.png",
+      "input": "000001",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000001_001100_1.png",
+      "input": "000001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,555 250,430-750,700 750,1250 625,1250 625,740",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000010_000000_1.png",
+      "input": "000010",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "500,1250 500,680 562,625 625,680 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000010_000010_1.png",
+      "input": "000010",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000011_000000_1.png",
+      "input": "000011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000011_000011_1.png",
+      "input": "000011",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000011_110000_1.png",
+      "input": "000011",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850-750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000100_000000_1.png",
+      "input": "000100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,1250 375,680 438,625 500,680 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_000100_000100_1.png",
+      "input": "000100",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,1250 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001000_000000_1.png",
+      "input": "001000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "250,1250 250,680 310,625 375,680 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001000_001000_1.png",
+      "input": "001000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_000000_1.png",
+      "input": "001100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,510 500,640 500,1250 250,1250 250,640",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_000001_1.png",
+      "input": "001100",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,485 625,390-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_001100_1.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_001100_2.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,185 375,310 250,185-375,615 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_100000_1.png",
+      "input": "001100",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,485-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_100001_1.png",
+      "input": "001100",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,480-625,0 750,0 750,480 625,420-375,630 500,760 500,1250 250,1250 250,760",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_001100_110011_1.png",
+      "input": "001100",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,375 0,610-500,0 750,0 750,610 500,375-375,635 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_010000_000000_1.png",
+      "input": "010000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "125,1250 125,680 185,625 250,680 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_010000_010000_1.png",
+      "input": "010000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,1250 125,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100000_000000_1.png",
+      "input": "100000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,600 125,650 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100000_001100_1.png",
+      "input": "100000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,420 375,555 250,420-0,705 125,750 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100000_100000_1.png",
+      "input": "100000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100001_000000_1.png",
+      "input": "100001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,570 125,625 125,1250 0,1250-625,1250 625,625 750,570 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100001_001100_1.png",
+      "input": "100001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,560 250,430-0,705 125,750 125,1250 0,1250-750,705 625,750 625,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100001_100001_1.png",
+      "input": "100001",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100011_000000_1.png",
+      "input": "100011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 125,735 125,1250 0,1250-500,735 750,705 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100011_100011_1.png",
+      "input": "100011",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_100011_110001_1.png",
+      "input": "100011",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,690 125,850 125,1250 0,1250-625,0 750,0 750,1250 500,1250 500,535 625,375",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110000_000000_1.png",
+      "input": "110000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,305 250,535 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110000_000011_1.png",
+      "input": "110000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "0,310 250,535 250,1250 0,1250-500,0 750,0 750,865 500,650",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110000_110000_1.png",
+      "input": "110000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110001_000000_1.png",
+      "input": "110001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 250,735 250,1250 0,1250-625,735 750,705 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110001_100011_1.png",
+      "input": "110001",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,375 250,540 250,1250 0,1250-500,0 750,0 750,1250 625,1250 625,850 500,690",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110001_110001_1.png",
+      "input": "110001",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110011_000000_1.png",
+      "input": "110011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,375 250,620 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110011_001100_1.png",
+      "input": "110011",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,225 375,360 250,225-0,375 250,625 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "beach",
+      "sprite": "beach_110011_110011_1.png",
+      "input": "110011",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
       "theme": "city",
       "sprite": "city_000000_000000_1.png",
       "input": "000000",
@@ -2563,6 +3049,1464 @@
           "y": 1009.9921875
         }
       ]
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000000_1.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000000_2.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "189,112 250,170 250,890 189,960 125,890 125,170",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000000_3.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "562,235 625,300 625,1020 562,1076 500,1020 500,300",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000001_1.png",
+      "input": "000000",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000010_1.png",
+      "input": "000000",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,790 560,855 500,790",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000011_1.png",
+      "input": "000000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,870 500,645",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_000100_1.png",
+      "input": "000000",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,540 440,600 375,540",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_001000_1.png",
+      "input": "000000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,290 314,350 250,290",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_001100_1.png",
+      "input": "000000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,610 375,740 250,610",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_010000_1.png",
+      "input": "000000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,540 187,600 125,540",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_100000_1.png",
+      "input": "000000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,530 0,625",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_100001_1.png",
+      "input": "000000",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,540 0,615-625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_100011_1.png",
+      "input": "000000",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,510 0,545-500,0 750,0 750,545 500,510",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_110000_1.png",
+      "input": "000000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000000_110001_1.png",
+      "input": "000000",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,500 0,540-625,0 750,0 750,540 625,545",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000001_000000_1.png",
+      "input": "000001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "625,1250 625,660 750,600 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000001_000001_1.png",
+      "input": "000001",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000001_001100_1.png",
+      "input": "000001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,555 250,430-750,700 750,1250 625,1250 625,740",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000010_000000_1.png",
+      "input": "000010",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "500,1250 500,680 562,625 625,680 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000010_000010_1.png",
+      "input": "000010",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000011_000000_1.png",
+      "input": "000011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000011_000011_1.png",
+      "input": "000011",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000011_110000_1.png",
+      "input": "000011",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850-750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000100_000000_1.png",
+      "input": "000100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,1250 375,680 438,625 500,680 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_000100_000100_1.png",
+      "input": "000100",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,1250 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001000_000000_1.png",
+      "input": "001000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "250,1250 250,680 310,625 375,680 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001000_001000_1.png",
+      "input": "001000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_000000_1.png",
+      "input": "001100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,510 500,640 500,1250 250,1250 250,640",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_000001_1.png",
+      "input": "001100",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,485 625,390-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_001100_1.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_001100_2.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,185 375,310 250,185-375,615 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_100000_1.png",
+      "input": "001100",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,485-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_100001_1.png",
+      "input": "001100",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,480-625,0 750,0 750,480 625,420-375,630 500,760 500,1250 250,1250 250,760",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_001100_110011_1.png",
+      "input": "001100",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,375 0,610-500,0 750,0 750,610 500,375-375,635 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_010000_000000_1.png",
+      "input": "010000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "125,1250 125,680 185,625 250,680 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_010000_010000_1.png",
+      "input": "010000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,1250 125,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100000_000000_1.png",
+      "input": "100000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,600 125,650 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100000_001100_1.png",
+      "input": "100000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,420 375,555 250,420-0,705 125,750 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100000_100000_1.png",
+      "input": "100000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100001_000000_1.png",
+      "input": "100001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,570 125,625 125,1250 0,1250-625,1250 625,625 750,570 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100001_001100_1.png",
+      "input": "100001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,560 250,430-0,705 125,750 125,1250 0,1250-750,705 625,750 625,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100001_100001_1.png",
+      "input": "100001",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100011_000000_1.png",
+      "input": "100011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 125,735 125,1250 0,1250-500,735 750,705 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100011_100011_1.png",
+      "input": "100011",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_100011_110001_1.png",
+      "input": "100011",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,690 125,850 125,1250 0,1250-625,0 750,0 750,1250 500,1250 500,535 625,375",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110000_000000_1.png",
+      "input": "110000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,305 250,535 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110000_000011_1.png",
+      "input": "110000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "0,310 250,535 250,1250 0,1250-500,0 750,0 750,865 500,650",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110000_110000_1.png",
+      "input": "110000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110001_000000_1.png",
+      "input": "110001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 250,735 250,1250 0,1250-625,735 750,705 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110001_100011_1.png",
+      "input": "110001",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,375 250,540 250,1250 0,1250-500,0 750,0 750,1250 625,1250 625,850 500,690",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110001_110001_1.png",
+      "input": "110001",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110011_000000_1.png",
+      "input": "110011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,375 250,620 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110011_001100_1.png",
+      "input": "110011",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,225 375,360 250,225-0,375 250,625 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "neon",
+      "sprite": "neon_110011_110011_1.png",
+      "input": "110011",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000000_1.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000000_2.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "189,112 250,170 250,890 189,960 125,890 125,170",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000000_3.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "562,235 625,300 625,1020 562,1076 500,1020 500,300",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000001_1.png",
+      "input": "000000",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000010_1.png",
+      "input": "000000",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,790 560,855 500,790",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000011_1.png",
+      "input": "000000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,870 500,645",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_000100_1.png",
+      "input": "000000",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,540 440,600 375,540",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_001000_1.png",
+      "input": "000000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,290 314,350 250,290",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_001100_1.png",
+      "input": "000000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,610 375,740 250,610",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_010000_1.png",
+      "input": "000000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,540 187,600 125,540",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_100000_1.png",
+      "input": "000000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,530 0,625",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_100001_1.png",
+      "input": "000000",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,540 0,615-625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_100011_1.png",
+      "input": "000000",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,510 0,545-500,0 750,0 750,545 500,510",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_110000_1.png",
+      "input": "000000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000000_110001_1.png",
+      "input": "000000",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,500 0,540-625,0 750,0 750,540 625,545",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000001_000000_1.png",
+      "input": "000001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "625,1250 625,660 750,600 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000001_000001_1.png",
+      "input": "000001",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000001_001100_1.png",
+      "input": "000001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,555 250,430-750,700 750,1250 625,1250 625,740",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000010_000000_1.png",
+      "input": "000010",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "500,1250 500,680 562,625 625,680 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000010_000010_1.png",
+      "input": "000010",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000011_000000_1.png",
+      "input": "000011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000011_000011_1.png",
+      "input": "000011",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000011_110000_1.png",
+      "input": "000011",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850-750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000100_000000_1.png",
+      "input": "000100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,1250 375,680 438,625 500,680 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_000100_000100_1.png",
+      "input": "000100",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,1250 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001000_000000_1.png",
+      "input": "001000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "250,1250 250,680 310,625 375,680 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001000_001000_1.png",
+      "input": "001000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_000000_1.png",
+      "input": "001100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,510 500,640 500,1250 250,1250 250,640",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_000001_1.png",
+      "input": "001100",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,485 625,390-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_001100_1.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_001100_2.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,185 375,310 250,185-375,615 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_100000_1.png",
+      "input": "001100",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,485-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_100001_1.png",
+      "input": "001100",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,480-625,0 750,0 750,480 625,420-375,630 500,760 500,1250 250,1250 250,760",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_001100_110011_1.png",
+      "input": "001100",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,375 0,610-500,0 750,0 750,610 500,375-375,635 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_010000_000000_1.png",
+      "input": "010000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "125,1250 125,680 185,625 250,680 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_010000_010000_1.png",
+      "input": "010000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,1250 125,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100000_000000_1.png",
+      "input": "100000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,600 125,650 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100000_001100_1.png",
+      "input": "100000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,420 375,555 250,420-0,705 125,750 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100000_100000_1.png",
+      "input": "100000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100001_000000_1.png",
+      "input": "100001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,570 125,625 125,1250 0,1250-625,1250 625,625 750,570 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100001_001100_1.png",
+      "input": "100001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,560 250,430-0,705 125,750 125,1250 0,1250-750,705 625,750 625,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100001_100001_1.png",
+      "input": "100001",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100011_000000_1.png",
+      "input": "100011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 125,735 125,1250 0,1250-500,735 750,705 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100011_100011_1.png",
+      "input": "100011",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_100011_110001_1.png",
+      "input": "100011",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,690 125,850 125,1250 0,1250-625,0 750,0 750,1250 500,1250 500,535 625,375",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110000_000000_1.png",
+      "input": "110000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,305 250,535 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110000_000011_1.png",
+      "input": "110000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "0,310 250,535 250,1250 0,1250-500,0 750,0 750,865 500,650",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110000_110000_1.png",
+      "input": "110000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110001_000000_1.png",
+      "input": "110001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 250,735 250,1250 0,1250-625,735 750,705 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110001_100011_1.png",
+      "input": "110001",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,375 250,540 250,1250 0,1250-500,0 750,0 750,1250 625,1250 625,850 500,690",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110001_110001_1.png",
+      "input": "110001",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110011_000000_1.png",
+      "input": "110011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,375 250,620 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110011_001100_1.png",
+      "input": "110011",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,225 375,360 250,225-0,375 250,625 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "snow",
+      "sprite": "snow_110011_110011_1.png",
+      "input": "110011",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000000_1.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000000_2.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "189,112 250,170 250,890 189,960 125,890 125,170",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000000_3.png",
+      "input": "000000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "562,235 625,300 625,1020 562,1076 500,1020 500,300",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000001_1.png",
+      "input": "000000",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000010_1.png",
+      "input": "000000",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,790 560,855 500,790",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000011_1.png",
+      "input": "000000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,870 500,645",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_000100_1.png",
+      "input": "000000",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,540 440,600 375,540",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_001000_1.png",
+      "input": "000000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,290 314,350 250,290",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_001100_1.png",
+      "input": "000000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,610 375,740 250,610",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_010000_1.png",
+      "input": "000000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,540 187,600 125,540",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_100000_1.png",
+      "input": "000000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,530 0,625",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_100001_1.png",
+      "input": "000000",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,540 0,615-625,0 750,0 750,615 625,540",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_100011_1.png",
+      "input": "000000",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,510 0,545-500,0 750,0 750,545 500,510",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_110000_1.png",
+      "input": "000000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000000_110001_1.png",
+      "input": "000000",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,500 0,540-625,0 750,0 750,540 625,545",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000001_000000_1.png",
+      "input": "000001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "625,1250 625,660 750,600 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000001_000001_1.png",
+      "input": "000001",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000001_001100_1.png",
+      "input": "000001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,555 250,430-750,700 750,1250 625,1250 625,740",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000010_000000_1.png",
+      "input": "000010",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "500,1250 500,680 562,625 625,680 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000010_000010_1.png",
+      "input": "000010",
+      "output": "000010",
+      "height": 1250,
+      "offRoad": "500,0 625,0 625,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000011_000000_1.png",
+      "input": "000011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000011_000011_1.png",
+      "input": "000011",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000011_110000_1.png",
+      "input": "000011",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,650 0,850-750,310 500,540 500,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000100_000000_1.png",
+      "input": "000100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,1250 375,680 438,625 500,680 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_000100_000100_1.png",
+      "input": "000100",
+      "output": "000100",
+      "height": 1250,
+      "offRoad": "375,0 500,0 500,1250 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001000_000000_1.png",
+      "input": "001000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "250,1250 250,680 310,625 375,680 375,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001000_001000_1.png",
+      "input": "001000",
+      "output": "001000",
+      "height": 1250,
+      "offRoad": "250,0 375,0 375,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_000000_1.png",
+      "input": "001100",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "375,510 500,640 500,1250 250,1250 250,640",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_000001_1.png",
+      "input": "001100",
+      "output": "000001",
+      "height": 1250,
+      "offRoad": "625,0 750,0 750,485 625,390-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_001100_1.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,1250 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_001100_2.png",
+      "input": "001100",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,185 375,310 250,185-375,615 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_100000_1.png",
+      "input": "001100",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,485-375,630 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_100001_1.png",
+      "input": "001100",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,420 0,480-625,0 750,0 750,480 625,420-375,630 500,760 500,1250 250,1250 250,760",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_001100_110011_1.png",
+      "input": "001100",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,375 0,610-500,0 750,0 750,610 500,375-375,635 500,750 500,1250 250,1250 250,750",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_010000_000000_1.png",
+      "input": "010000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "125,1250 125,680 185,625 250,680 250,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_010000_010000_1.png",
+      "input": "010000",
+      "output": "010000",
+      "height": 1250,
+      "offRoad": "125,0 250,0 250,1250 125,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100000_000000_1.png",
+      "input": "100000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,600 125,650 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100000_001100_1.png",
+      "input": "100000",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,420 375,555 250,420-0,705 125,750 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100000_100000_1.png",
+      "input": "100000",
+      "output": "100000",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100001_000000_1.png",
+      "input": "100001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,570 125,625 125,1250 0,1250-625,1250 625,625 750,570 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100001_001100_1.png",
+      "input": "100001",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,430 375,560 250,430-0,705 125,750 125,1250 0,1250-750,705 625,750 625,1250 750,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100001_100001_1.png",
+      "input": "100001",
+      "output": "100001",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100011_000000_1.png",
+      "input": "100011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 125,735 125,1250 0,1250-500,735 750,705 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100011_100011_1.png",
+      "input": "100011",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_100011_110001_1.png",
+      "input": "100011",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,690 125,850 125,1250 0,1250-625,0 750,0 750,1250 500,1250 500,535 625,375",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110000_000000_1.png",
+      "input": "110000",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,305 250,535 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110000_000011_1.png",
+      "input": "110000",
+      "output": "000011",
+      "height": 1250,
+      "offRoad": "0,310 250,535 250,1250 0,1250-500,0 750,0 750,865 500,650",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110000_110000_1.png",
+      "input": "110000",
+      "output": "110000",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110001_000000_1.png",
+      "input": "110001",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,705 250,735 250,1250 0,1250-625,735 750,705 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110001_100011_1.png",
+      "input": "110001",
+      "output": "100011",
+      "height": 1250,
+      "offRoad": "0,0 125,0 125,375 250,540 250,1250 0,1250-500,0 750,0 750,1250 625,1250 625,850 500,690",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110001_110001_1.png",
+      "input": "110001",
+      "output": "110001",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-625,0 750,0 750,1250 625,1250",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110011_000000_1.png",
+      "input": "110011",
+      "output": "000000",
+      "height": 1250,
+      "offRoad": "0,375 250,620 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110011_001100_1.png",
+      "input": "110011",
+      "output": "001100",
+      "height": 1250,
+      "offRoad": "250,0 500,0 500,225 375,360 250,225-0,375 250,625 250,1250 0,1250-750,375 750,1250 500,1250 500,625",
+      "decorations": []
+    },
+    {
+      "theme": "vulcano",
+      "sprite": "vulcano_110011_110011_1.png",
+      "input": "110011",
+      "output": "110011",
+      "height": 1250,
+      "offRoad": "0,0 250,0 250,1250 0,1250-500,0 750,0 750,1250 500,1250",
+      "decorations": []
     },
     {
       "theme": "woods",
