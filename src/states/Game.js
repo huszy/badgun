@@ -22,7 +22,7 @@ export default class extends Phaser.State {
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
     currentTheme: 'desert',
-    themesAvailable: ['desert', 'city'],
+    themesAvailable: ['desert', 'city', 'woods'],
     themeChangeCount: 0,
     requiredEnemies: 3,
     enemyAppearInterval: 1500,

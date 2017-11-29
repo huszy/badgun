@@ -2,39 +2,201 @@
   "elements": {
     "desert_airplane_crash": {
       "sprite": "desert/airplane-crash.png",
-      "hitArea": "132,120 371,120 371,174 132,174"
+      "hitArea": "132,120 371,120 371,174 132,174",
+      "width": "436",
+      "height": "256"
     },
     "desert_cactus": {
       "sprite": "desert/cactus.png",
-      "hitArea": "67,160 160,111 256,165 256,194 159,153 67,186"
+      "hitArea": "67,160 160,111 256,165 256,194 159,153 67,186",
+      "width": "296",
+      "height": "208"
     },
     "desert_monkeytree": {
       "sprite": "desert/monkeytree.png",
-      "hitArea": "105,233 168,233 171,288 104,288"
+      "hitArea": "105,233 168,233 171,288 104,288",
+      "width": "244",
+      "height": "308"
     },
     "desert_rock1": {
       "sprite": "desert/rock.png",
-      "hitArea": "92,126 175,91 242,91 242,124 175,124 146,154 92,154"
+      "hitArea": "92,126 175,91 242,91 242,124 175,124 146,154 92,154",
+      "width": "248",
+      "height": "168"
     },
     "desert_rock2": {
       "sprite": "desert/rock-2.png",
-      "hitArea": "69,143 217,143 241,88 285,88 258,202 175,159 88,159"
+      "hitArea": "69,143 217,143 241,88 285,88 258,202 175,159 88,159",
+      "width": "288",
+      "height": "216"
     },
     "desert_rock3": {
       "sprite": "desert/rock-3.png",
-      "hitArea": "50,105 214,105 205,163 76,163"
+      "hitArea": "50,105 214,105 205,163 76,163",
+      "width": "216",
+      "height": "184"
     },
     "desert_skull": {
       "sprite": "desert/skull.png",
-      "hitArea": "0,0 156,0 156,88 0,88"
+      "hitArea": "0,0 156,0 156,88 0,88",
+      "width": "156",
+      "height": "88"
     },
     "desert_trexbig": {
       "sprite": "desert/t-rex-big.png",
-      "hitArea": "84,195 433,195 433,246 84,246"
+      "hitArea": "84,195 433,195 433,246 84,246",
+      "width": "456",
+      "height": "276"
     },
     "desert_trexsmall": {
       "sprite": "desert/t-rex-small.png",
-      "hitArea": "83,69 438,69 438,113 83,113"
+      "hitArea": "83,69 438,69 438,113 83,113",
+      "width": "444",
+      "height": "132"
+    },
+    "city_bench": {
+      "sprite": "city/bench.png",
+      "hitArea": "",
+      "width": "76",
+      "height": "112"
+    },
+    "city_bench2": {
+      "sprite": "city/bench2.png",
+      "hitArea": "",
+      "width": "124",
+      "height": "52"
+    },
+    "city_busstop": {
+      "sprite": "city/bus-stop.png",
+      "hitArea": "",
+      "width": "108",
+      "height": "120"
+    },
+    "city_bush": {
+      "sprite": "city/bush.png",
+      "hitArea": "",
+      "width": "148",
+      "height": "132"
+    },
+    "city_containerblue": {
+      "sprite": "city/container-blue.png",
+      "hitArea": "",
+      "width": "276",
+      "height": "112"
+    },
+    "city_containerred": {
+      "sprite": "city/container-red.png",
+      "hitArea": "",
+      "width": "152",
+      "height": "264"
+    },
+    "city_fence": {
+      "sprite": "city/fence.png",
+      "hitArea": "",
+      "width": "124",
+      "height": "56"
+    },
+    "city_house": {
+      "sprite": "city/house.png",
+      "hitArea": "",
+      "width": "416",
+      "height": "208"
+    },
+    "city_house2": {
+      "sprite": "city/house2.png",
+      "hitArea": "",
+      "width": "412",
+      "height": "308"
+    },
+    "city_house3": {
+      "sprite": "city/house3.png",
+      "hitArea": "",
+      "width": "412",
+      "height": "240"
+    },
+    "city_hydrant": {
+      "sprite": "city/hydrant.png",
+      "hitArea": "",
+      "width": "80",
+      "height": "72"
+    },
+    "city_shop": {
+      "sprite": "city/shop.png",
+      "hitArea": "",
+      "width": "416",
+      "height": "300"
+    },
+    "city_train": {
+      "sprite": "city/train.png",
+      "hitArea": "",
+      "width": "92",
+      "height": "804"
+    },
+    "city_trash": {
+      "sprite": "city/trash.png",
+      "hitArea": "",
+      "width": "80",
+      "height": "80"
+    },
+    "city_tree": {
+      "sprite": "city/tree.png",
+      "hitArea": "",
+      "width": "288",
+      "height": "280"
+    },
+    "city_tree2": {
+      "sprite": "city/tree2.png",
+      "hitArea": "",
+      "width": "192",
+      "height": "292"
+    },
+    "woods_bush": {
+      "sprite": "woods/bush.png",
+      "hitArea": "",
+      "width": "148",
+      "height": "132"
+    },
+    "woods_house": {
+      "sprite": "woods/house.png",
+      "hitArea": "",
+      "width": "484",
+      "height": "236"
+    },
+    "woods_house2": {
+      "sprite": "woods/house2.png",
+      "hitArea": "",
+      "width": "416",
+      "height": "228"
+    },
+    "woods_pile": {
+      "sprite": "woods/pile.png",
+      "hitArea": "",
+      "width": "388",
+      "height": "136"
+    },
+    "woods_rock": {
+      "sprite": "woods/rock.png",
+      "hitArea": "",
+      "width": "256",
+      "height": "148"
+    },
+    "woods_rock2": {
+      "sprite": "woods/rock2.png",
+      "hitArea": "",
+      "width": "216",
+      "height": "184"
+    },
+    "woods_tree": {
+      "sprite": "woods/tree.png",
+      "hitArea": "",
+      "width": "288",
+      "height": "280"
+    },
+    "woods_tree2": {
+      "sprite": "woods/tree2.png",
+      "hitArea": "",
+      "width": "188",
+      "height": "292"
     }
   }
 }
