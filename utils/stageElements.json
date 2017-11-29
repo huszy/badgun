@@ -146,49 +146,49 @@
     },
     "woods_bush": {
       "sprite": "woods/bush.png",
-      "hitArea": "",
+      "hitArea": "63,84 94,84 94,116 63,116",
       "width": "148",
       "height": "132"
     },
     "woods_house": {
       "sprite": "woods/house.png",
-      "hitArea": "",
+      "hitArea": "165,148 393,148 393,223 165,223",
       "width": "484",
       "height": "236"
     },
     "woods_house2": {
       "sprite": "woods/house2.png",
-      "hitArea": "",
+      "hitArea": "165,148 393,148 393,223 165,223",
       "width": "416",
       "height": "228"
     },
     "woods_pile": {
       "sprite": "woods/pile.png",
-      "hitArea": "",
+      "hitArea": "98,87 374,87 374,127 98,127",
       "width": "388",
       "height": "136"
     },
     "woods_rock": {
       "sprite": "woods/rock.png",
-      "hitArea": "",
+      "hitArea": "63,81 249,81 249,128 63,128",
       "width": "256",
       "height": "148"
     },
     "woods_rock2": {
       "sprite": "woods/rock2.png",
-      "hitArea": "",
+      "hitArea": "52,108 215,108 215,140 139,169 60,137",
       "width": "216",
       "height": "184"
     },
     "woods_tree": {
       "sprite": "woods/tree.png",
-      "hitArea": "",
+      "hitArea": "118,170 181,170 181,234 118,234",
       "width": "288",
       "height": "280"
     },
     "woods_tree2": {
       "sprite": "woods/tree2.png",
-      "hitArea": "",
+      "hitArea": "76,202 123,202 123,250 76,250",
       "width": "188",
       "height": "292"
     },
