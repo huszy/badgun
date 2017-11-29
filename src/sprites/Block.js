@@ -27,7 +27,7 @@ export default class extends Phaser.Sprite {
     }
 
     if (this.definition.stageEnd === true) {
-      let finishLine = new FinishLine({game: this.game, x: 0, y: yPos})
+      let finishLine = new FinishLine({game: this.game, x: this.game.width / 2, y: yPos + 20})
       this.stageElements.push(finishLine)
       let finishLinePoly = new Phaser.Polygon([0, yPos - 10, this.game.width, yPos - 10, this.game.width, yPos + 10, 0, yPos + 10])
       finishLinePoly.isFinishLine = true

@@ -280,7 +280,7 @@ export default class extends Phaser.State {
     this.updateTimeLeft(Math.max(timeLeft, 0))
     if (timeLeft < 0) {
       // GAMEOVER
-      console.log('GAMEOVER')
+      console.log('Game over')
     }
   }
 
@@ -304,10 +304,8 @@ export default class extends Phaser.State {
           playerStageElementCollision.poly.isCrossed = true
           this.checkPointReached()
           return
-        } 
-        return
-
         }
+        return
       } else {
         this.player.startRecoveryAnimation()
         return
