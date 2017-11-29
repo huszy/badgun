@@ -95,11 +95,11 @@ export default class Enemy {
       this.possibleMovementMatrix.e = EMPTY_SPACE
     } else if (selfData.x >= 0 && selfData.x <= 5) {
       if (selfData.x > 0) {
-        this.possibleMovementMatrix.w = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: -1, y: 0 })
+        this.possibleMovementMatrix.w = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: -1, y: -1 })
         this.possibleMovementMatrix.nw = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: -1, y: -1 })
       }
       if (selfData.x < 5) {
-        this.possibleMovementMatrix.e = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 1, y: 0 })
+        this.possibleMovementMatrix.e = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 1, y: -1 })
         this.possibleMovementMatrix.ne = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 1, y: -1 })
       }
       this.possibleMovementMatrix.n = this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 0, y: -1 })

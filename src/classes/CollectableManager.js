@@ -26,10 +26,16 @@ export default class CollectableManager {
       let y = Math.floor(cp / 6)
       let x = cp - (y * 6)
 
-      let coin = new Coin({ game: this.game, x: (x * 125) + 62.5, y: (y * 125) + 62.5 + block.y, asset: 'coin'})
+      let coin = new Coin({ game: this.game, x: (x * 125) + 62.5, y: (y * 125) + 62.5 + block.y, asset: 'coin' })
       this.collectableGroup.add(coin)
       this.collectables.push(coin)
     })
+
+    this.cleanup()
+  }
+
+  static cleanup () {
+    this.removeCollectables(this.collectables.filter(x => x.y > this.game.camera.view.y + this.game.camera.view.height + 100))
   }
 
   static removeCollectables (collectables) {
@@ -38,6 +44,7 @@ export default class CollectableManager {
       if (idx > -1) {
         this.collectables.splice(idx, 1)
       }
+      this.collectableGroup.remove(collectable)
       collectable.destroy()
     })
   }

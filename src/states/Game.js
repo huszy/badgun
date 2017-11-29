@@ -9,6 +9,7 @@ import { STATE_NORMAL, STATE_COLLIDED } from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
 import CollectableManager from '../classes/CollectableManager'
 import Helicopter from '../sprites/Helicopter'
+import SoundManager from '../classes/SoundManager'
 
 const array = require('lodash/array')
 const collection = require('lodash/collection')
@@ -26,7 +27,7 @@ export default class extends Phaser.State {
     currentState: GAME_STATE_NOT_STARTED,
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
-    themesAvailable: ['desert', 'city', 'woods'],
+    themesAvailable: ['desert', 'vulcano', 'city', 'woods', 'snow', 'neon'],
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0,
@@ -86,10 +87,15 @@ export default class extends Phaser.State {
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     CollectableManager.initialize(this.game, this.collectablesGroup)
     EnemyManager.initialize(this.game, this.enemyGroup, this.enemyCollisionGroup, this.playerCollisionGroup)
+    SoundManager.initialize(this.game)
+
+    window.CollectableManager = CollectableManager
+    window.EnemyManager = EnemyManager
 
     // UI
     this.timeElement = document.getElementById('timeLeft')
     this.scoreElement = document.getElementById('score')
+    this.speedElement = document.getElementById('speed')
   }
   preload () {
     this.game.forceSingleUpdate = true
@@ -205,7 +211,7 @@ export default class extends Phaser.State {
         block.stageElements.forEach(elem => this.decorationGroup.add(elem))
         this.visibleBlocks.push(block)
 
-        CollectableManager.addCoinsToBlock(block, 10)
+        CollectableManager.addCoinsToBlock(block, Math.min(Math.max(this.gameConfig.stage, 3), 10))
 
         this.currentBlockIndex++
         hasEnough = false
@@ -282,6 +288,8 @@ export default class extends Phaser.State {
       // GAMEOVER
       console.log('Game over')
     }
+
+    this.speedElement.innerHTML = Math.round((this.player.sprite.body.velocity.my / 1000) * 3600)
   }
 
   handlePlayerCollisions () {
@@ -307,7 +315,7 @@ export default class extends Phaser.State {
         }
         return
       } else {
-        this.player.startRecoveryAnimation()
+        // this.player.startRecoveryAnimation()
         return
       }
     }

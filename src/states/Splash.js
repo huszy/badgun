@@ -40,6 +40,8 @@ export default class extends Phaser.State {
         this.load.image('se_' + prop, 'assets/stage_elements/'+stageElementsConfig.elements[prop].sprite)
       }
     }
+
+    this.game.load.audio('bass2', 'assets/sounds/bass2.wav')
   }
 
   create () {
