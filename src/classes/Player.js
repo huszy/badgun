@@ -34,6 +34,9 @@ export default class Player {
     this.showPlayer = this._showPlayer.bind(this)
     this.playerRecovered = this._playerRecovered.bind(this)
     this.returnToNormalState = this._returnToNormalState.bind(this)
+
+    this.explosionSignal = new Phaser.Signal()
+    this.explosionSignal.add(this._onExplosionFinished.bind(this))
   }
 
   getPlayerConfigForStage (stageNum) {
@@ -200,8 +203,14 @@ export default class Player {
   }
 
   _playExplosion () {
-    let explosion = new CarExplosion({ game: this.game, x: this.sprite.x, y: this.sprite.y, asset: 'carExplosion' })
+    let explosion = new CarExplosion({ game: this.game, x: this.sprite.x, y: this.sprite.y, asset: 'carExplosion', onComplete: this.explosionSignal })
+    explosion.name = 'explosion'
     this.playerGroup.add(explosion)
+  }
+
+  _onExplosionFinished () {
+    console.log('explosion finished')
+    this.playerGroup.remove(this.playerGroup.getByName('explosion'))
   }
 
   _showPlayer () {
