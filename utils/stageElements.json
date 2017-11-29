@@ -284,43 +284,43 @@
     },
     "neon_alienship": {
       "sprite": "neon/alienship.png",
-      "hitArea": "",
+      "hitArea": "91,141 120,80 331,80 315,145 280,196 111,197",
       "width": "376",
       "height": "248"
     },
     "neon_crater": {
       "sprite": "neon/crater.png",
-      "hitArea": "",
+      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
       "width": "396",
       "height": "200"
     },
     "neon_crater2": {
       "sprite": "neon/crater2.png",
-      "hitArea": "",
+      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
       "width": "396",
       "height": "200"
     },
     "neon_crater3": {
       "sprite": "neon/crater3.png",
-      "hitArea": "",
+      "hitArea": "57,70 110,42 263,42 318,72 392,72 436,117 332,146 306,124 147,124",
       "width": "436",
       "height": "156"
     },
     "neon_hole": {
       "sprite": "neon/hole.png",
-      "hitArea": "",
+      "hitArea": "44,77 148,77 148,127, 44,127",
       "width": "200",
       "height": "156"
     },
     "neon_meteorit": {
       "sprite": "neon/meteorit.png",
-      "hitArea": "",
+      "hitArea": "104,133 378,133 378,192 104,192",
       "width": "420",
       "height": "244"
     },
     "neon_rocket": {
       "sprite": "neon/rocket.png",
-      "hitArea": "",
+      "hitArea": "142,294 437,294 437,330 142,330",
       "width": "456",
       "height": "376"
     }
