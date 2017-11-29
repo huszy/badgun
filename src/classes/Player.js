@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import PlayerSprite from '../sprites/Player'
 import { setTimeout, clearTimeout } from 'timers'
 import { debugHTML } from '../utils'
+import CarExplosion from '../sprites/CarExplosion'
 
 export const STATE_NORMAL = 'normal'
 export const STATE_COLLIDED = 'collided'
@@ -191,10 +192,16 @@ export default class Player {
     this.playerConfig.state = STATE_COLLIDED
     this.crashPosition = { x: this.sprite.x, y: this.sprite.y }
     this.sprite.visible = false
+    this._playExplosion()
     this.sprite.body.setZeroVelocity()
     this.sprite.body.setZeroRotation()
     this.sprite.body.setZeroForce()
     this.game.state.getCurrentState().helicopter.moveIn(this.crashPosition.x, this.crashPosition.y, this.showPlayer, this.playerRecovered)
+  }
+
+  _playExplosion () {
+    let explosion = new CarExplosion({ game: this.game, x: this.sprite.x, y: this.sprite.y, asset: 'carExplosion' })
+    this.playerGroup.add(explosion)
   }
 
   _showPlayer () {
