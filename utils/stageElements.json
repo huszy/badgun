@@ -194,55 +194,43 @@
     },
     "vulcano_bones": {
       "sprite": "vulcano/bones.png",
-      "hitArea": "",
+      "hitArea": "17,30 171,30 171,80 17,80",
       "width": "184",
       "height": "124"
     },
     "vulcano_crater": {
       "sprite": "vulcano/crater.png",
-      "hitArea": "",
+      "hitArea": "28,20 188,20 188,46 28,46",
       "width": "200",
       "height": "80"
     },
-    "vulcano_fire": {
-      "sprite": "vulcano/fire.png",
-      "hitArea": "",
-      "width": "60",
-      "height": "60"
-    },
-    "vulcano_fire2": {
-      "sprite": "vulcano/fire2.png",
-      "hitArea": "",
-      "width": "68",
-      "height": "76"
-    },
     "vulcano_hole": {
       "sprite": "vulcano/hole.png",
-      "hitArea": "",
+      "hitArea": "44,77 148,77 148,127, 44,127",
       "width": "192",
       "height": "168"
     },
     "vulcano_tree": {
       "sprite": "vulcano/tree.png",
-      "hitArea": "",
+      "hitArea": "64,100 103,100 103,155 64,155",
       "width": "168",
       "height": "200"
     },
     "vulcano_treetrunk": {
-      "sprite": "vulcano/treetrun.png",
-      "hitArea": "",
+      "sprite": "vulcano/treetrunk.png",
+      "hitArea": "8,98 154,12 180,46 75,110 24,114",
       "width": "188",
       "height": "136"
     },
     "vulcano_vulcan": {
       "sprite": "vulcano/vulcan.png",
-      "hitArea": "",
+      "hitArea": "44,174 281,174 323,220 250,245 72,245 29,227",
       "width": "352",
       "height": "284"
     },
     "vulcano_vulcan2": {
       "sprite": "vulcano/vulcan2.png",
-      "hitArea": "",
+      "hitArea": "0,176 55,146 269,148 311,190 23,190",
       "width": "316",
       "height": "232"
     },
