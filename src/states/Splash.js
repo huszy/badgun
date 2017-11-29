@@ -18,6 +18,7 @@ export default class extends Phaser.State {
     //
     // load your assets
     //
+    this.load.atlas('intro', 'assets/intro/introspritesheet.png', 'assets/intro/introsprites.json')
     this.load.image('car', 'assets/images/car.png')
     this.load.spritesheet('carExplosion', 'assets/images/explosion.png', 350, 350)
     this.load.image('stageFinish', 'assets/images/finish-line.png')
@@ -49,5 +50,6 @@ export default class extends Phaser.State {
 
   create () {
     this.state.start('Game')
+    // this.state.start('Intro')
   }
 }
