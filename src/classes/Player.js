@@ -40,7 +40,9 @@ export default class Player {
 
     this.explosionSignal = new Phaser.Signal()
     this.explosionSignal.add(this._onExplosionFinished.bind(this))
-    this.throttledSoundSetPlaybackRate = fn.throttle((value) => { SoundManager.setGlobalPlaybackRate(value); console.log(value) }, 200)
+    this.throttledSoundSetPlaybackRate = fn.throttle((value) => { SoundManager.setSoundPlaybackRate(this.carEngineSound, value) }, 200)
+
+    this.carEngineSound = SoundManager.getFXByName('carengine')
   }
 
   getPlayerConfigForStage (stageNum) {
@@ -168,13 +170,8 @@ export default class Player {
     let highRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.maxVelocity], [1, 1.2])
     let lowRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.minVelocity], [1, 0.94])
     let rate = highRange < 1 ? lowRange : highRange
-    console.log(rate)
-    SoundManager.setSoundPlaybackRate(this.game.badgun.carEngineSound, rate)
-    // this.throttledSoundSetPlaybackRate(rate)
 
-    // SoundManager.setGlobalPlaybackRate(rate)
-
-    // console.log('Player velo: '+this.sprite.body.velocity.x+' Max: '+this.playerConfig.initialVelocity)
+    this.throttledSoundSetPlaybackRate(rate)
 
     let camDiffY = this.game.math.linear(0, this.sprite.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
     camDiffY = 0
@@ -272,6 +269,14 @@ export default class Player {
     this.blinkTween.stop()
     this.sprite.alpha = 1
     this.playerConfig.state = STATE_NORMAL
+  }
+
+  startCarEngine () {
+    this.carEngineSound.loopFull(0.3)
+  }
+
+  fadeOutCarEngine () {
+    SoundManager.fadeOutFx(this.carEngineSound)
   }
 
   setupCrashEffect () {

@@ -188,8 +188,7 @@ export default class extends Phaser.State {
     this.game.physics.p2.resume()
     this.gameConfig.currentState = GAME_STATE_STARTED
 
-    this.carEngineSound = SoundManager.getFXByName('carengine')
-    this.carEngineSound.loopFull(0.3)
+    this.player.startCarEngine()
   }
 
   hitEnemy (body1, body2) {
@@ -299,12 +298,22 @@ export default class extends Phaser.State {
     let totalTime = ((this.gameConfig.stage + 1) * (THEME_TIME_IN_SECONDS * 1000))
     let timeLeft = totalTime - (this.game.time.now - this.gameConfig.gameStartTime - this.game.time.pauseDuration)
     this.updateTimeLeft(Math.max(timeLeft, 0))
-    if (timeLeft < 0) {
+    if (timeLeft < 25000) {
       // GAMEOVER
-      console.log('Game over')
+      this.gameConfig.currentState = GAME_STATE_GAMEOVER
+      this.handleGameOver()
+      return
     }
 
     this.speedElement.innerHTML = Math.round((this.player.sprite.body.velocity.my / 1000) * 3600)
+  }
+
+  handleGameOver () {
+    this.game.physics.p2.pause()
+    this.game.camera.fade('#000000', 500, 0, true)
+    SoundManager.shouldStopLoop = true
+    SoundManager.fadeOutSounds()
+    this.player.fadeOutCarEngine()
   }
 
   handlePlayerCollisions () {

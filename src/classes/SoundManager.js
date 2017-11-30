@@ -1,3 +1,5 @@
+import Phaser from 'phaser'
+
 const collection = require('lodash/collection')
 const soundConfig = require('../soundConfig.json')
 
@@ -11,6 +13,7 @@ export default class SoundManager {
   static loopPlaybackRate = 1
 
   static carEngine = null
+  static shouldStopLoop = false
 
   static initialize (game) {
     this.game = game
@@ -26,6 +29,9 @@ export default class SoundManager {
       let snd = game.add.audio(sound.name)
       this.fx.push(snd)
     })
+
+    this.onFadeOut = new Phaser.Signal()
+    this.onFadeOut.add(this.stopSound.bind(this), this)
 
     this.game.sound.setDecodedCallback(this.loops, this.decodedCallback.bind(this), this)
   }
@@ -49,10 +55,32 @@ export default class SoundManager {
   }
 
   static hasLooped (sound) {
+    if (this.shouldStopLoop) {
+      sound.stop()
+      return
+    }
     let snd = this.getRandomLoopByCategory(sound.category)
     snd.onLoop.add(this.hasLooped, this)
     snd.loopFull(0.3)
     snd._sound.playbackRate.value = this.loopPlaybackRate
+  }
+
+  static fadeOutSounds () {
+    Object.keys(this.playingLoops).forEach(function (key, index) {
+      if (SoundManager.playingLoops.hasOwnProperty(key)) {
+        SoundManager.playingLoops[key].onFadeComplete = SoundManager.onFadeOut
+        SoundManager.playingLoops[key].fadeOut(500)
+      }
+    })
+  }
+
+  static fadeOutFx (fx) {
+    fx.onFadeComplete = SoundManager.onFadeOut
+    fx.fadeOut(500)
+  }
+
+  static stopSound (item) {
+    item.stop()
   }
 
   static getLoopByName (name) {
