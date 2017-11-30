@@ -31,6 +31,10 @@ export default class extends Phaser.State {
     this.load.image('helicopter_rotor_big', 'assets/images/helicopter_rotor_big.png')
     this.load.image('helicopter_rotor_small', 'assets/images/helicopter_rotor_small.png')
 
+    this.load.image('impressum', 'assets/intro/impressum.png')
+    this.load.image('infoButton', 'assets/intro/info-btn.png')
+    this.load.image('transparentButton', 'assets/intro/transparent.png')
+
     this.load.spritesheet('coin', 'assets/images/coin_spin.png', 56, 56)
 
     blockDefs.blocks.forEach((block) => {

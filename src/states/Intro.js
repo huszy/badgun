@@ -36,6 +36,22 @@ export default class extends Phaser.State {
     this.startButton = this.game.add.button(this.game.world.centerX - 174, this.game.world.height, 'startButton', this.onStartButtonClick.bind(this), this, 0, 0, 0, 0)
     this.startButton.inputEnabled = true
     this.startButton.alpha = 0
+
+    // Info button
+    this.infoButton = this.game.add.button(40, 40, 'infoButton', this.showImpressum.bind(this), this, 0, 0, 0, 0)
+    this.infoButton.inputEnabled = true
+    this.infoButton.alpha = 0
+
+    // Impressum close
+    this.transparentButton = new Phaser.Button(this.game, 595, 50, 'transparentButton', this.hideImpressum.bind(this), this, 0, 0, 0, 0)
+    this.transparentButton.inputEnabled = false
+    this.transparentButton.alpha = 1
+
+    this.impressumGroup = new Phaser.Group(this.game, undefined, 'impressum', false, true)
+    this.impressumGroup.visible = false
+    let impressumSprite = this.game.add.sprite(0, 0, 'impressum')
+    this.impressumGroup.add(impressumSprite)
+    this.impressumGroup.add(this.transparentButton)
   }
 
   create () {
@@ -73,6 +89,10 @@ export default class extends Phaser.State {
     this.startBtnTween = this.game.add.tween(this.startButton)
     this.startBtnTween.to({ alpha: 1, y: this.game.world.height - 200 }, 400, 'Linear', true, 0)
     this.startBtnTween.start()
+
+    this.infoBtnTween = this.game.add.tween(this.infoButton)
+    this.infoBtnTween.to({ alpha: 1 }, 400, 'Linear', true, 0)
+    this.infoBtnTween.start()
   }
 
   scheduleRandomThunder () {
@@ -82,5 +102,19 @@ export default class extends Phaser.State {
 
   playThunder () {
     this.bgAnimThunderPhase.play()
+  }
+
+  showImpressum () {
+    this.impressumGroup.visible = true
+    this.transparentButton.inputEnabled = true
+    this.infoButton.inputEnabled = false
+    this.startButton.inputEnabled = false
+  }
+
+  hideImpressum () {
+    this.impressumGroup.visible = false
+    this.transparentButton.inputEnabled = false
+    this.infoButton.inputEnabled = true
+    this.startButton.inputEnabled = true
   }
 }

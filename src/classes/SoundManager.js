@@ -85,6 +85,7 @@ export default class SoundManager {
   }
 
   static stopSound (item) {
+    item.onStop.removeAll(this)
     item.stop()
   }
 

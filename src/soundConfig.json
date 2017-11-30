@@ -13,11 +13,6 @@
     {
       "name":"silence",
       "file":"silence.wav",
-      "category":"drums"
-    },
-    {
-      "name":"silence",
-      "file":"silence.wav",
       "category":"lead"
     },
     {

@@ -314,6 +314,7 @@ export default class extends Phaser.State {
     SoundManager.shouldStopLoop = true
     SoundManager.fadeOutSounds()
     this.player.fadeOutCarEngine()
+    this.gameConfig.currentState = GAME_STATE_GAMEOVER
   }
 
   handlePlayerCollisions () {

@@ -11,6 +11,8 @@ export const STATE_NORMAL = 'normal'
 export const STATE_COLLIDED = 'collided'
 export const STATE_INVINCIBLE = 'invincible'
 
+const COLLISION_OFFSET = 10
+
 export default class Player {
   playerConfig = {
     initialVelocity: -1000,
@@ -82,6 +84,8 @@ export default class Player {
     this.sprite.body.fixedRotation = true
     this.sprite.body.damping = 0
     this.sprite.body.friction = 1
+
+    this.sprite.body.setRectangle(this.sprite.width - 4, this.sprite.height - 4)
 
     this.sprite.body.setCollisionGroup(this.playerCollisionGroup)
 
@@ -196,8 +200,8 @@ export default class Player {
     visibleBlocks.forEach((block) => {
       block.stageElementsHitArea.forEach((poly) => {
         if (poly.contains(this.sprite.x, this.sprite.y) ||
-          poly.contains(this.sprite.x - this.sprite.width / 2, this.sprite.y - this.sprite.height / 2) ||
-          poly.contains(this.sprite.x + this.sprite.width / 2, this.sprite.y + this.sprite.height / 2)) {
+          poly.contains(this.sprite.x - this.sprite.width / 2 + COLLISION_OFFSET, this.sprite.y - this.sprite.height / 2 + COLLISION_OFFSET) ||
+          poly.contains(this.sprite.x + this.sprite.width / 2 - COLLISION_OFFSET, this.sprite.y + this.sprite.height / 2 - COLLISION_OFFSET)) {
           playerStageElementCollision = {block: block, poly: poly}
         }
       })
