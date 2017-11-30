@@ -9,8 +9,6 @@ const elemOutput = '../src/stageElementsConfig.json'
 
 const array = require('lodash/array')
 
-function d2h (d) { return (+d).toString(16) }
-
 function readDirPromise (filePath) {
   return new Promise((resolve, reject) => {
     fs.readdir(filePath, function (err, filePaths) {
@@ -23,33 +21,6 @@ function readDirPromise (filePath) {
   })
 }
 
-function parseTile (data) {
-  // Assume that the png is 750x1250
-  let tileColors = []
-  for (var y = 9; y >= 0; y--) {
-    for (var x = 0; x < 6; x++) {
-      // Sample for corner offset by 25
-      let colors = []
-      // Top left
-      let idx = (750 * ((y * 125) + 25) + ((x * 125) + 25)) << 2
-
-      colors.push(d2h(data[idx]) + d2h(data[idx + 1]) + d2h(data[idx + 2]))
-      // Top right
-      idx = (750 * ((y * 125) + 25) + ((x * 125) + 100)) << 2
-      colors.push(d2h(data[idx]) + d2h(data[idx + 1]) + d2h(data[idx + 2]))
-      // Bottom left
-      idx = (750 * ((y * 125) + 100) + ((x * 125) + 25)) << 2
-      colors.push(d2h(data[idx]) + d2h(data[idx + 1]) + d2h(data[idx + 2]))
-      // Bottom right
-      idx = (750 * ((y * 125) + 100) + ((x * 125) + 100)) << 2
-      colors.push(d2h(data[idx]) + d2h(data[idx + 1]) + d2h(data[idx + 2]))
-
-      tileColors[y * 6 + x] = colors
-    }
-  }
-  return tileColors
-}
-
 let blockConfig = {blocks: []}
 
 readDirPromise(stagesFolder).then((filePaths) => {
@@ -60,20 +31,20 @@ readDirPromise(stagesFolder).then((filePaths) => {
     let dimensions = sizeOfImage(stagesFolder + fileName)
 
     let offRoadDef = offRoadDefinition.find(function (def) {
-      return def.hasOwnProperty(input + "_" + output + "_" + variation)
+      return def.hasOwnProperty(input + '_' + output + '_' + variation)
     })
     let polyDef = ''
     if (offRoadDef == null) {
-      console.error("No offroad definition found for: " + input + "_" + output + "_" + variation)
+      console.error('No offroad definition found for: ' + input + '_' + output + '_' + variation)
     } else {
       // Check definition
-      polyDef = offRoadDef[input + "_" + output + "_" + variation]
+      polyDef = offRoadDef[input + '_' + output + '_' + variation]
       let polys = polyDef.split('-')
-      polys.forEach(function(def) {
-        let coords = def.split(" ")
-        coords.forEach(function(coord) {
-          if(coord.split(',').length != 2) {
-            console.error("Error in definition: " + input + "_" + output + "_" + variation + ':' + def)
+      polys.forEach(function (def) {
+        let coords = def.split(' ')
+        coords.forEach(function (coord) {
+          if (coord.split(',').length !== 2) {
+            console.error('Error in definition: ' + input + '_' + output + '_' + variation + ':' + def)
           }
         })
       })
@@ -86,7 +57,7 @@ readDirPromise(stagesFolder).then((filePaths) => {
         usedDecorationElements.push(deco.element)
       })
     } else {
-      console.log("No decoration for: "+theme + '_' + input + '_' + output + '_' + variation)
+      console.log('No decoration for: ' + theme + '_' + input + '_' + output + '_' + variation)
     }
 
     blockConfig.blocks.push({ theme: theme, sprite: fileName, input: input, output: output, height: dimensions.height, offRoad: polyDef, decorations: decorations || [] })
@@ -94,7 +65,7 @@ readDirPromise(stagesFolder).then((filePaths) => {
 
   fs.writeFile(output, JSON.stringify(blockConfig, null, 2), {}, function (err) {
     if (err != null) {
-      console.error('Error writing blockConfig.json'); 
+      console.error('Error writing blockConfig.json')
     }
   })
 
@@ -102,8 +73,7 @@ readDirPromise(stagesFolder).then((filePaths) => {
 
   fs.writeFile(elemOutput, JSON.stringify({elements: stageElemDef.elements}, null, 2), {}, function (err) {
     if (err != null) {
-      console.error('Error writing stageElementsConfig.json') 
+      console.error('Error writing stageElementsConfig.json')
     }
   })
-
 })
