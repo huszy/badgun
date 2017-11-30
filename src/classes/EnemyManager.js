@@ -29,7 +29,7 @@ export default class EnemyManager {
   }
 
   static getAvailableEnemies () {
-    return enemyDefs.enemies.map(x => 'enemy_' + x.name)
+    return enemyDefs.enemies
   }
 
   static addRandomEnemyIfNeeded (x, y, gameConfig, timeElapsed) {
@@ -46,9 +46,9 @@ export default class EnemyManager {
       game: this.game,
       x: x,
       y: y,
-      asset: enemyDef
+      asset: 'enemy_' + enemyDef.name
     })
-    let enemy = new Enemy(enemySpriteDef, this.game, this.enemyGroup, this.enemyCollisionGroup, enemyDef)
+    let enemy = new Enemy(enemySpriteDef, this.game, this.enemyGroup, this.enemyCollisionGroup, Object.assign({}, enemyDef))
     this.enemies.push(enemy)
     // this.enemyGroup.add(enemy.sprite)
     // enemy.sprite.body.setRectangle(enemy.sprite.width, enemy.sprite.height)
@@ -59,7 +59,7 @@ export default class EnemyManager {
     this.blockMatrix = blockMatrix
     this.enemies.forEach(x => x.updateMovement(this.blockMatrix))
 
-    this.enemies.forEach(x => { if (x.sprite.y > this.game.camera.view.y + this.game.camera.view.height + 100) { this.removeEnemy(x) } })
+    this.enemies.forEach(x => { if (x.sprite.y > this.game.camera.view.y + this.game.camera.view.height + x.sprite.height + 100) { this.removeEnemy(x) } })
   }
 
   static removeEnemy (enemy) {

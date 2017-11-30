@@ -3,14 +3,62 @@
     {
       "name":"beetle",
       "sprite":"enemy_beetle",
-      "minVelocity": 200,
-      "maxVelocity": 400
+      "mass": 1
     },
     {
       "name":"buggy",
       "sprite":"enemy_buggy",
-      "minVelocity": 200,
-      "maxVelocity": 400
+      "mass": 1
+    },
+    {
+      "name":"delorian",
+      "sprite":"enemy_delorian",
+      "mass": 1
+    },
+    {
+      "name":"f1",
+      "sprite":"enemy_F1",
+      "mass": 0.4
+    },
+    {
+      "name":"grey",
+      "sprite":"enemy_grey",
+      "mass": 1
+    },
+    {
+      "name":"jeep",
+      "sprite":"enemy_jeep",
+      "mass": 1
+    },
+    {
+      "name":"mini",
+      "sprite":"enemy_mini",
+      "mass": 0.8
+    },
+    {
+      "name":"pickup_green",
+      "sprite":"enemy_pickup-green",
+      "mass": 2
+    },
+    {
+      "name":"pickup_red",
+      "sprite":"enemy_pickup-red",
+      "mass": 2
+    },
+    {
+      "name":"schoolbus",
+      "sprite":"enemy_school-bus",
+      "mass": 4
+    },
+    {
+      "name":"suv",
+      "sprite":"enemy_suv",
+      "mass": 3
+    },
+    {
+      "name":"taxi",
+      "sprite":"enemy_taxi",
+      "mass": 1
     }
   ]
 }

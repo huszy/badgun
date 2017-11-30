@@ -38,8 +38,9 @@ export default class Enemy {
     this.sprite.body.setCollisionGroup(collisionGroup)
     this.sprite.body.collideWorldBounds = false
     this.sprite.body.angularDamping = 1
-    this.sprite.body.damping = 0
+    this.sprite.body.damping = 0.1
     this.sprite.body.velocity.y = this.generatedSpeed
+    this.sprite.body.mass = enemyDefinition.mass || 1
     
     this.stopMoving = this._stopMoving.bind(this)
     this.recoveryFinished = this._onRecoveryFinished.bind(this)
@@ -78,7 +79,7 @@ export default class Enemy {
   getBlockPositionOnScreen (blockMatrix) {
     let startY = blockMatrix.startY
     let topPos = (this.sprite.body.y - startY - (this.sprite.height / 2))
-    let x = Math.floor((this.sprite.body.x - (this.sprite.width / 2)) / 125)
+    let x = Math.floor(this.sprite.body.x / 125)
     let y = Math.floor(topPos / 125)
     let idx = y * 6 + x
     return { x: x, y: y, idx: idx }
@@ -110,13 +111,24 @@ export default class Enemy {
       this.possibleMovementMatrix.ne = null
       this.possibleMovementMatrix.e = null
     }
+
+    // IF enemy stuck somehow, try to recover it
+    if (this.possibleMovementMatrix.ne !== EMPTY_SPACE && this.possibleMovementMatrix.nw !== EMPTY_SPACE && this.possibleMovementMatrix.n !== EMPTY_SPACE) {
+      if (selfData.x > 0) {
+        this.possibleMovementMatrix.nw = EMPTY_SPACE
+      } else {
+        this.possibleMovementMatrix.ne = EMPTY_SPACE
+      }
+    }
   }
 
   updateMovement (blockMatrix) {
     this._createPossibleMovementMatrix(blockMatrix)
 
-    debugHTML(`NW: ${this.possibleMovementMatrix.nw}, N: ${this.possibleMovementMatrix.n}, NE: ${this.possibleMovementMatrix.ne}, SD: ${JSON.stringify(this.possibleMovementMatrix.selfData)}, STATE: ${this.currentState}`)
-    // console.dir(this.possibleMovementMatrix)
+    /* // DEBUG AUTOPILOT INFO
+    let dy = this.sprite.y - this.game.camera.view.y - this.sprite.height / 2
+    this.game.debug.text(`L: ${this.possibleMovementMatrix.selfData.x} NW: ${this.possibleMovementMatrix.nw}, N: ${this.possibleMovementMatrix.n}, NE: ${this.possibleMovementMatrix.ne}`, this.sprite.x - this.sprite.width, dy, '#ff0000')
+    */
 
     if (this.currentState === STATE_DRIFTING) { return }
     if (this.currentState === STATE_INCONTACT) { return }
@@ -180,81 +192,13 @@ export default class Enemy {
 
     this.sprite.body.velocity.x = 0
     let recoverTween = this.game.add.tween(this.sprite.body)
-    recoverTween.to({x: idealLanePos}, 300, "Linear")
+    recoverTween.to({x: idealLanePos}, 300, 'Linear')
     recoverTween.onComplete.add(this._laneRecovered, this)
     recoverTween.start()
   }
 
   _laneRecovered () {
     this.currentState = STATE_AUTOPILOT
-  }
-
-  update (blockMatrix, yOffset) {
-    
-    if (this.sprite.body.velocity.x > 0) {
-      this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x - 10 * 1.75, 0)
-    } else if (this.sprite.body.velocity.x < 0) {
-      this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x + 10 * 1.75, 0)
-    }
-
-    /*
-    let worldVelocityDiff = (this.options.worldMaxVelocity - this.worldCurrentVelocity)
-    if (this.sprite.body.velocity.y > this.originalVelocity - worldVelocityDiff) {
-      this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y - 10 * 1.75, this.originalVelocity - worldVelocityDiff)
-    } else if (this.sprite.body.velocity.y < this.originalVelocity - worldVelocityDiff) {
-      this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y + 10 * 1.75, this.originalVelocity - worldVelocityDiff)
-    }*/
-
-    // Get current block position
-    let selfData = this.getPositionData(yOffset)
-
-    // Check directions
-    let canMoveLeft = true
-    let canMoveRight = true
-    let canStay = true
-    
-
-    // Check left
-    if (selfData.x === 0) { canMoveLeft = false }
-    if (!this._getFreeCellByDirection(blockMatrix.data, selfData, { x: -1, y: -1 })) {
-      canMoveLeft = false
-    }
-
-    if (selfData.x === 5) { canMoveRight = false }
-    if (!this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 1, y: -1 })) {
-      canMoveRight = false
-    }
-
-    if (!this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 0, y: -1 })) {
-      canStay = false
-    }
-
-    if (!this._getFreeCellByDirection(blockMatrix.data, selfData, { x: 0, y: -1 })) {
-      canStay = false
-    }
-
-    // console.log(`Can move: STAY: ${canStay}, LEFT: ${canMoveLeft}, RIGHT: ${canMoveRight}`)
-    
-    if (this.isMoving) { return }
-    // console.log(canMoveLeft, canMoveRight, canStay)
-    if (!canStay) {
-      if (canMoveLeft && canMoveRight) {
-        if (Math.round(Math.random())) {
-          this._moveLeftP2()
-        } else {
-          this._moveRightP2()
-        }
-      } else {
-        if (canMoveLeft) {
-          this._moveLeftP2()
-        } else if (canMoveRight) {
-          this._moveRightP2()
-        } else {
-          console.log("CAR CANNOT MOVE!!!")
-          this.sprite.body.velocity.y += 10
-        }
-      }
-    }
   }
 
   _stopMoving () {

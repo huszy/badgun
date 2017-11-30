@@ -274,7 +274,7 @@ export default class extends Phaser.State {
       }
 
       if (availableSpaces.length > 0) {
-        EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 100, this.gameConfig, this.game.time.elapsedMS)
+        EnemyManager.addRandomEnemyIfNeeded(62.5 + (collection.sample(availableSpaces) * 125), this.game.camera.view.y - 200, this.gameConfig, this.game.time.elapsedMS)
       }
 
       EnemyManager.updateMovement(this.blockMatrix)
@@ -282,7 +282,7 @@ export default class extends Phaser.State {
 
     // Update times
     let totalTime = ((this.gameConfig.stage + 1) * (THEME_TIME_IN_SECONDS * 1000))
-    let timeLeft = totalTime - (this.game.time.now - this.gameConfig.gameStartTime + this.game.time.pauseDuration)
+    let timeLeft = totalTime - (this.game.time.now - this.gameConfig.gameStartTime - this.game.time.pauseDuration)
     this.updateTimeLeft(Math.max(timeLeft, 0))
     if (timeLeft < 0) {
       // GAMEOVER
