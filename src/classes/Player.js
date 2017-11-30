@@ -93,6 +93,7 @@ export default class Player {
       this.startTime = this.game.time.now
       this.startY = this.sprite.body.y
     }
+    /*
     let currY = this.sprite.body.y
     // console.log('TimeDiff: '+ (this.game.time.now - this.lastUpdate) + ' ydiff: ' + (this.lastY - currY))
     let avgTotal = (this.sprite.body.y - this.startY) / ((this.game.time.now - this.startTime) / 1000)
@@ -100,7 +101,7 @@ export default class Player {
     // console.log('TotalTDiff: '+ (this.game.time.now - this.startTime) +' TY: '+(this.sprite.body.y - this.startY)+ 'AVGTotal: '+avgTotal+' AVG: '+avg)
     // console.log('Velo: '+this.sprite.body.velocity.y)
     this.lastUpdate = this.game.time.now
-    this.lastY = currY
+    this.lastY = currY */
     if (this.playerConfig.state === STATE_COLLIDED) {
       return
     }
@@ -111,15 +112,18 @@ export default class Player {
       if (this.sprite.body.velocity.x > 0) {
         this.sprite.body.velocity.x = 0
       }
-      this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x - this.playerConfig.turnVelocity, -1 * this.playerConfig.turnVelocity * 20, 0)
+      this.sprite.body.thrustLeft(this.playerConfig.turnVelocity * 40)
+      // this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x - this.playerConfig.turnVelocity, -1 * this.playerConfig.turnVelocity * 20, 0)
     } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation + 0.02, 0, 0.2)
       this.turning = true
       if (this.sprite.body.velocity.x < 0) {
         this.sprite.body.velocity.x = 0
       }
-      this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)
+      this.sprite.body.thrustRight(this.playerConfig.turnVelocity * 40)
+      // this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x + this.playerConfig.turnVelocity, 0, this.playerConfig.turnVelocity * 20)
     } else {
+      // Reset position
       if (this.sprite.body.velocity.x > 0) {
         this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x - this.playerConfig.turnVelocity * 1.75, 0)
       } else if (this.sprite.body.velocity.x < 0) {
@@ -134,15 +138,31 @@ export default class Player {
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.maxVelocity)
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
-    } else {
-      if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
-        this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.acceleration, this.playerConfig.initialVelocity)
-      } else if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
-        this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
+      if (this.sprite.body.velocity.y > this.playerConfig.maxVelocity) {
+        this.sprite.body.thrust(this.playerConfig.acceleration * 50)
       }
+      // this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration / 5, this.playerConfig.maxVelocity)
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+      if (this.sprite.body.velocity.y < this.playerConfig.minVelocity) {
+        this.sprite.body.thrust(-1 * this.playerConfig.deceleration * 50)
+      }
+      // this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
+    } else {
+      let speedDiff = Math.abs(this.sprite.body.velocity.y - this.playerConfig.initialVelocity)
+      
+      if (speedDiff > 4) {
+        if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
+          this.sprite.body.thrust(this.playerConfig.acceleration * 30)
+        } else if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
+          this.sprite.body.thrust(-1 * this.playerConfig.acceleration * 20)
+        }
+      }
+      /*
+      if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
+        this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.acceleration / 5, this.playerConfig.initialVelocity)
+      } else if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
+        this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration / 5, this.playerConfig.initialVelocity)
+      } */
     }
 
     let highRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.maxVelocity], [1, 1.01])
@@ -156,7 +176,8 @@ export default class Player {
 
     let camDiffY = this.game.math.linear(0, this.sprite.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
     camDiffY = 0
-    this.game.camera.y = this.sprite.y - 3 * (this.game.height / 4) - camDiffY * 5
+    this.game.camera.y = this.sprite.body.y - 3 * (this.game.height / 4) - camDiffY * 5
+    this.sprite.update()
   }
 
   checkWallCollision (visiblePolygons) {

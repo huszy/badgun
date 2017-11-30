@@ -10,8 +10,9 @@ export default class extends Phaser.State {
   init () {}
 
   preload () {
-    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg')
-    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar')
+    this.logoBg = this.add.sprite(0, 0, 'compLogo')
+    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 400, 'loaderBg')
+    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 400, 'loaderBar')
     centerGameObjects([this.loaderBg, this.loaderBar])
 
     this.load.setPreloadSprite(this.loaderBar)
@@ -52,6 +53,6 @@ export default class extends Phaser.State {
 
   create () {
     // this.state.start('Game')
-    this.state.start('Intro')
+    this.state.start('Game')
   }
 }
