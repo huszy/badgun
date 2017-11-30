@@ -5,7 +5,7 @@ import Block from '../sprites/Block'
 import MapGenerator from './MapGenerator'
 
 import Player from '../classes/Player'
-import { STATE_NORMAL, STATE_COLLIDED } from '../classes/Player'
+import { STATE_NORMAL, STATE_COLLIDED, STATE_INVINCIBLE } from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
 import CollectableManager from '../classes/CollectableManager'
 import Helicopter from '../sprites/Helicopter'
@@ -29,7 +29,7 @@ export default class extends Phaser.State {
     currentState: GAME_STATE_NOT_STARTED,
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
-    themesAvailable: ['desert', 'vulcano', 'city', 'woods', 'snow', 'neon'],
+    themesAvailable: ['vulcano', 'desert', 'vulcano', 'city', 'woods', 'snow', 'neon'],
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0,
@@ -108,6 +108,7 @@ export default class extends Phaser.State {
   }
 
   getThemeForStage (stage) {
+    return 'vulcano'
     return array.nth(this.gameConfig.themesAvailable, stage % this.gameConfig.themesAvailable.length)
   }
 
@@ -273,7 +274,7 @@ export default class extends Phaser.State {
     this.player.update()
 
     // UPDATE POLYGONS AND CHECK COLLISION
-    if (this.player.playerConfig.state === STATE_NORMAL) {
+    if (this.player.playerConfig.state !== STATE_COLLIDED) {
       this.handlePlayerCollisions()
     
       let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
@@ -298,7 +299,7 @@ export default class extends Phaser.State {
     let totalTime = ((this.gameConfig.stage + 1) * (THEME_TIME_IN_SECONDS * 1000))
     let timeLeft = totalTime - (this.game.time.now - this.gameConfig.gameStartTime - this.game.time.pauseDuration)
     this.updateTimeLeft(Math.max(timeLeft, 0))
-    if (timeLeft < 25000) {
+    if (timeLeft < 0) {
       // GAMEOVER
       this.gameConfig.currentState = GAME_STATE_GAMEOVER
       this.handleGameOver()
@@ -339,10 +340,14 @@ export default class extends Phaser.State {
         }
         return
       } else {
-        this.player.startRecoveryAnimation()
+        if (this.player.playerConfig.state === STATE_NORMAL) {
+          this.player.startRecoveryAnimation()
+        }
         return
       }
     }
+
+    if (this.player.playerConfig.state !== STATE_NORMAL) { return }
 
     if (playerWallCollision) {
       this.game.camera.shake(0.005, 100)

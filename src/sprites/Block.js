@@ -19,7 +19,12 @@ export default class extends Phaser.Sprite {
   _createStageElements (xPos, yPos) {
     if (this.definition.decorations.length > 0) {
       this.definition.decorations.forEach((deco) => {
+        let phaseNum = StageElementsManager.getElementPhaseNumber(deco.element)
         let sprite = new Phaser.Sprite(this.game, deco.x + xPos, deco.y + yPos, 'se_' + deco.element)
+        if (phaseNum > 0) {
+          sprite.animations.add('spin')
+          sprite.animations.play('spin', 12, true)
+        }
         this.stageElements.push(sprite)
         let polygons = StageElementsManager.getHitPolygonsForElement(deco.element, deco.x + xPos, deco.y + yPos)
         this.stageElementsHitArea.push(...polygons)

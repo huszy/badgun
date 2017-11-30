@@ -43,7 +43,11 @@ export default class extends Phaser.State {
 
     for (var prop in stageElementsConfig.elements) {
       if (stageElementsConfig.elements.hasOwnProperty(prop)) {
-        this.load.image('se_' + prop, 'assets/stage_elements/'+stageElementsConfig.elements[prop].sprite)
+        if (stageElementsConfig.elements[prop].spriteNum) {
+          this.load.spritesheet('se_' + prop, 'assets/stage_elements/' + stageElementsConfig.elements[prop].sprite, parseInt(stageElementsConfig.elements[prop].width), parseInt(stageElementsConfig.elements[prop].height))
+        } else {
+          this.load.image('se_' + prop, 'assets/stage_elements/' + stageElementsConfig.elements[prop].sprite)
+        }
       }
     }
 

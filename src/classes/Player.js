@@ -226,7 +226,7 @@ export default class Player {
     this.playerConfig.state = STATE_COLLIDED
     this.crashPosition = { x: this.sprite.x, y: this.sprite.y }
     this.sprite.visible = false
-    this.game.badgun.carEngineSound.stop()
+    this.carEngineSound.stop()
     this._playExplosion()
     this.sprite.body.setZeroVelocity()
     this.sprite.body.setZeroRotation()
@@ -252,8 +252,8 @@ export default class Player {
 
   _showPlayer () {
     this.sprite.visible = true
-    SoundManager.setSoundPlaybackRate(this.game.badgun.carEngineSound, 1)
-    this.game.badgun.carEngineSound.loopFull(0.3)
+    SoundManager.setSoundPlaybackRate(this.carEngineSound, 1)
+    this.carEngineSound.loopFull(0.3)
     this._playerRecovered()
   }
 

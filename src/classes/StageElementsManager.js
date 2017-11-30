@@ -2,6 +2,14 @@ import Phaser from 'phaser'
 const stageElementsDefs = require('../stageElementsConfig.json')
 
 export default class StageElementsManager {
+  static getElementPhaseNumber (name) {
+    if (!stageElementsDefs.elements.hasOwnProperty(name)) {
+      return 0
+    }
+    let def = stageElementsDefs.elements[name]
+    return parseInt(def.spriteNum) || 0
+  }
+
   static getHitPolygonsForElement (name, xOffset = 0, yOffset = 0) {
     if (!stageElementsDefs.elements.hasOwnProperty(name)) {
       return []
