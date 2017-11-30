@@ -21,6 +21,7 @@ export default class extends Phaser.State {
     //
     this.load.atlas('intro', 'assets/intro/introspritesheet.png', 'assets/intro/introsprites.json')
     this.load.atlas('intrologo', 'assets/intro/logoanim.png', 'assets/intro/logoanimsprites.json')
+    this.load.atlas('countDown', 'assets/images/counter.png', 'assets/images/countersprites.json')
     this.load.image('car', 'assets/images/car.png')
     this.load.spritesheet('carExplosion', 'assets/images/explosion.png', 350, 350)
     this.load.spritesheet('startButton', 'assets/intro/start-btn.png')

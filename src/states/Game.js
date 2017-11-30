@@ -18,8 +18,10 @@ const string = require('lodash/string')
 const THEME_TIME_IN_SECONDS = 30
 
 const GAME_STATE_NOT_STARTED = 'not_started'
+const GAME_STATE_COUNTDOWN = 'countdown'
 const GAME_STATE_STARTED = 'started'
 const GAME_STATE_PAUSED = 'paused'
+const GAME_STATE_GAMEOVER = 'gameover'
 
 export default class extends Phaser.State {
   gameConfig = {
@@ -69,6 +71,7 @@ export default class extends Phaser.State {
     this.helicopterGroup = new Phaser.Group(this.game, undefined, 'helicopter', false, true)
     this.gameWorld.position.setTo(0, 0)
     this.game.physics.startSystem(Phaser.Physics.P2JS)
+    this.game.physics.p2.pause()
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
     this.game.physics.p2.useElapsedTime = false
@@ -97,6 +100,7 @@ export default class extends Phaser.State {
     this.scoreElement = document.getElementById('score')
     this.speedElement = document.getElementById('speed')
   }
+
   preload () {
     this.game.forceSingleUpdate = true
     this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
@@ -152,11 +156,35 @@ export default class extends Phaser.State {
     this.helicopter = new Helicopter({game: this.game, x: -400, y: this.player.sprite.y})
     this.helicopterGroup.add(this.helicopter)
 
+    this.game.camera.y = this.player.sprite.body.y - 3 * (this.game.height / 4)
+
+    // Countdown
+    this.onCountDownComplete = new Phaser.Signal()
+    this.onCountDownComplete.add(this.countDownComplete.bind(this), this)
+
+    this.game.load.atlas('countDown', 'assets/images/counter.png', 'assets/images/countersprites.json')
+    this.countDownSprite = this.game.add.sprite(this.game.camera.view.centerX, this.game.camera.view.centerY, 'countDown')
+    this.countDownSprite.anchor.set(0.5)
+    this.countDownAnim = this.countDownSprite.animations.add('countdown', Phaser.Animation.generateFrameNames('counter', 0, 71, '', 5), 30, false)
+    this.countDownAnim.loop = false
+    this.countDownAnim.onComplete = this.onCountDownComplete
+
+    this.startCountDown()
+  }
+
+  countDownComplete () {
+    this.countDownSprite.destroy()
     this.startGame()
+  }
+
+  startCountDown () {
+    this.gameConfig.currentState = GAME_STATE_COUNTDOWN
+    this.countDownAnim.play()
   }
 
   startGame () {
     this.gameConfig.gameStartTime = this.game.time.now
+    this.game.physics.p2.resume()
     this.gameConfig.currentState = GAME_STATE_STARTED
   }
 
@@ -252,6 +280,8 @@ export default class extends Phaser.State {
   }
 
   update (...args) {
+    if (this.gameConfig.currentState !== GAME_STATE_STARTED) { return }
+
     if (this.game.input.keyboard.isDown(32) && __DEV__) {
       this.game.paused = !this.game.paused
     }
