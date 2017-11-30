@@ -42,16 +42,16 @@ export default class SoundManager {
     this.playingLoops['drums'] = drums
     this.playingLoops['lead'] = lead
 
-    bass.loopFull(0.4)
-    drums.loopFull(0.4)
-    lead.loopFull(0.4)
+    bass.loopFull(0.3)
+    drums.loopFull(0.3)
+    lead.loopFull(0.3)
     this.initialized = true
   }
 
   static hasLooped (sound) {
     let snd = this.getRandomLoopByCategory(sound.category)
     snd.onLoop.add(this.hasLooped, this)
-    snd.loopFull(0.4)
+    snd.loopFull(0.3)
     snd._sound.playbackRate.value = this.loopPlaybackRate
   }
 

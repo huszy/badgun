@@ -6,6 +6,21 @@
       "loop":true
     }],
     "loops":[{
+        "name":"silence",
+        "file":"silence.wav",
+        "category":"bass"
+    },
+    {
+      "name":"silence",
+      "file":"silence.wav",
+      "category":"drums"
+    },
+    {
+      "name":"silence",
+      "file":"silence.wav",
+      "category":"lead"
+    },
+    {
       "name":"bass1",
       "file":"bass1.wav",
       "category":"bass"
