@@ -232,8 +232,9 @@ export default class Enemy {
     this.isMoving = true
     this.moveTween = this.game.add.tween(this.sprite.body)
     this.sprite.body.velocity.x = 0
+    this.sprite.body.rotation = -0.2
     this.moveTween.to({x: this.sprite.body.x - 125}, 300, "Linear")
-    this.moveTween.onComplete.add(this.moveEnded, this)
+    this.moveTween.onComplete.add(this.moveEnded.bind(this), this)
     this.moveTween.start()
   }
 
@@ -242,8 +243,9 @@ export default class Enemy {
     this.isMoving = true
     this.moveTween = this.game.add.tween(this.sprite.body)
     this.sprite.body.velocity.x = 0
+    this.sprite.body.rotation = 0.2
     this.moveTween.to({x: this.sprite.body.x + 125}, 300, "Linear")
-    this.moveTween.onComplete.add(this.moveEnded, this)
+    this.moveTween.onComplete.add(this.moveEnded.bind(this), this)
     this.moveTween.start()
   }
 
@@ -254,7 +256,7 @@ export default class Enemy {
     this.moveTween.to({x: this.sprite.x - 125}, 300, "Linear")
     this.game.add.tween(this.sprite).to({rotation: -0.2}, 50, "Linear", true)
     this.game.add.tween(this.sprite).to({rotation: 0}, 50, "Linear", true, 250)
-    this.moveTween.onComplete.add(this.moveEnded, this)
+    this.moveTween.onComplete.add(this.moveEnded.bind(this), this)
     this.moveTween.start()
   }
 
@@ -271,6 +273,9 @@ export default class Enemy {
 
   moveEnded () {
     this.isMoving = false
+    if (this.sprite && this.sprite.body) {
+      this.sprite.body.rotation = 0
+    }
   }
 
   _getFreeCellByDirection (data, self, offset) {

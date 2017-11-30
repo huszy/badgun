@@ -5,7 +5,7 @@ import Block from '../sprites/Block'
 import MapGenerator from './MapGenerator'
 
 import Player from '../classes/Player'
-import { STATE_NORMAL, STATE_COLLIDED } from '../classes/Player'
+import { STATE_NORMAL, STATE_COLLIDED, STATE_INVINCIBLE } from '../classes/Player'
 import EnemyManager from '../classes/EnemyManager'
 import CollectableManager from '../classes/CollectableManager'
 import Helicopter from '../sprites/Helicopter'
@@ -29,7 +29,7 @@ export default class extends Phaser.State {
     currentState: GAME_STATE_NOT_STARTED,
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
-    themesAvailable: ['desert', 'vulcano', 'city', 'woods', 'snow', 'neon'],
+    themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'snow', 'neon'],
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0,
@@ -62,6 +62,7 @@ export default class extends Phaser.State {
   }
 
   init () {
+    this.game.badgun = this
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
     this.collectablesGroup = new Phaser.Group(this.game, undefined, 'collectables', false, true)
@@ -74,7 +75,7 @@ export default class extends Phaser.State {
     this.game.physics.p2.pause()
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
-    this.game.physics.p2.useElapsedTime = false
+    // this.game.physics.p2.useElapsedTime = false
 
     /*
     Phaser.Physics.P2.update = function () {
@@ -102,7 +103,7 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.game.forceSingleUpdate = true
+    // this.game.forceSingleUpdate = true
     this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
   }
 
@@ -112,8 +113,8 @@ export default class extends Phaser.State {
 
   calculateMapNeededForStage (stage) {
     let playerConfig = this.player.getPlayerConfigForStage(stage)
-    let pixelPerSec = -1 * playerConfig.initialVelocity
-    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS) - 1000 // -1000: player position on screen
+    let pixelPerSec = -1 * playerConfig.maxVelocity
+    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS - 3) - 1000 // -1000: player position on screen
     let mapTileNumber = Math.floor(totalPixel / 1250)
 
     console.log(`stage: ${stage} playerSpeed: ${playerConfig.initialVelocity}, pixelPerSec: ${pixelPerSec}, totalPixel: ${totalPixel}, mapTileNum: ${mapTileNumber}`)
@@ -186,6 +187,8 @@ export default class extends Phaser.State {
     this.gameConfig.gameStartTime = this.game.time.now
     this.game.physics.p2.resume()
     this.gameConfig.currentState = GAME_STATE_STARTED
+
+    this.player.startCarEngine()
   }
 
   hitEnemy (body1, body2) {
@@ -196,25 +199,6 @@ export default class extends Phaser.State {
     let hasEnough = false
     let updateBlockMatrix = false
     while (hasEnough === false) {
-      /*
-      while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
-        this.mapGenerator.generateNext(this.gameConfig.currentTheme)
-      } 
-
-      if (this.mapGenerator.maps.length === this.gameConfig.mapTilesNeededTotal) {
-        // Add finish line to the last block
-        // console.log('END LINE AT: '+(this.mapGenerator.maps.length - 1)+' MAPS NEEDED: '+this.gameConfig.mapTilesNeededTotal)
-        this.mapGenerator.maps[this.mapGenerator.maps.length - 1].stageEnd = true
-        // Need to change theme
-        let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
-        themeIndex++
-        if (themeIndex >= this.gameConfig.themesAvailable.length) {
-          themeIndex = 0
-        }
-        this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
-        this.gameConfig.themeChangeCount++
-        this.gameConfig.mapTilesNeededTotal += this.calculateMapNeededForStage(this.gameConfig.stage + 1)
-      } */
 
       // console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
@@ -289,7 +273,7 @@ export default class extends Phaser.State {
     this.player.update()
 
     // UPDATE POLYGONS AND CHECK COLLISION
-    if (this.player.playerConfig.state === STATE_NORMAL) {
+    if (this.player.playerConfig.state !== STATE_COLLIDED) {
       this.handlePlayerCollisions()
     
       let topPos = (this.game.camera.view.y - this.blockMatrix.startY)
@@ -316,10 +300,20 @@ export default class extends Phaser.State {
     this.updateTimeLeft(Math.max(timeLeft, 0))
     if (timeLeft < 0) {
       // GAMEOVER
-      console.log('Game over')
+      this.gameConfig.currentState = GAME_STATE_GAMEOVER
+      this.handleGameOver()
+      return
     }
 
     this.speedElement.innerHTML = Math.round((this.player.sprite.body.velocity.my / 1000) * 3600)
+  }
+
+  handleGameOver () {
+    this.game.physics.p2.pause()
+    this.game.camera.fade('#000000', 500, 0, true)
+    SoundManager.shouldStopLoop = true
+    SoundManager.fadeOutSounds()
+    this.player.fadeOutCarEngine()
   }
 
   handlePlayerCollisions () {
@@ -345,10 +339,14 @@ export default class extends Phaser.State {
         }
         return
       } else {
-        // this.player.startRecoveryAnimation()
+        if (this.player.playerConfig.state === STATE_NORMAL) {
+          this.player.startRecoveryAnimation()
+        }
         return
       }
     }
+
+    if (this.player.playerConfig.state !== STATE_NORMAL) { return }
 
     if (playerWallCollision) {
       this.game.camera.shake(0.005, 100)

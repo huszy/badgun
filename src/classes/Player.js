@@ -3,7 +3,7 @@ import PlayerSprite from '../sprites/Player'
 import { setTimeout, clearTimeout } from 'timers'
 import { debugHTML, convertRange } from '../utils'
 import CarExplosion from '../sprites/CarExplosion'
-import SoundManager from './SoundManager';
+import SoundManager from './SoundManager'
 
 const fn = require('lodash/function')
 
@@ -40,7 +40,9 @@ export default class Player {
 
     this.explosionSignal = new Phaser.Signal()
     this.explosionSignal.add(this._onExplosionFinished.bind(this))
-    this.throttledSoundSetPlaybackRate = fn.throttle((value) => { SoundManager.setGlobalPlaybackRate(value); console.log(value) }, 200)
+    this.throttledSoundSetPlaybackRate = fn.throttle((value) => { SoundManager.setSoundPlaybackRate(this.carEngineSound, value) }, 200)
+
+    this.carEngineSound = SoundManager.getFXByName('carengine')
   }
 
   getPlayerConfigForStage (stageNum) {
@@ -144,7 +146,7 @@ export default class Player {
       // this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration / 5, this.playerConfig.maxVelocity)
     } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
       if (this.sprite.body.velocity.y < this.playerConfig.minVelocity) {
-        this.sprite.body.thrust(-1 * this.playerConfig.deceleration * 50)
+        this.sprite.body.reverse(this.playerConfig.deceleration * 50)
       }
       // this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.playerConfig.deceleration, this.playerConfig.minVelocity)
     } else {
@@ -154,7 +156,7 @@ export default class Player {
         if (this.sprite.body.velocity.y > this.playerConfig.initialVelocity) {
           this.sprite.body.thrust(this.playerConfig.acceleration * 30)
         } else if (this.sprite.body.velocity.y < this.playerConfig.initialVelocity) {
-          this.sprite.body.thrust(-1 * this.playerConfig.acceleration * 20)
+          this.sprite.body.reverse(this.playerConfig.acceleration * 20)
         }
       }
       /*
@@ -165,19 +167,16 @@ export default class Player {
       } */
     }
 
-    let highRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.maxVelocity], [1, 1.01])
+    let highRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.maxVelocity], [1, 1.2])
     let lowRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.minVelocity], [1, 0.94])
     let rate = highRange < 1 ? lowRange : highRange
-    // this.throttledSoundSetPlaybackRate(rate)
 
-    // SoundManager.setGlobalPlaybackRate(rate)
-
-    // console.log('Player velo: '+this.sprite.body.velocity.x+' Max: '+this.playerConfig.initialVelocity)
+    this.throttledSoundSetPlaybackRate(rate)
 
     let camDiffY = this.game.math.linear(0, this.sprite.body.velocity.y - this.playerConfig.initialVelocity, 0.1)
     camDiffY = 0
     this.game.camera.y = this.sprite.body.y - 3 * (this.game.height / 4) - camDiffY * 5
-    this.sprite.update()
+    // this.sprite.update()
   }
 
   checkWallCollision (visiblePolygons) {
@@ -227,26 +226,35 @@ export default class Player {
     this.playerConfig.state = STATE_COLLIDED
     this.crashPosition = { x: this.sprite.x, y: this.sprite.y }
     this.sprite.visible = false
+    this.carEngineSound.stop()
     this._playExplosion()
     this.sprite.body.setZeroVelocity()
     this.sprite.body.setZeroRotation()
     this.sprite.body.setZeroForce()
-    this.game.state.getCurrentState().helicopter.moveIn(this.crashPosition.x, this.crashPosition.y, this.showPlayer, this.playerRecovered)
+    this.game.state.getCurrentState().helicopter.moveIn(this.crashPosition.x, this.crashPosition.y, this.showPlayer, this._noop)
   }
 
   _playExplosion () {
     let explosion = new CarExplosion({ game: this.game, x: this.sprite.x, y: this.sprite.y, asset: 'carExplosion', onComplete: this.explosionSignal })
     explosion.name = 'explosion'
-    this.playerGroup.add(explosion)
+    this.game.badgun.helicopterGroup.add(explosion)
+    // this.playerGroup.add(explosion)
   }
 
   _onExplosionFinished () {
-    console.log('explosion finished')
-    this.playerGroup.remove(this.playerGroup.getByName('explosion'))
+    this.game.badgun.helicopterGroup.remove(this.game.badgun.helicopterGroup.getByName('explosion'))
+    // this.playerGroup.remove(this.playerGroup.getByName('explosion'))
+  }
+
+  _noop () {
+
   }
 
   _showPlayer () {
     this.sprite.visible = true
+    SoundManager.setSoundPlaybackRate(this.carEngineSound, 1)
+    this.carEngineSound.loopFull(0.3)
+    this._playerRecovered()
   }
 
   _playerRecovered () {
@@ -261,6 +269,14 @@ export default class Player {
     this.blinkTween.stop()
     this.sprite.alpha = 1
     this.playerConfig.state = STATE_NORMAL
+  }
+
+  startCarEngine () {
+    this.carEngineSound.loopFull(0.3)
+  }
+
+  fadeOutCarEngine () {
+    SoundManager.fadeOutFx(this.carEngineSound)
   }
 
   setupCrashEffect () {

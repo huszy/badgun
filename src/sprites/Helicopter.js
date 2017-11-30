@@ -47,7 +47,7 @@ export default class Helicopter extends Phaser.Sprite {
     tweenIn.onComplete.add(this._moveInFinished, this)
     
     let tweenOut = this.game.add.tween(this)
-    tweenOut.to({ x: 1500, y: y - 400 }, 2000, Phaser.Easing.Quadratic.Out)
+    tweenOut.to({ x: 1500, y: y - 400 }, 1500, Phaser.Easing.Quadratic.Out)
     tweenOut.onComplete.add(this._moveOutFinished, this)
     
     tweenIn.chain(tweenOut)
