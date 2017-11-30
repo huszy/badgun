@@ -192,47 +192,47 @@
       "width": "188",
       "height": "292"
     },
-    "vulcano_bones": {
-      "sprite": "vulcano/bones.png",
-      "hitArea": "17,30 171,30 171,80 17,80",
-      "width": "184",
-      "height": "124"
+    "vulcano_ash": {
+      "sprite": "vulcano/ash.png",
+      "hitArea": "",
+      "width": "304",
+      "height": "260",
+      "spriteNum": "3"
     },
     "vulcano_crater": {
       "sprite": "vulcano/crater.png",
-      "hitArea": "28,20 188,20 188,46 28,46",
+      "hitArea": "13,29 162,22 191,36 157,52 69,52",
       "width": "200",
-      "height": "80"
-    },
-    "vulcano_hole": {
-      "sprite": "vulcano/hole.png",
-      "hitArea": "44,77 148,77 148,127, 44,127",
-      "width": "192",
-      "height": "168"
+      "height": "80",
+      "spriteNum": "4"
     },
     "vulcano_tree": {
-      "sprite": "vulcano/tree.png",
+      "sprite": "vulcano/tree2.png",
       "hitArea": "64,100 103,100 103,155 64,155",
       "width": "168",
-      "height": "200"
+      "height": "200",
+      "spriteNum": "4"
     },
     "vulcano_treetrunk": {
-      "sprite": "vulcano/treetrunk.png",
+      "sprite": "vulcano/tree.png",
       "hitArea": "8,98 154,12 180,46 75,110 24,114",
       "width": "188",
-      "height": "136"
+      "height": "136",
+      "spriteNum": "4"
     },
     "vulcano_vulcan": {
-      "sprite": "vulcano/vulcan.png",
-      "hitArea": "44,174 281,174 323,220 250,245 72,245 29,227",
-      "width": "352",
-      "height": "284"
+      "sprite": "vulcano/vulcan1.png",
+      "hitArea": "13,196 59,175 280,175 323,216 238,210 182,230 128,215 75,231",
+      "width": "328",
+      "height": "268",
+      "spriteNum": "4"
     },
     "vulcano_vulcan2": {
       "sprite": "vulcano/vulcan2.png",
-      "hitArea": "0,176 55,146 269,148 311,190 23,190",
-      "width": "316",
-      "height": "232"
+      "hitArea": "56,206 89,161 290,161 342,210 336,230 234,229 207,255 183,234 56,228",
+      "width": "380",
+      "height": "292",
+      "spriteNum": "4"
     },
     "snow_bush": {
       "sprite": "snow/bush.png",
@@ -323,6 +323,42 @@
       "hitArea": "86,247 259,247 358,263 86,263",
       "width": "360",
       "height": "303"
+    },
+    "beach_lifeguard": {
+      "sprite": "beach/lifeguard.png",
+      "hitArea": "0,178 280,178 280,221 0,221",
+      "width": "284",
+      "height": "224"
+    },
+    "beach_palmtree": {
+      "sprite": "beach/palmtree.png",
+      "hitArea": "140,188 180,188 180,235 140,235",
+      "width": "268",
+      "height": "260"
+    },
+    "beach_palmtree2": {
+      "sprite": "beach/palmtree2.png",
+      "hitArea": "112,219 137,184 158,198 142,33",
+      "width": "336",
+      "height": "300"
+    },
+    "beach_rock1": {
+      "sprite": "beach/rock.png",
+      "hitArea": "92,126 175,91 242,91 242,124 175,124 146,154 92,154",
+      "width": "248",
+      "height": "168"
+    },
+    "beach_rock2": {
+      "sprite": "beach/rock2.png",
+      "hitArea": "69,143 217,143 241,88 285,88 258,202 175,159 88,159",
+      "width": "288",
+      "height": "216"
+    },
+    "beach_pier": {
+      "sprite": "beach/pier.png",
+      "hitArea": "33,75 374,75 374,101 33,101",
+      "width": "392",
+      "height": "116"
     }
   },
   "variations": {
