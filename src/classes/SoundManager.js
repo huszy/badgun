@@ -38,19 +38,23 @@ export default class SoundManager {
 
   static decodedCallback () {
     let bass = this.getRandomLoopByCategory('bass')
-    bass.onLoop.add(this.hasLooped, this)
+    bass.onStop.add(this.hasLooped, this)
+    //bass.onStop.add(this.hasLooped, this)
     let drums = this.getRandomLoopByCategory('drums')
-    drums.onLoop.add(this.hasLooped, this)
+    drums.onStop.add(this.hasLooped, this)
     let lead = this.getRandomLoopByCategory('lead')
-    lead.onLoop.add(this.hasLooped, this)
+    lead.onStop.add(this.hasLooped, this)
 
     this.playingLoops['bass'] = bass
     this.playingLoops['drums'] = drums
     this.playingLoops['lead'] = lead
 
-    bass.loopFull(0.3)
-    drums.loopFull(0.3)
-    lead.loopFull(0.3)
+    bass.play('', 0, 0.3)
+    drums.play('', 0, 0.3)
+    lead.play('', 0, 0.3)
+    // bass.loopFull(0.3)
+    // drums.loopFull(0.3)
+    // lead.loopFull(0.3)
     this.initialized = true
   }
 
@@ -60,8 +64,9 @@ export default class SoundManager {
       return
     }
     let snd = this.getRandomLoopByCategory(sound.category)
-    snd.onLoop.add(this.hasLooped, this)
-    snd.loopFull(0.3)
+    this.playingLoops[sound.category] = snd
+    snd.onStop.add(this.hasLooped, this)
+    snd.play('', 0, 0.3)
     snd._sound.playbackRate.value = this.loopPlaybackRate
   }
 
