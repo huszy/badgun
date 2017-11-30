@@ -62,6 +62,7 @@ export default class extends Phaser.State {
   }
 
   init () {
+    this.game.badgun = this
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
     this.collectablesGroup = new Phaser.Group(this.game, undefined, 'collectables', false, true)
@@ -74,7 +75,7 @@ export default class extends Phaser.State {
     this.game.physics.p2.pause()
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
-    this.game.physics.p2.useElapsedTime = false
+    // this.game.physics.p2.useElapsedTime = false
 
     /*
     Phaser.Physics.P2.update = function () {
@@ -102,7 +103,7 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.game.forceSingleUpdate = true
+    // this.game.forceSingleUpdate = true
     this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
   }
 
@@ -186,6 +187,9 @@ export default class extends Phaser.State {
     this.gameConfig.gameStartTime = this.game.time.now
     this.game.physics.p2.resume()
     this.gameConfig.currentState = GAME_STATE_STARTED
+
+    this.carEngineSound = SoundManager.getFXByName('carengine')
+    this.carEngineSound.loopFull(0.3)
   }
 
   hitEnemy (body1, body2) {
@@ -196,25 +200,6 @@ export default class extends Phaser.State {
     let hasEnough = false
     let updateBlockMatrix = false
     while (hasEnough === false) {
-      /*
-      while (this.mapGenerator.maps.length <= this.currentBlockIndex) {
-        this.mapGenerator.generateNext(this.gameConfig.currentTheme)
-      } 
-
-      if (this.mapGenerator.maps.length === this.gameConfig.mapTilesNeededTotal) {
-        // Add finish line to the last block
-        // console.log('END LINE AT: '+(this.mapGenerator.maps.length - 1)+' MAPS NEEDED: '+this.gameConfig.mapTilesNeededTotal)
-        this.mapGenerator.maps[this.mapGenerator.maps.length - 1].stageEnd = true
-        // Need to change theme
-        let themeIndex = this.gameConfig.themesAvailable.indexOf(this.gameConfig.currentTheme)
-        themeIndex++
-        if (themeIndex >= this.gameConfig.themesAvailable.length) {
-          themeIndex = 0
-        }
-        this.gameConfig.currentTheme = this.gameConfig.themesAvailable[themeIndex]
-        this.gameConfig.themeChangeCount++
-        this.gameConfig.mapTilesNeededTotal += this.calculateMapNeededForStage(this.gameConfig.stage + 1)
-      } */
 
       // console.log(this.mapGenerator.maps.length, this.gameConfig.themeChangeCount, this.gameConfig.currentTheme)
       // let totalHeight = this.visibleBlocks.reduce((a, b) => a + b.height, 0)
@@ -345,7 +330,7 @@ export default class extends Phaser.State {
         }
         return
       } else {
-        // this.player.startRecoveryAnimation()
+        this.player.startRecoveryAnimation()
         return
       }
     }

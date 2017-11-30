@@ -1,5 +1,10 @@
 {
   "sounds": {
+    "fx":[{
+      "name":"carengine",
+      "file":"carengine.wav",
+      "loop":true
+    }],
     "loops":[{
       "name":"bass1",
       "file":"bass1.wav",

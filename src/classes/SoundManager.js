@@ -3,11 +3,14 @@ const soundConfig = require('../soundConfig.json')
 
 export default class SoundManager {
 
+  static fx = []
   static loops = []
   static loopCategories = []
   static playingLoops = {}
 
   static loopPlaybackRate = 1
+
+  static carEngine = null
 
   static initialize (game) {
     this.game = game
@@ -19,11 +22,15 @@ export default class SoundManager {
       this.loops.push(snd)
     })
 
+    soundConfig.sounds.fx.forEach((sound) => {
+      let snd = game.add.audio(sound.name)
+      this.fx.push(snd)
+    })
+
     this.game.sound.setDecodedCallback(this.loops, this.decodedCallback.bind(this), this)
   }
 
   static decodedCallback () {
-    console.log('Sounds ready')
     let bass = this.getRandomLoopByCategory('bass')
     bass.onLoop.add(this.hasLooped, this)
     let drums = this.getRandomLoopByCategory('drums')
@@ -35,21 +42,25 @@ export default class SoundManager {
     this.playingLoops['drums'] = drums
     this.playingLoops['lead'] = lead
 
-    bass.loopFull(0.6)
-    drums.loopFull(0.6)
-    lead.loopFull(0.6)
+    bass.loopFull(0.4)
+    drums.loopFull(0.4)
+    lead.loopFull(0.4)
     this.initialized = true
   }
 
   static hasLooped (sound) {
     let snd = this.getRandomLoopByCategory(sound.category)
     snd.onLoop.add(this.hasLooped, this)
-    snd.loopFull(0.6)
+    snd.loopFull(0.4)
     snd._sound.playbackRate.value = this.loopPlaybackRate
   }
 
   static getLoopByName (name) {
     return this.loops.find(x => x.key === name)
+  }
+
+  static getFXByName (name) {
+    return this.fx.find(x => x.key === name)
   }
 
   static getRandomLoopByCategory (category) {
@@ -62,5 +73,9 @@ export default class SoundManager {
     this.playingLoops['bass']._sound.playbackRate.value = rate
     this.playingLoops['drums']._sound.playbackRate.value = rate
     this.playingLoops['lead']._sound.playbackRate.value = rate
+  }
+
+  static setSoundPlaybackRate (snd, rate) {
+    snd._sound.playbackRate.value = rate
   }
 }

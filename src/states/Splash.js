@@ -50,6 +50,10 @@ export default class extends Phaser.State {
     soundConfig.sounds.loops.forEach((sound) => {
       this.game.load.audio(sound.name, `assets/sounds/${sound.file}`)
     })
+
+    soundConfig.sounds.fx.forEach((sound) => {
+      this.game.load.audio(sound.name, `assets/sounds/${sound.file}`)
+    })
   }
 
   create () {
