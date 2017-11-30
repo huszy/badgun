@@ -1,8 +1,11 @@
 import Phaser from 'phaser'
 import PlayerSprite from '../sprites/Player'
 import { setTimeout, clearTimeout } from 'timers'
-import { debugHTML } from '../utils'
+import { debugHTML, convertRange } from '../utils'
 import CarExplosion from '../sprites/CarExplosion'
+import SoundManager from './SoundManager';
+
+const fn = require('lodash/function')
 
 export const STATE_NORMAL = 'normal'
 export const STATE_COLLIDED = 'collided'
@@ -37,6 +40,7 @@ export default class Player {
 
     this.explosionSignal = new Phaser.Signal()
     this.explosionSignal.add(this._onExplosionFinished.bind(this))
+    this.throttledSoundSetPlaybackRate = fn.throttle((value) => { SoundManager.setGlobalPlaybackRate(value); console.log(value) }, 200)
   }
 
   getPlayerConfigForStage (stageNum) {
@@ -140,6 +144,13 @@ export default class Player {
         this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration, this.playerConfig.initialVelocity)
       }
     }
+
+    let highRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.maxVelocity], [1, 1.01])
+    let lowRange = convertRange(this.sprite.body.velocity.y, [this.playerConfig.initialVelocity, this.playerConfig.minVelocity], [1, 0.94])
+    let rate = highRange < 1 ? lowRange : highRange
+    // this.throttledSoundSetPlaybackRate(rate)
+
+    // SoundManager.setGlobalPlaybackRate(rate)
 
     // console.log('Player velo: '+this.sprite.body.velocity.x+' Max: '+this.playerConfig.initialVelocity)
 

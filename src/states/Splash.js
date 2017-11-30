@@ -4,6 +4,7 @@ import { centerGameObjects } from '../utils'
 const blockDefs = require('../blockConfig.json')
 const enemyDefs = require('../enemyConfig.json')
 const stageElementsConfig = require('../stageElementsConfig.json')
+const soundConfig = require('../soundConfig.json')
 
 export default class extends Phaser.State {
   init () {}
@@ -17,8 +18,11 @@ export default class extends Phaser.State {
     //
     // load your assets
     //
+    this.load.atlas('intro', 'assets/intro/introspritesheet.png', 'assets/intro/introsprites.json')
+    this.load.atlas('intrologo', 'assets/intro/logoanim.png', 'assets/intro/logoanimsprites.json')
     this.load.image('car', 'assets/images/car.png')
     this.load.spritesheet('carExplosion', 'assets/images/explosion.png', 350, 350)
+    this.load.spritesheet('startButton', 'assets/intro/start-btn.png')
     this.load.image('stageFinish', 'assets/images/finish-line.png')
     this.load.image('enemy', 'assets/images/enemy_mini.png')
     this.load.image('helicopter', 'assets/images/helicopter.png')
@@ -41,10 +45,13 @@ export default class extends Phaser.State {
       }
     }
 
-    this.game.load.audio('bass2', 'assets/sounds/bass2.wav')
+    soundConfig.sounds.loops.forEach((sound) => {
+      this.game.load.audio(sound.name, `assets/sounds/${sound.file}`)
+    })
   }
 
   create () {
-    this.state.start('Game')
+    // this.state.start('Game')
+    this.state.start('Intro')
   }
 }
