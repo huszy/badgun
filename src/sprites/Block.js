@@ -22,8 +22,8 @@ export default class extends Phaser.Sprite {
         let phaseNum = StageElementsManager.getElementPhaseNumber(deco.element)
         let sprite = new Phaser.Sprite(this.game, deco.x + xPos, deco.y + yPos, 'se_' + deco.element)
         if (phaseNum > 0) {
-          sprite.animations.add('spin')
-          sprite.animations.play('spin', 12, true)
+          sprite.animations.add('play')
+          sprite.animations.play('play', phaseNum * 2, true)
         }
         this.stageElements.push(sprite)
         let polygons = StageElementsManager.getHitPolygonsForElement(deco.element, deco.x + xPos, deco.y + yPos)

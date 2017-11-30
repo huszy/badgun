@@ -29,7 +29,7 @@ export default class extends Phaser.State {
     currentState: GAME_STATE_NOT_STARTED,
     mapTilesNeededForStage: 18,
     mapTilesNeededTotal: 18,
-    themesAvailable: ['vulcano', 'desert', 'vulcano', 'city', 'woods', 'snow', 'neon'],
+    themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'snow', 'neon'],
     requiredEnemies: 3,
     enemyAppearInterval: 1500,
     currentScore: 0,
@@ -108,14 +108,13 @@ export default class extends Phaser.State {
   }
 
   getThemeForStage (stage) {
-    return 'vulcano'
     return array.nth(this.gameConfig.themesAvailable, stage % this.gameConfig.themesAvailable.length)
   }
 
   calculateMapNeededForStage (stage) {
     let playerConfig = this.player.getPlayerConfigForStage(stage)
-    let pixelPerSec = -1 * playerConfig.initialVelocity
-    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS) - 1000 // -1000: player position on screen
+    let pixelPerSec = -1 * playerConfig.maxVelocity
+    let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS - 3) - 1000 // -1000: player position on screen
     let mapTileNumber = Math.floor(totalPixel / 1250)
 
     console.log(`stage: ${stage} playerSpeed: ${playerConfig.initialVelocity}, pixelPerSec: ${pixelPerSec}, totalPixel: ${totalPixel}, mapTileNum: ${mapTileNumber}`)
