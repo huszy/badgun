@@ -165,7 +165,7 @@ export default class extends Phaser.State {
     this.game.load.atlas('countDown', 'assets/images/counter.png', 'assets/images/countersprites.json')
     this.countDownSprite = this.game.add.sprite(this.game.camera.view.centerX, this.game.camera.view.centerY, 'countDown')
     this.countDownSprite.anchor.set(0.5)
-    this.countDownAnim = this.countDownSprite.animations.add('countdown', Phaser.Animation.generateFrameNames('counter', 0, 71, '', 5), 30, false)
+    this.countDownAnim = this.countDownSprite.animations.add('countdown', Phaser.Animation.generateFrameNames('counter', 0, 71, '', 5), 24, false)
     this.countDownAnim.loop = false
     this.countDownAnim.onComplete = this.onCountDownComplete
 
