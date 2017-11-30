@@ -371,7 +371,8 @@ export default class extends Phaser.State {
       sec -= min * 60
     }
     let ms = msec - (min * 60 * 1000) - (sec * 1000)
-    this.timeElement.innerHTML = `${string.padStart(min, 2, '0')}:${string.padStart(sec, 2, '0')}.${string.padStart(ms, 3, '0')}`
+    ms = Math.round(ms / 10)
+    this.timeElement.innerHTML = `${string.padStart(min, 2, '0')}:${string.padStart(sec, 2, '0')}.${string.padStart(ms, 2, '0')}`
   }
 
   updatePoints () {

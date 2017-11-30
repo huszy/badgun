@@ -24,8 +24,7 @@ export default class Enemy {
   recoveryTime = 100
   possibleMovementMatrix = { w: null, nw: null, n: null, ne: null, e: null }
 
-  generatedSpeed = -700
-  acceleration = 10
+  acceleration = 30
 
   constructor (spriteDef, game, group, collisionGroup, enemyDefinition = {}) {
     this.sprite = game.add.existing(spriteDef)
@@ -34,6 +33,8 @@ export default class Enemy {
     this.group = group
     this.group.add(this.sprite)
     
+    this.generatedSpeed = ((Math.random() * 0.6) + 0.4) * this.game.state.getCurrentState().player.playerConfig.initialVelocity
+
     // Setup physics
     this.sprite.body.setCollisionGroup(collisionGroup)
     this.sprite.body.collideWorldBounds = false
@@ -85,6 +86,11 @@ export default class Enemy {
     return { x: x, y: y, idx: idx }
   }
 
+  setBlockPositionOnBlockMatrix (blockMatrix) {
+    let position = this.getBlockPositionOnScreen(blockMatrix)
+    blockMatrix.data[position.idx] = ENEMY
+  }
+
   _createPossibleMovementMatrix (blockMatrix) {
     let selfData = this.getBlockPositionOnScreen(blockMatrix)
     this.possibleMovementMatrix = { w: null, nw: null, n: null, ne: null, e: null, selfData: selfData }
@@ -125,6 +131,18 @@ export default class Enemy {
   updateMovement (blockMatrix) {
     this._createPossibleMovementMatrix(blockMatrix)
 
+    let speedDiff = Math.abs(this.sprite.body.velocity.y - this.generatedSpeed)
+    
+    if (speedDiff > 4) {
+      if (this.sprite.body.velocity.y > this.generatedSpeed) {
+        this.sprite.body.thrust(this.acceleration * 30)
+      } else if (this.sprite.body.velocity.y < this.generatedSpeed) {
+        this.sprite.body.thrust(-1 * this.acceleration * 20)
+      }
+    } else {
+      // speedRecovered = true
+    }
+
     /* // DEBUG AUTOPILOT INFO
     let dy = this.sprite.y - this.game.camera.view.y - this.sprite.height / 2
     this.game.debug.text(`L: ${this.possibleMovementMatrix.selfData.x} NW: ${this.possibleMovementMatrix.nw}, N: ${this.possibleMovementMatrix.n}, NE: ${this.possibleMovementMatrix.ne}`, this.sprite.x - this.sprite.width, dy, '#ff0000')
@@ -135,18 +153,21 @@ export default class Enemy {
     if (this.currentState === STATE_RECOVERING_LANE) { return }
 
     if (this.currentState === STATE_RECOVERING) {
-      let speedRecovered = false
+      let speedRecovered = true
       let rotationRecovered = false
       this.sprite.body.velocity.x = 0
 
       // Get back to normal y speed
+      
+
+      /*
       if (this.sprite.body.velocity.y < this.generatedSpeed) {
         this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y + this.acceleration, this.generatedSpeed)
       } else if (this.sprite.body.velocity.y > this.generatedSpeed) {
         this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.acceleration, this.generatedSpeed)
       } else {
         speedRecovered = true
-      }
+      } */
 
       // Get back to normal rotation
       if (this.sprite.rotation > 0) {

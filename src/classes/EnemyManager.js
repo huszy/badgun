@@ -56,10 +56,12 @@ export default class EnemyManager {
   }
 
   static updateMovement (blockMatrix) {
-    this.blockMatrix = blockMatrix
+    this.blockMatrix = Object.assign({}, blockMatrix)
+    this.enemies.forEach(x => x.setBlockPositionOnBlockMatrix(this.blockMatrix))
     this.enemies.forEach(x => x.updateMovement(this.blockMatrix))
 
     this.enemies.forEach(x => { if (x.sprite.y > this.game.camera.view.y + this.game.camera.view.height + x.sprite.height + 100) { this.removeEnemy(x) } })
+    // this.game.state.getCurrentState().debugBlockData(this.blockMatrix)
   }
 
   static removeEnemy (enemy) {
