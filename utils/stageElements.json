@@ -284,45 +284,45 @@
     },
     "neon_alienship": {
       "sprite": "neon/alienship.png",
-      "hitArea": "91,141 120,80 331,80 315,145 280,196 111,197",
-      "width": "376",
-      "height": "248"
+      "hitArea": "66,100 215,100 215,137 66,137",
+      "width": "282",
+      "height": "186"
     },
     "neon_crater": {
       "sprite": "neon/crater.png",
-      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
-      "width": "396",
-      "height": "200"
+      "hitArea": "43,66 90,42 254,42 294,83 264,122 166,136 72,110",
+      "width": "297",
+      "height": "150"
     },
     "neon_crater2": {
       "sprite": "neon/crater2.png",
-      "hitArea": "58,96 120,53 344,55 394,104 354,162 131,163 89,142",
-      "width": "396",
-      "height": "200"
+      "hitArea": "43,66 90,42 254,42 294,83 264,122 166,136 72,110",
+      "width": "297",
+      "height": "150"
     },
     "neon_crater3": {
       "sprite": "neon/crater3.png",
-      "hitArea": "57,70 110,42 263,42 318,72 392,72 436,117 332,146 306,124 147,124",
-      "width": "436",
-      "height": "156"
+      "hitArea": "45,52 84,31 217,31 238,54 291,54 324,88 270,105 208,83 98,95",
+      "width": "327",
+      "height": "117"
     },
     "neon_hole": {
       "sprite": "neon/hole.png",
-      "hitArea": "44,77 148,77 148,127, 44,127",
-      "width": "200",
-      "height": "156"
+      "hitArea": "103,60 184,60 184,100 103,100",
+      "width": "225",
+      "height": "135"
     },
     "neon_meteorit": {
       "sprite": "neon/meteorit.png",
-      "hitArea": "104,133 378,133 378,192 104,192",
-      "width": "420",
-      "height": "244"
+      "hitArea": "71,110 285,110 285,158 71,158",
+      "width": "315",
+      "height": "183"
     },
     "neon_rocket": {
       "sprite": "neon/rocket.png",
-      "hitArea": "142,294 437,294 437,330 142,330",
-      "width": "456",
-      "height": "376"
+      "hitArea": "86,247 259,247 358,263 86,263",
+      "width": "360",
+      "height": "303"
     }
   },
   "variations": {
