@@ -14,7 +14,18 @@ export default class EnemyManager {
   static blockMatrix = null
   static timeSinceLastAdd = 0
 
+  static reset () {
+    this.enemies = []
+    this.game = null
+    this.enemyGroup = null
+    this.enemyCollisionGroup = null
+    this.playerCollisionGroup = null
+    this.blockMatrix = null
+    this.timeSinceLastAdd = 0
+  }
+
   static initialize (game, enemyGroup, enemyCollisionGroup, playerCollisionGroup) {
+    this.reset()
     this.game = game
     this.enemyGroup = enemyGroup
     this.enemyCollisionGroup = enemyCollisionGroup

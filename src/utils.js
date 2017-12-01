@@ -18,6 +18,13 @@ export function convertRange( value, r1, r2 ) {
   return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
 }
 
+Number.prototype.format = function(n, x, s, c) {
+  var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+      num = this.toFixed(Math.max(0, ~~n));
+
+  return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
 Phaser.Polygon.prototype.intersectsRectangle = function (rect) {
   if (this._points.length < 2) { return false }
   for (var i = 0; i < this._points.length; i++) {

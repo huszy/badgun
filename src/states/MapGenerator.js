@@ -7,10 +7,6 @@ export default class MapGenerator {
     this.currentIndex = 0
     this.maps = []
     let blockDef = collection.sample(MapGenerator.getBlocksByQuery({input: '100001', output: '100001', theme: 'desert'}))
-    if (window.isDebug) {
-      this.maps = [blockDef]
-      return
-    }
     this.maps = [blockDef, blockDef, blockDef, blockDef, blockDef]
   }
 

@@ -24,22 +24,9 @@ const GAME_STATE_PAUSED = 'paused'
 const GAME_STATE_GAMEOVER = 'gameover'
 
 export default class extends Phaser.State {
-  gameConfig = {
-    stage: 0,
-    currentState: GAME_STATE_NOT_STARTED,
-    mapTilesNeededForStage: 18,
-    mapTilesNeededTotal: 18,
-    themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'snow', 'neon'],
-    requiredEnemies: 3,
-    enemyAppearInterval: 1500,
-    currentScore: 0,
-    gameStartTime: 0
-  }
-
   visibleBlocks = []
   visiblePolygons = []
   visibleStageElements = []
-  enemies = []
 
   // Groups
   gameWorld = null
@@ -51,12 +38,29 @@ export default class extends Phaser.State {
 
   constructor () {
     super()
-    this.blockMatrix = {data: []}
-    this.currentBlockIndex = 0
-    this.mapGenerator = new MapGenerator()
+    console.log('Cons called')
   }
 
   init () {
+    this.game.camera.reset()
+    this.blockMatrix = {data: []}
+    this.currentBlockIndex = 0
+    this.visibleBlocks = []
+
+    // Reset gameconfig
+    this.gameConfig = {
+      stage: 0,
+      currentState: GAME_STATE_NOT_STARTED,
+      mapTilesNeededForStage: 18,
+      mapTilesNeededTotal: 18,
+      themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'snow', 'neon'],
+      requiredEnemies: 3,
+      enemyAppearInterval: 1500,
+      currentScore: 0,
+      gameStartTime: 0
+    }
+
+    this.mapGenerator = new MapGenerator()
     this.game.badgun = this
     this.game.world.resize(this.game.world.width, 1250 * 40000)
     this.gameWorld = this.game.add.group()
@@ -118,6 +122,7 @@ export default class extends Phaser.State {
   }
 
   create () {
+    console.log('Create called')
     this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
     this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
     // Generate first two stage
@@ -335,6 +340,7 @@ export default class extends Phaser.State {
     if (playerWallCollision) {
       this.game.camera.shake(0.005, 100)
       this.player.slowDown()
+      this.handleGameOver()
     }
 
     if (playerWallCollision) {
@@ -358,7 +364,7 @@ export default class extends Phaser.State {
   }
 
   updatePoints () {
-    this.scoreElement.innerHTML = this.gameConfig.currentScore
+    this.scoreElement.innerHTML = this.gameConfig.currentScore.format(0, 3, '.', '.')
   }
 
   setWorldPosition (scale) {
@@ -371,6 +377,6 @@ export default class extends Phaser.State {
 
   /// GAMEOVER
   showGameOver () {
-    this.state.start('GameOver')
+    this.state.start('GameOver', true, false, { score: this.gameConfig.currentScore })
   }
 }

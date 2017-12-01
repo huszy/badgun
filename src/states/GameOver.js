@@ -9,12 +9,12 @@ export default class extends Phaser.State {
   init (params) {
     console.dir(params)
     this.stage.backgroundColor = '#000000'
-    let root = document.getElementById('highscore')
-    let high = root.getElementsByClassName('high')[0]
-    let current = root.getElementsByClassName('current')[0]
+    this.rootElem = document.getElementById('highscore')
+    let high = this.rootElem.getElementsByClassName('high')[0]
+    let current = this.rootElem.getElementsByClassName('current')[0]
 
-    high.innerHTML = params.score
-    current.innerHTML = params.score
+    high.innerHTML = params.score.format(0, 3, '.', '.')
+    current.innerHTML = params.score.format(0, 3, '.', '.')
   }
 
   preload () {
@@ -30,14 +30,16 @@ export default class extends Phaser.State {
   }
 
   create () {
-
+    this.rootElem.style.display = 'block'
   }
 
   onRestartButtonClick () {
-    this.state.start('Game')
+    this.rootElem.style.display = 'none'
+    this.state.start('Game', true, false)
   }
 
   onHomeButtonClick () {
+    this.rootElem.style.display = 'none'
     this.state.start('Intro')
   }
 }

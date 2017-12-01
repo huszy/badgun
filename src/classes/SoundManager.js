@@ -16,6 +16,14 @@ export default class SoundManager {
   static shouldStopLoop = false
 
   static initialize (game) {
+    this.loops = []
+    this.fx = []
+    this.loopCategories = []
+    this.playingLoops = {}
+    this.loopPlaybackRate = 1
+    this.carEngine = null
+    this.shouldStopLoop = false
+
     this.game = game
     this.initialized = false
 
@@ -60,7 +68,7 @@ export default class SoundManager {
 
   static hasLooped (sound) {
     if (this.shouldStopLoop) {
-      sound.stop()
+      this.stopSound(sound)
       return
     }
     let snd = this.getRandomLoopByCategory(sound.category)
