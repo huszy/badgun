@@ -11,7 +11,7 @@
         "test": "eslint ./src/**/**.js",
         "tileeditor": "node server.js"
     },
-    "license": "GPL-3",
+    "license": "GPL-3.0",
     "devDependencies": {
         "babel-core": "^6.25.0",
         "babel-eslint": "^7.2.3",

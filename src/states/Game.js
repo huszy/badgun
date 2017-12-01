@@ -48,7 +48,7 @@ export default class extends Phaser.State {
       currentState: GAME_STATE_NOT_STARTED,
       mapTilesNeededForStage: 18,
       mapTilesNeededTotal: 18,
-      themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'snow', 'neon'],
+      themesAvailable: ['desert', 'vulcano', 'city', 'beach', 'woods', 'neon'],
       requiredEnemies: 3,
       enemyAppearInterval: 1500,
       currentScore: 0,

@@ -41,7 +41,9 @@ export default class extends Phaser.State {
     this.load.spritesheet('coin', 'assets/images/coin_spin.png', 56, 56)
 
     blockDefs.blocks.forEach((block) => {
-      this.load.image(block.sprite, 'assets/stages/' + block.sprite)
+      if (block.sprite.indexOf('snow') !== 0) {
+        this.load.image(block.sprite, 'assets/stages/' + block.sprite)
+      }
     })
 
     enemyDefs.enemies.forEach((enemy) => {
