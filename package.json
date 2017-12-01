@@ -1,8 +1,8 @@
 {
-    "name": "PhaserES6Webpack",
-    "version": "1.1.0",
-    "description": "",
-    "author": "leandro cabrera <leandcabrera@gmail.com>",
+    "name": "BADGUN",
+    "version": "1.0.0",
+    "description": "Blast from the Past!",
+    "author": "Gabor Huszak <huszy@brainstorm.hu>",
     "main": "index.js",
     "scripts": {
         "dev": "webpack",

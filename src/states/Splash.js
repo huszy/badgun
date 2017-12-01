@@ -30,6 +30,9 @@ export default class extends Phaser.State {
     this.load.image('helicopter', 'assets/images/helicopter.png')
     this.load.image('helicopter_rotor_big', 'assets/images/helicopter_rotor_big.png')
     this.load.image('helicopter_rotor_small', 'assets/images/helicopter_rotor_small.png')
+    this.load.image('gameoverBg', 'assets/images/gameoverbg.png')
+    this.load.image('homeButton', 'assets/images/home-btn.png')
+    this.load.image('restartButton', 'assets/images/restart-btn.png')
 
     this.load.image('impressum', 'assets/intro/impressum.png')
     this.load.image('infoButton', 'assets/intro/info-btn.png')
@@ -66,6 +69,6 @@ export default class extends Phaser.State {
 
   create () {
     // this.state.start('Game')
-    this.state.start('Intro')
+    this.state.start('GameOver', true, false, { score: 1000 })
   }
 }

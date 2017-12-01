@@ -124,6 +124,38 @@
             border: 1;
         }
 
+        #highscore {
+            position: absolute;
+            top: 170px;
+            left: 86px;
+            width: 310px;
+            text-align: center;
+        }
+
+        #highscore span.normal {
+            font-size: 25px;
+            color: #7854EB;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        #highscore span.high {
+            font-size: 51px;
+            color: #cf384a;
+            font-weight: bold;
+            text-shadow: 0px 0px 30px rgba(207, 56, 74, 1);
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        #highscore span.current {
+            font-size: 46px;
+            color: #F4CD89;
+            font-weight: bold;
+            text-shadow: 0px 0px 30px rgba(244, 205, 137, 1);
+        }
+
         .noselect {
         -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
@@ -216,13 +248,20 @@
     <div id="contentHolder">
         <div id="content"></div>
         <div id="machine">
+            <div id="highscore">
+                <span class="normal">YOUR HIGH SCORE:</span><br/>
+                <span class="high">21312455</span>
+                <br/>
+                <span class="normal">ACTUAL SCORE:</span><br/>
+                <span class="current">234324</span>
+            </div>
             <div id="time">
                 <span id="timeLeft" class="noselect">00:00.00</span>
                 <div class="fg"><!-- --></div>
             </div>
             <div id="point">
                 <span id="score" class="noselect">0</span><br/>
-                <span id="speed" class="noselect">0</span>
+                <span id="speed" style="display: none" class="noselect">0</span>
                 <div class="fg"><!-- --></div>
             </div>
         </div>

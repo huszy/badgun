@@ -55,14 +55,14 @@ export default class Helicopter extends Phaser.Sprite {
   }
 
   _moveInFinished () {
-    console.log("Move in finished")
+    // console.log("Move in finished")
     if (this.moveInCallback) {
       this.moveInCallback()
     }
   }
 
   _moveOutFinished () {
-    console.log("Move out finished")
+    // console.log("Move out finished")
     if (this.moveOutCallback) {
       this.moveOutCallback()
     }

@@ -54,11 +54,6 @@ export default class extends Phaser.State {
     this.blockMatrix = {data: []}
     this.currentBlockIndex = 0
     this.mapGenerator = new MapGenerator()
-
-    /*
-    for (var i = 0; i <= this.gameConfig.ma; i++) {
-      this.mapGenerator.generateNext(this.gameConfig.currentTheme)
-    }*/
   }
 
   init () {
@@ -75,18 +70,7 @@ export default class extends Phaser.State {
     this.game.physics.p2.pause()
     this.game.physics.p2.setImpactEvents(true)
     this.game.physics.p2.restitution = 0.5
-    // this.game.physics.p2.useElapsedTime = false
-
-    /*
-    Phaser.Physics.P2.update = function () {
-      if (this.paused)
-      {
-          return;
-      }
-
-      this.world.step(this.game.time.now);
-    } */
-
+    
     this.playerCollisionGroup = this.game.physics.p2.createCollisionGroup()
     this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup()
     CollectableManager.initialize(this.game, this.collectablesGroup)
@@ -102,11 +86,6 @@ export default class extends Phaser.State {
     this.speedElement = document.getElementById('speed')
   }
 
-  preload () {
-    // this.game.forceSingleUpdate = true
-    this.game.load.script('particlestorm', 'vendor/particle-storm.min.js')
-  }
-
   getThemeForStage (stage) {
     return array.nth(this.gameConfig.themesAvailable, stage % this.gameConfig.themesAvailable.length)
   }
@@ -117,7 +96,7 @@ export default class extends Phaser.State {
     let totalPixel = pixelPerSec * (THEME_TIME_IN_SECONDS - 3) - 1000 // -1000: player position on screen
     let mapTileNumber = Math.floor(totalPixel / 1250)
 
-    console.log(`stage: ${stage} playerSpeed: ${playerConfig.initialVelocity}, pixelPerSec: ${pixelPerSec}, totalPixel: ${totalPixel}, mapTileNum: ${mapTileNumber}`)
+    // console.log(`stage: ${stage} playerSpeed: ${playerConfig.initialVelocity}, pixelPerSec: ${pixelPerSec}, totalPixel: ${totalPixel}, mapTileNum: ${mapTileNumber}`)
 
     return mapTileNumber
   }
@@ -169,6 +148,9 @@ export default class extends Phaser.State {
     this.countDownAnim = this.countDownSprite.animations.add('countdown', Phaser.Animation.generateFrameNames('counter', 0, 71, '', 5), 24, false)
     this.countDownAnim.loop = false
     this.countDownAnim.onComplete = this.onCountDownComplete
+
+    this.updatePoints()
+    this.updateTimeLeft(0)
 
     this.startCountDown()
   }
@@ -315,6 +297,7 @@ export default class extends Phaser.State {
     SoundManager.fadeOutSounds()
     this.player.fadeOutCarEngine()
     this.gameConfig.currentState = GAME_STATE_GAMEOVER
+    setTimeout(this.showGameOver.bind(this), 500)
   }
 
   handlePlayerCollisions () {
@@ -384,5 +367,10 @@ export default class extends Phaser.State {
     let wD = (nW - this.game.width) / 2
     let hD = (nH - this.game.height) / 2
     this.gameWorld.position.setTo(-1 * wD, -1 * hD)
+  }
+
+  /// GAMEOVER
+  showGameOver () {
+    this.state.start('GameOver')
   }
 }
