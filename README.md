@@ -5,6 +5,8 @@ A game made for [#GithubGameOff](https://twitter.com/GitHubGameOff) 2017.
 
 Demo hosted on [itch.io](https://huszy.itch.io/badgun)
 
+Sadly itch.io adds a very large header to the page and displays the game in iframe, and the page always scrolls out when you want to control the car, so a frameless version is hosted [here](https://badgun.onceapps.com)
+
 ## Story
 
 BADGUN, the hard-boiled Hawaiian cop loves his car. Only problem there, he drives her baby way too fast. He was fined so many times for speeding, that he loses his job. What could you do without money, without a job?
