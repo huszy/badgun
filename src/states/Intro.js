@@ -2,11 +2,10 @@ import Phaser from 'phaser'
 import { setTimeout, clearTimeout } from 'timers'
 
 export default class extends Phaser.State {
-  isStartPlayed = false
-  thunderPlayed = false
-  thunderTimer = null
-
   init () {
+    this.isStartPlayed = false
+    this.thunderPlayed = false
+    this.thunderTimer = null
     this.stage.backgroundColor = '#000000'
     this.animationComplete = new Phaser.Signal()
     this.animationComplete.add(this.onAnimationComplete.bind(this), this)
@@ -17,7 +16,7 @@ export default class extends Phaser.State {
     this.game.load.atlas('intrologo', 'assets/intro/logoanim.png', 'assets/intro/logoanimsprites.json')
     this.game.load.spritesheet('startButton', 'assets/intro/start-btn.png')
     this.introSprite = this.game.add.sprite(0, 0, 'intro')
-    this.logoSprite = this.game.add.sprite(this.game.world.width / 2, 300, 'intrologo')
+    this.logoSprite = this.game.add.sprite(this.game.width / 2, 300, 'intrologo')
     this.logoSprite.alpha = 0
     this.logoSprite.anchor.set(0.5)
 
@@ -33,7 +32,7 @@ export default class extends Phaser.State {
     this.bgAnimThunderPhase.onComplete = this.animationComplete
 
     // Start button
-    this.startButton = this.game.add.button(this.game.world.centerX - 174, this.game.world.height, 'startButton', this.onStartButtonClick.bind(this), this, 0, 0, 0, 0)
+    this.startButton = this.game.add.button((this.game.width / 2) - 174, this.game.height, 'startButton', this.onStartButtonClick.bind(this), this, 0, 0, 0, 0)
     this.startButton.inputEnabled = true
     this.startButton.alpha = 0
 
@@ -87,7 +86,7 @@ export default class extends Phaser.State {
 
   fadeInUIElements () {
     this.startBtnTween = this.game.add.tween(this.startButton)
-    this.startBtnTween.to({ alpha: 1, y: this.game.world.height - 200 }, 400, 'Linear', true, 0)
+    this.startBtnTween.to({ alpha: 1, y: this.game.height - 200 }, 400, 'Linear', true, 0)
     this.startBtnTween.start()
 
     this.infoBtnTween = this.game.add.tween(this.infoButton)

@@ -36,11 +36,6 @@ export default class extends Phaser.State {
   decorationGroup = null
   helicopterGroup = null
 
-  constructor () {
-    super()
-    console.log('Cons called')
-  }
-
   init () {
     this.game.camera.reset()
     this.blockMatrix = {data: []}
@@ -122,7 +117,6 @@ export default class extends Phaser.State {
   }
 
   create () {
-    console.log('Create called')
     this.player = new Player(this.game, this.playerGroup, this.playerCollisionGroup)
     this.player.playerConfig = this.player.getPlayerConfigForStage(this.gameConfig.stage)
     // Generate first two stage
@@ -340,7 +334,6 @@ export default class extends Phaser.State {
     if (playerWallCollision) {
       this.game.camera.shake(0.005, 100)
       this.player.slowDown()
-      this.handleGameOver()
     }
 
     if (playerWallCollision) {
