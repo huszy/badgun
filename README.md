@@ -1,20 +1,23 @@
-# Phaser + ES6 + Webpack.
-#### A bootstrap project to create games with Phaser + ES6 + Webpack.
+# BADGUN
+#### Blast from the Past!
 
-![Phaser+ES6+Webpack](https://raw.githubusercontent.com/lean/phaser-es6-webpack/master/assets/images/phaser-es6-webpack.jpg)
+A game made for [#GithubGameOff](https://twitter.com/GitHubGameOff) 2017.
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+Demo hosted on [itch.io](https://huszy.itch.io/badgun)
 
+## Story
 
-## Features
-- ESLINT with JavaScript Standard Style configuration
-- Next generation of Javascript
-- Browsers are automatically updated as you change project files
-- Webpack ready
-- WebFont Loader
+BADGUN, the hard-boiled Hawaiian cop loves his car. Only problem there, he drives her baby way too fast. He was fined so many times for speeding, that he loses his job. What could you do without money, without a job?
 
-## Typescript 
-If you need typescript support checkout the ```typescript``` branch. Thanks to @MatsMaker
+BADGUN starts car racing.
+
+Help BADGUN get more money! Use the arrow keys to accelerate, slow down, or turn the car. Reach as far as possible in a given time, make your way to the next level. Collect as much coins as possible. Use the brake, sometime a slower speed gets you farther. Avoid the obstacles, and watch out for the heavy traffic.
+
+Key features:
+- Constantly accelerating gameplay
+- Procedural retro music and sound effects
+- Visuals of the 80s
+- 7 Different Worlds
 
 # Setup
 You'll need to install a few things before you have a working copy of the project.
@@ -25,7 +28,7 @@ Navigate into your workspace directory.
 
 Run:
 
-```git clone https://github.com/lean/phaser-es6-webpack.git```
+```git clone https://github.com/huszy/badgun.git```
 
 ## 2. Install node.js and npm:
 
@@ -61,42 +64,17 @@ Run:
 
 This will optimize and minimize the compiled bundle.
 
-## Deploy for cordova:
-Make sure to uncomment the cordova.js file in the src/index.html and to update config.xml with your informations. (name/description...)
-
-More informations about the cordova configuration:
-https://cordova.apache.org/docs/en/latest/config_ref/
-
-There is 3 platforms actually tested and supported : 
-- browser
-- ios
-- android
-
-First run (ios example):
-
-```
-npm run cordova
-cordova platform add ios
-cordova run ios
-```
-
-Update (ios example):
-
-```
-npm run cordova
-cordova platform update ios
-cordova run ios
-```
-
-This will optimize and minimize the compiled bundle.
-
 ## Credits
 Big thanks to these great repos:
 
+https://github.com/photonstorm/phaser-ce
+
+https://github.com/lean/phaser-es6-webpack
+
 https://github.com/belohlavek/phaser-es6-boilerplate
 
-https://github.com/cstuncsik/phaser-es6-demo
+And this great free softwares:
 
-## Contributors
+https://draeton.github.io/stitches/
 
-https://github.com/RenaudROHLINGER
+https://www.leshylabs.com/apps/sstool/
