@@ -112,7 +112,7 @@ export default class Player {
       return
     }
 
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || this.game.input.keyboard.isDown(65)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation - 0.02, -0.2, 0)
       this.turning = true
       if (this.sprite.body.velocity.x > 0) {
@@ -120,7 +120,7 @@ export default class Player {
       }
       this.sprite.body.thrustLeft(this.playerConfig.turnVelocity * 40)
       // this.sprite.body.velocity.x = Phaser.Math.clamp(this.sprite.body.velocity.x - this.playerConfig.turnVelocity, -1 * this.playerConfig.turnVelocity * 20, 0)
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || this.game.input.keyboard.isDown(68)) {
       this.sprite.rotation = Phaser.Math.clamp(this.sprite.rotation + 0.02, 0, 0.2)
       this.turning = true
       if (this.sprite.body.velocity.x < 0) {
@@ -143,12 +143,12 @@ export default class Player {
       }
     }
 
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) || this.game.input.keyboard.isDown(87)) {
       if (this.sprite.body.velocity.y > this.playerConfig.maxVelocity) {
         this.sprite.body.thrust(this.playerConfig.acceleration * 50)
       }
       // this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y - this.playerConfig.acceleration / 5, this.playerConfig.maxVelocity)
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) || this.game.input.keyboard.isDown(83)) {
       if (this.sprite.body.velocity.y < this.playerConfig.minVelocity) {
         this.sprite.body.reverse(this.playerConfig.deceleration * 50)
       }

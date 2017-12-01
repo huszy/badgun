@@ -5,7 +5,7 @@ A game made for [#GithubGameOff](https://twitter.com/GitHubGameOff) 2017.
 
 Demo hosted on [itch.io](https://huszy.itch.io/badgun)
 
-Sadly itch.io adds a very large header to the page and displays the game in iframe, and the page always scrolls out when you want to control the car, so a frameless version is hosted [here](https://badgun.onceapps.com)
+Sadly itch.io adds a very large header to the page and displays the game in iframe, and the page always scrolls out when you want to control the car with the arrow keys, so a frameless version is hosted [here](https://badgun.onceapps.com), or you can use W,A,S,D keys instead of arrows.
 
 ## Story
 
@@ -13,7 +13,7 @@ BADGUN, the hard-boiled Hawaiian cop loves his car. Only problem there, he drive
 
 BADGUN starts car racing.
 
-Help BADGUN get more money! Use the arrow keys to accelerate, slow down, or turn the car. Reach as far as possible in a given time, make your way to the next level. Collect as much coins as possible. Use the brake, sometime a slower speed gets you farther. Avoid the obstacles, and watch out for the heavy traffic.
+Help BADGUN get more money! Use the arrow keys (or W,A,S,D) to accelerate, slow down, or turn the car. Reach as far as possible in a given time, make your way to the next level. Collect as much coins as possible. Use the brake, sometime a slower speed gets you farther. Avoid the obstacles, and watch out for the heavy traffic.
 
 Key features:
 - Constantly accelerating gameplay
